@@ -27,9 +27,16 @@ function animalPopularity(rating) {
   // seu código aqui
 };
 
-function animalsByIds(ids) {
-  // seu código aqui
-};
+function animalsByIds(...ids) {
+  const animaisPorId = []
+  if (ids.length == 0) {
+    return animaisPorId;
+  }
+  else {
+    ids.map(idPassado => animaisPorId.push(data.animals.find(animal => idPassado == animal.id)))
+    return animaisPorId;
+  }
+}
 
 function animalByName(animalName) {
   // seu código aqui
