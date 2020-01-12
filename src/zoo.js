@@ -9,7 +9,14 @@ function schedule(dayName) {
 };
 
 function animalCount(species) {
-  // seu código aqui
+  if (species == null) {
+    const arranjoAnimais = {};
+    data.animals.forEach(especie => arranjoAnimais[especie.name] = especie.residents.length);
+    return arranjoAnimais
+  }
+  else {
+    return data.animals.find(animal => (animal.name == species)).residents.length;
+  }
 };
 
 function animalMap(options) {
