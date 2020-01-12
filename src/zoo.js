@@ -68,7 +68,8 @@ function isManager(id) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const selecionarAnimais = data.animals.find(elemento => elemento.name == animal)
+  return selecionarAnimais.residents.every(idades => idades.age > age)
 }
 
 function oldestFromFirstSpecies(id) {
