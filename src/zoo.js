@@ -63,7 +63,8 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const eGerente = data.employees.some(trabalhador => trabalhador.managers.some(gerentes => gerentes == id))
+  return eGerente
 }
 
 function animalsOlderThan(animal, age) {
