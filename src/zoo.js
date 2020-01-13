@@ -34,26 +34,27 @@ function animalByName(animalName) {
   // seu código aqui
 };
 
-function employeesByIds(ids) {
-  // não há arquivo de teste
-};
+// function employeesByIds(ids) {
+//   // não há arquivo de teste
+// };
 
 function employeeByName(employeeName = {}) {
   const allEmployees = data.employees;
   for (let i = 0; i < allEmployees.length; i++) {
-    if (allEmployees[i].firstName == employeeName) {
+    if (allEmployees[i].firstName === employeeName) {
       return allEmployees[i];
     }
-    else if (allEmployees[i].lastName == employeeName) {
+    
+    else if (allEmployees[i].lastName === employeeName) {
       return allEmployees[i];
     }
   }
   return employeeName;
 };
 
-function managersForEmployee(idOrName) {
-  // seu código aqui
-};
+// function managersForEmployee(idOrName) {
+//   // não há arquivo de teste
+// };
 
 function employeeCoverage(idOrName) {
   // seu código aqui
