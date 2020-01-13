@@ -74,16 +74,16 @@ function managersForEmployee(idOrName) {
 function employeeCoverage(idOrName) {
   const objFinal = {}
   data.employees.forEach((empregado) => {
-      const { firstName, lastName, responsibleFor } = empregado
-      objFinal[`${firstName} ${lastName}`] = (animalsByIds(...responsibleFor)).map(animal => animal.name)
+    const { firstName, lastName, responsibleFor } = empregado
+    objFinal[`${firstName} ${lastName}`] = (animalsByIds(...responsibleFor)).map(animal => animal.name)
   })
   if (!idOrName) {
-      return objFinal
+    return objFinal
   }
   const objEmploy = employeeByName(idOrName) ? employeeByName(idOrName) : employeesByIds(idOrName);
   const chave = `${objEmploy.firstName} ${objEmploy.lastName}`
   const valor = objFinal[chave]
-  let resultado ={}
+  const resultado = {}
   resultado[chave] = valor
   return resultado
 };
