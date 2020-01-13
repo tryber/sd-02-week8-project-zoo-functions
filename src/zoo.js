@@ -11,7 +11,7 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-  // seu código aqui
+
 };
 
 function animalCount(species) {
@@ -71,15 +71,28 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  // seu código aqui
+  constructor() {
+    this.name
+    this.sex
+    this.age
+    this.species
+  }
+
+  // createAnimals() {
+  //   const animals = Object.entries(data.animals);
+  //   console.log(animals)
+  // }
 }
 
 function createAnimals() {
-  // seu código aqui
+  
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const personalInfoObj = personalInfo;
+  const associatedWithObj = associatedWith;
+  const employee = {...personalInfoObj, ...associatedWithObj}
+  return employee;
 }
 
 module.exports = {
