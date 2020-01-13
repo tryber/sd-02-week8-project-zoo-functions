@@ -15,7 +15,17 @@ function schedule(dayName) {
 };
 
 function animalCount(species) {
-  // seu código aqui
+  const allAnimals = data.animals;
+  if (species == undefined) {
+    const newAnimalCountObj = allAnimals.reduce((accumulator, current) => {
+      accumulator[current.name] = current.residents.length;
+      return accumulator;
+    }, {})
+    return newAnimalCountObj;
+  }
+  for (let i = 0; i < allAnimals.length; i += 1) {
+    if (allAnimals[i].name === species) return allAnimals[i].residents.length;
+  }
 };
 
 function animalMap(options) {
@@ -23,7 +33,7 @@ function animalMap(options) {
 };
 
 function animalPopularity(rating) {
-  // seu código aqui
+  // não há arquivo de teste
 };
 
 function animalsByIds(ids) {
@@ -31,7 +41,7 @@ function animalsByIds(ids) {
 };
 
 function animalByName(animalName) {
-  // seu código aqui
+  // não há arquivo de teste
 };
 
 function employeesByIds(ids) {
