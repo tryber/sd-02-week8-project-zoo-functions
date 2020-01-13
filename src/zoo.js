@@ -91,9 +91,9 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const arranjoIdades = Object.keys(data.prices)
-  arranjoIdades.forEach(faixaEtaria => {
-    data.prices[faixaEtaria] = parseFloat((Math.ceil((data.prices[faixaEtaria] * (100 + percentage))) / 100)
-      .toFixed(2))
+  arranjoIdades.forEach((faixaEtaria) => {
+    data.prices[faixaEtaria] = parseFloat((Math.ceil(
+      (data.prices[faixaEtaria] * (100 + percentage))) / 100).toFixed(2))
   })
 }
 
