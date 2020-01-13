@@ -50,8 +50,16 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 };
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const newEmployee = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  }
+  const allEmployees = data.employees;
+  allEmployees.push(newEmployee);
 }
 
 function isManager(id) {
@@ -67,10 +75,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const percent = percentage / 100
-  const adultsPriceIncrease = data.prices.Adult + (percent * data.prices.Adult);
-  const seniorsPriceIncrease = data.prices.Senior + (percent * data.prices.Senior);
-  const childrenPriceIncrease = data.prices.Child + (percent * data.prices.Child);
+  const percentageCalc = percentage / 100;
+  const adultsPriceIncrease = data.prices.Adult + (percentageCalc * data.prices.Adult);
+  const seniorsPriceIncrease = data.prices.Senior + (percentageCalc * data.prices.Senior);
+  const childrenPriceIncrease = data.prices.Child + (percentageCalc * data.prices.Child);
   data.prices.Adult = Math.ceil(adultsPriceIncrease * 100) / 100;
   data.prices.Senior = Math.ceil(seniorsPriceIncrease * 100) / 100;
   data.prices.Child = Math.ceil(childrenPriceIncrease * 100) / 100;
