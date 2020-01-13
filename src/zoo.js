@@ -304,7 +304,7 @@ function oldestFromFirstSpecies(id) {
   // const animaisEspecie = data.animals.find(item => item.name ===)
 
   const objetoResultado = individuos.reduce((acumulado, item) =>
-    ((item.age > acumulado.age) ? (item) : (acumulado)));
+  (item.age > acumulado.age ? item : acumulado));
 
   const { name, sex, age } = objetoResultado;
 
