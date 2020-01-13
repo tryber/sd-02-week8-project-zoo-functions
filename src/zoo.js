@@ -58,7 +58,7 @@ function animalByName(animalName) {
 };
 
 function employeesByIds(ids) {
-  // seu código aqui
+  return data.employees.find((funcionario) => funcionario.id === ids)
 };
 
 function employeeByName(employeeName) {
@@ -72,7 +72,19 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) {
+    const objFinal = {}
+    data.employees.forEach(empregado => {
+      const { firstName, lastName, responsibleFor } = empregado
+      objFinal[`${firstName} ${lastName}`] = (animalsByIds(...responsibleFor)).map(animal => animal.name)
+    })
+    return objFinal
+  }
+  const objEmploy = employeeByName(idOrName) ? employeeByName(idOrName) : employeesByIds(idOrName);
+  const { firstName, lastName, responsibleFor } = objEmploy;
+  const objFinal = {}
+  objFinal[`${firstName} ${lastName}`] = (animalsByIds(...responsibleFor)).map(animal => animal.name)
+  return objFinal
 };
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
