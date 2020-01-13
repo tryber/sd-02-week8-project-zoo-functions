@@ -1,7 +1,16 @@
 const data = require('./data')
 
-function entryCalculator(entrants) {
+function entryCalculator(entrants = 0) {
   // seu código aqui
+  let price = 0
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants
+
+  if (Object.keys(entrants).length !== 0) {
+    price = Adult * data.prices.Adult
+    price += Child * data.prices.Child
+    price += Senior * data.prices.Senior
+  }
+  return price
 };
 
 function schedule(dayName) {
@@ -17,7 +26,7 @@ function animalMap(options) {
 };
 
 function animalPopularity(rating) {
-  // seu código aqui
+  // seu código aqui - Não precisa
 };
 
 function animalsByIds(ids) {
@@ -25,11 +34,11 @@ function animalsByIds(ids) {
 };
 
 function animalByName(animalName) {
-  // seu código aqui
+  // seu código aqui - Não precisa
 };
 
 function employeesByIds(ids) {
-  // seu código aqui
+  // seu código aqui - Não precisa
 };
 
 function employeeByName(employeeName) {
@@ -37,7 +46,7 @@ function employeeByName(employeeName) {
 };
 
 function managersForEmployee(idOrName) {
-  // seu código aqui
+  // seu código aqui - Não precisa
 };
 
 function employeeCoverage(idOrName) {
