@@ -2,7 +2,7 @@ const data = require('./data')
 
 const entryCalculator = (...args) => {
   const { Adult: PriceAdults, Senior: PriceSenior, Child: PriceChild } = data.prices;
-  if (args[0] !== null || args[0] !== undefined) {
+  if (args[0] === null || args[0] === undefined) {
     return args;
   } else if (Object.keys(args[0]).length === 0) {
     return 0;
@@ -11,12 +11,23 @@ const entryCalculator = (...args) => {
   return (Adult * PriceAdults) + (Senior * PriceSenior) + (Child * PriceChild);
 };
 
-function schedule(dayName) {
-  // seu código aqui
+const schedule = (dayName) => {
+  
 };
 
-function animalCount(species) {
-  // seu código aqui
+const animalCount = (species) => {
+  const [...args] = data.animals;
+  const arrFinal = args.reduce((acc, cur) => 
+  ({ ...acc, [cur.name]: Object.keys(cur.residents).length }), {})  
+  if (species === null || species === undefined) {
+    return arrFinal;
+  } else {
+    for (let count in arrFinal) {
+      if ( count === species ) {
+        return arrFinal [count];
+      }
+    }
+  }
 };
 
 function animalMap(options) {
