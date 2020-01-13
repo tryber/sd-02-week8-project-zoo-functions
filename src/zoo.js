@@ -14,9 +14,7 @@ function animalCount(species) {
     data.animals.forEach(especie => arranjoAnimais[especie.name] = especie.residents.length);
     return arranjoAnimais
   }
-  else {
-    return data.animals.find(animal => (animal.name == species)).residents.length;
-  }
+  return data.animals.find(animal => (animal.name === species)).residents.length;
 };
 
 function animalMap(options) {
@@ -29,13 +27,11 @@ function animalPopularity(rating) {
 
 function animalsByIds(...ids) {
   const animaisPorId = []
-  if (ids.length == 0) {
+  if (ids.length === 0) {
     return animaisPorId;
   }
-  else {
-    ids.map(idPassado => animaisPorId.push(data.animals.find(animal => idPassado == animal.id)))
-    return animaisPorId;
-  }
+  ids.map(idPassado => animaisPorId.push(data.animals.find(animal => idPassado === animal.id)))
+  return animaisPorId;
 }
 
 function animalByName(animalName) {
@@ -59,7 +55,7 @@ function employeeCoverage(idOrName) {
 };
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  let empregado = {};
+  const empregado = {};
   empregado.id = id;
   empregado.firstName = firstName;
   empregado.lastName = lastName;
@@ -69,12 +65,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function isManager(id) {
-  const eGerente = data.employees.some(trabalhador => trabalhador.managers.some(gerentes => gerentes == id))
+  const eGerente = data.employees.some(trabalhador =>
+    trabalhador.managers.some(gerentes => 
+      gerentes === id))
   return eGerente
 }
 
 function animalsOlderThan(animal, age) {
-  const selecionarAnimais = data.animals.find(elemento => elemento.name == animal)
+  const selecionarAnimais = data.animals.find(elemento => elemento.name === animal)
   return selecionarAnimais.residents.every(idades => idades.age > age)
 }
 
