@@ -1,7 +1,10 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if(entrants == undefined || Object.getOwnPropertyNames(entrants).length == 0) {
+    return 0;
+  }
+  return (entrants.Adult * 49.99) + (entrants.Senior * 24.99) + (entrants.Child * 20.99);
 };
 
 function schedule(dayName) {
