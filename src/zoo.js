@@ -5,11 +5,21 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { Adult, Child, Senior } = entrants;
-  return (Adult * 49.99) + (Child * 20.99) + (Senior * 24.99);
+  const {Adult: AdultP, Senior: SeniorP, Child: ChildP}= data.prices;
+  return (Adult * AdultP) + (Child * ChildP) + (Senior * SeniorP);
 };
 
 function schedule(dayName) {
-  // seu código aqui
+  // const {
+  //   'Tuesday': { open: openTe, close: closeTe },
+  //   'Wednesday': { open: openQa, close: closeQa },
+  //   'Thursday': { open: openQu, close: closeQu },
+  //   'Friday': { open: openSe, close: closeSe },
+  //   'Saturday': { open: openSa, close: closeSa },
+  //   'Sunday': { open: openDo, close: closeDo }
+  //   'Monday': { open: openSe, close: closeSe }
+  // } = data.hours
+
 };
 
 function animalCount(species) {
