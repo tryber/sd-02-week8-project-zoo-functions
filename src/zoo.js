@@ -1,11 +1,11 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  // começando o trabalho
 };
 
 function schedule(dayName) {
-  // seu código aqui
+  // seu código aquip;
 };
 
 function animalCount(species) {
