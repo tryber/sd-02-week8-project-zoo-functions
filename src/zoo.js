@@ -67,7 +67,14 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const percent = percentage / 100
+  const adultsPriceIncrease = data.prices.Adult + (percent * data.prices.Adult);
+  const seniorsPriceIncrease = data.prices.Senior + (percent * data.prices.Senior);
+  const childrenPriceIncrease = data.prices.Child + (percent * data.prices.Child);
+  data.prices.Adult = Math.ceil(adultsPriceIncrease * 100) / 100;
+  data.prices.Senior = Math.ceil(seniorsPriceIncrease * 100) / 100;
+  data.prices.Child = Math.ceil(childrenPriceIncrease * 100) / 100;
+  return data.prices;
 }
 
 class Animal {
@@ -91,7 +98,7 @@ function createAnimals() {
 function createEmployee(personalInfo, associatedWith) {
   const personalInfoObj = personalInfo;
   const associatedWithObj = associatedWith;
-  const employee = {...personalInfoObj, ...associatedWithObj}
+  const employee = { ...personalInfoObj, ...associatedWithObj };
   return employee;
 }
 
