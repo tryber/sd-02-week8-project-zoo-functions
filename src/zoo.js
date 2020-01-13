@@ -13,13 +13,14 @@ function entryCalculator(entrants = {}) {
 };
 
 function schedule(dayName) {
-  let Objeto = {}
-  Object.keys(data.hours).map(dia => {
-    Objeto[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`
-    Objeto['Monday'] = 'CLOSED'
+  const Objeto = {}
+  Object.keys(data.hours).map((dia) => {
+    Objeto[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`;
+    Objeto.Monday = 'CLOSED';
+    return Objeto;
   })
   if (!dayName) { return Objeto }
-  let retorno = {}
+  const retorno = {}
   retorno[dayName] = Objeto[dayName]
   return retorno
 }
