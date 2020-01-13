@@ -1,7 +1,15 @@
 const data = require('./data')
 
-function entryCalculator(entrants) {
-  // seu código aqui
+function entryCalculator(entrants = {}) {
+  const arranjoEntradas = Object.keys(entrants);
+  if (entrants !== {}) {
+    let valorAPagar = 0;
+    arranjoEntradas.forEach(faixaEtaria => {
+      valorAPagar += entrants[faixaEtaria] * data.prices[faixaEtaria]
+    })
+    return valorAPagar
+  };
+  return 0
 };
 
 function schedule(dayName) {
