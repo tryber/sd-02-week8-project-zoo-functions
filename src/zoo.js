@@ -50,8 +50,10 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 };
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  const ultimoEmp = { id, firstName, lastName, managers, responsibleFor };
+  data.employees.push(ultimoEmp);
 }
 
 function isManager(id) {
@@ -61,7 +63,7 @@ function isManager(id) {
 function animalsOlderThan(animal, age) {
   // seu código aqui
   const speciesItem = data.animals.find(dataItem => dataItem.name === animal);
-  return speciesItem.residents.every(element => element.age >= age );
+  return speciesItem.residents.every(element => element.age >= age);
 }
 
 function oldestFromFirstSpecies(id) {
