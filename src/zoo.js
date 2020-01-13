@@ -4,10 +4,10 @@ function entryCalculator(entrants) {
   if (entrants === undefined || Object.getOwnPropertyNames(entrants).length === 0) {
     return 0;
   }
-  const adults = entrants.Adult;
-  const seniors = entrants.Senior;
-  const children = entrants.Child;
-  return (adults * data.prices.Adult) + (seniors * data.prices.Senior) + (children * data.prices.Child);
+  const adultsPriceCalculator = entrants.Adult * data.prices.Adult;
+  const seniorsPriceCalculator = entrants.Senior * data.prices.Senior;
+  const childrenPriceCalculator = entrants.Child * data.prices.Child;
+  return adultsPriceCalculator + seniorsPriceCalculator + childrenPriceCalculator;
 };
 
 function schedule(dayName) {
