@@ -21,12 +21,12 @@ function animalPopularity(rating) {
 };
 
 function animalsByIds(...ids) {
-  // seu código aqui
-  let animaisPorId = [];
-  if (ids == undefined) {
+  // seu código aqui - Troquei o nome dos ID pra explicar pro Felipe e não lembro o que tava
+  const animaisPorId = [];
+  if (ids === undefined) {
     return animaisPorId;
   }
-  ids.map(idsarr => animaisPorId.push(data.animals.find((item) => item.id === idsarr)));
+  ids.map(idsArr => animaisPorId.push(data.animals.find(dataItem => dataItem.id === idsArr)));
   return animaisPorId;
 };
 
@@ -60,6 +60,8 @@ function isManager(id) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  const speciesItem = data.animals.find(dataItem => dataItem.name === animal);
+  return speciesItem.residents.every(element => element.age >= age );
 }
 
 function oldestFromFirstSpecies(id) {
