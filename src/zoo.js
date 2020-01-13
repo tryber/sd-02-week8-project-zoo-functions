@@ -81,7 +81,6 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
 }
 // parseFloat(conta.toFixed(2))
 function increasePrices(percentage) {
@@ -95,7 +94,6 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  // seu código aqui
 }
 
 function createAnimals() {
