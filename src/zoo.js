@@ -90,10 +90,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  let { Adult, Senior, Child } = data.prices
-  data.prices.Adult = parseFloat((Math.ceil((Adult * (100 + percentage))) / 100).toFixed(2));
-  data.prices.Senior = parseFloat((Math.ceil((Senior * (100 + percentage))) / 100).toFixed(2));
-  data.prices.Child = parseFloat((Math.ceil((Child * (100 + percentage))) / 100).toFixed(2));}
+  arranjoIdades = Object.keys(data.prices)
+  arranjoIdades.forEach((faixaEtaria) =>
+      data.prices[faixaEtaria] = parseFloat((Math.ceil((data.prices[faixaEtaria] * (100 + percentage))) / 100).toFixed(2)));
+}
 
 class Animal {
   // seu código aqui
