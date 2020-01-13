@@ -1,10 +1,13 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if(entrants == undefined || Object.getOwnPropertyNames(entrants).length == 0) {
+  if (entrants === undefined || Object.getOwnPropertyNames(entrants).length === 0) {
     return 0;
   }
-  return (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior) + (entrants.Child * data.prices.Child);
+  const adults = entrants.Adult;
+  const seniors = entrants.Senior;
+  const children = entrants.Child;
+  return (adults * data.prices.Adult) + (seniors * data.prices.Senior) + (children * data.prices.Child);
 };
 
 function schedule(dayName) {
