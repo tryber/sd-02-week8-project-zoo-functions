@@ -10,17 +10,28 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-  // const {
-  //   'Tuesday': { open: openTe, close: closeTe },
-  //   'Wednesday': { open: openQa, close: closeQa },
-  //   'Thursday': { open: openQu, close: closeQu },
-  //   'Friday': { open: openSe, close: closeSe },
-  //   'Saturday': { open: openSa, close: closeSa },
-  //   'Sunday': { open: openDo, close: closeDo }
-  //   'Monday': { open: openSe, close: closeSe }
-  // } = data.hours
-
-};
+  const {
+    'Tuesday': { open: TuesdayO, close: TuesdayCl },
+    'Wednesday': { open: WednesdayO, close: WednesdayCl },
+    'Thursday': { open: ThursdayO, close: ThursdayCl },
+    'Friday': { open: FridayO, close: FridayCl },
+    'Saturday': { open: SaturdayO, close: SaturdayCl },
+    'Sunday': { open: SundayO, close: SundayCl }
+  } = data.hours
+  const padrao = {
+    'Tuesday': `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
+    'Wednesday': `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
+    'Thursday': `Open from ${ThursdayO}am until ${ThursdayCl - 12}pm`,
+    'Friday': `Open from ${FridayO}am until ${FridayCl - 12}pm`,
+    'Saturday': `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
+    'Sunday': `Open from ${SundayO}am until ${SundayCl - 12}pm`,
+    'Monday': `CLOSED`
+  };
+  if (dayName === undefined) {
+    return padrao;
+  }
+  return { [dayName]: padrao[dayName] };
+}
 
 function animalCount(species) {
   // seu código aqui
