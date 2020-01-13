@@ -22,7 +22,7 @@ const animalCount = (species) => {
   if (species === null || species === undefined) {
     return arrFinal;
   }
-  return animalQtd (species, arrFinal);
+  return arrFinal[species];
 };
 
 function animalMap(options) {
@@ -87,14 +87,6 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-}
-
-const animalQtd = (species, array) => {
-  for (let count in array) {
-    if ( count === species ) {
-      return array [count];
-    }
-  }
 }
 
 module.exports = {
