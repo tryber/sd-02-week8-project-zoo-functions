@@ -53,7 +53,9 @@ function employeesByIds(ids) {
 };
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  if (!employeeName) { return {} }
+  return data.employees.find(empregado => (empregado.firstName === employeeName ||
+    empregado.lastName === employeeName))
 };
 
 function managersForEmployee(idOrName) {
