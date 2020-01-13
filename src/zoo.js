@@ -4,7 +4,7 @@ function entryCalculator(entrants) {
   if(entrants == undefined || Object.getOwnPropertyNames(entrants).length == 0) {
     return 0;
   }
-  return (entrants.Adult * 49.99) + (entrants.Senior * 24.99) + (entrants.Child * 20.99);
+  return (entrants.Adult * data.prices.Adult) + (entrants.Senior * data.prices.Senior) + (entrants.Child * data.prices.Child);
 };
 
 function schedule(dayName) {
