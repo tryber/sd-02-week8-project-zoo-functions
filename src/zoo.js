@@ -1,7 +1,11 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if( entrants === undefined || JSON.stringify(entrants) === '{}' ){
+    return 0;
+  }
+  const {Adult , Child , Senior} = entrants;
+  return ( Adult * 49.99 ) + ( Child * 20.99 ) + ( Senior * 24.99 );
 };
 
 function schedule(dayName) {
