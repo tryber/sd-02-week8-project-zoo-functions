@@ -36,10 +36,11 @@ function schedule(dayName) {
     if (item[0] === 'Monday') {
       acumulado[item[0]] = 'CLOSED';
     } else {
-      acumulado[item[0]] = `Open from ${item[1].open}am until ${item[1].close - 12}pm`
+      acumulado[item[0]] = `Open from ${item[1].open}am until ${item[1].close - 12}pm`;
     }
+
     return acumulado;
-  }, {})
+  }, {});
 
   // const {
   //   Tuesday: { open: openTu, close: closeTu },
@@ -160,7 +161,7 @@ function animalMap(options) {
     // }
     // return residentes.map(item => item.name);
 
-  const adicionaNomes = (animais) =>
+  const adicionaNomes = animais =>
     animais.map(item => ({ [item]: retornaNomes(item, sorted, sex) }));
 
     // let nomes;
@@ -267,9 +268,9 @@ function employeeCoverage(idOrName) {
   }
 
   const objetoResultado = data.employees.find(item =>
-    idOrName === item.id || idOrName === item.firstName || idOrName === item.lastName);
-  
-    Object.keys(resultado).forEach((key, index) => {
+  idOrName === item.id || idOrName === item.firstName || idOrName === item.lastName);
+
+  Object.keys(resultado).forEach((key, index) => {
     if (key.split(' ')[0] === objetoResultado.firstName || key.split(' ')[1] === objetoResultado.lastName) {
       resultado = { [key]: Object.values(resultado)[index] };
     }
@@ -306,10 +307,9 @@ function oldestFromFirstSpecies(id) {
   const individuos = animalsByIds(primeiroIdEspecie)[0].residents;
 
   // const animaisEspecie = data.animals.find(item => item.name ===)
-  
-  const objetoResultado = individuos.reduce((acumulado, item) => {
-    return (item.age > acumulado.age) ? (item) : (acumulado);
-  });
+
+  const objetoResultado = individuos.reduce((acumulado, item) =>
+    (item.age > acumulado.age) ? (item) : (acumulado));
 
   const { name, sex, age } = objetoResultado;
 
@@ -322,7 +322,7 @@ function increasePrices(percentage) {
 
   const aumentaPreco = faixaEtaria =>
   (Math.ceil(((100 + percentage) * faixaEtaria)) / 100).toFixed(2);
-  
+
   Adult = aumentaPreco(Adult);
   Senior = aumentaPreco(Senior);
   Child = aumentaPreco(Child);
@@ -369,8 +369,9 @@ function createAnimals() {
 
   const objetos = [];
   for (let i = 0; i < cadaEspecie.length; i += 1) {
-    animaisDeCadaEspecie[i].forEach(animal => {
-      animal.species = cadaEspecie[i]
+    
+    animaisDeCadaEspecie[i].forEach((animal) => {
+      animal.species = cadaEspecie[i];
     });
 
     objetos[i] = animaisDeCadaEspecie[i];
