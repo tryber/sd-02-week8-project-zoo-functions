@@ -87,9 +87,9 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const { Adult: AdultP, Senior: SeniorP, Child: ChildP } = data.prices;
   const novo = {
-    Adult: Math.round(((AdultP + (AdultP * percentage) / 100) * 100)) / 100,
-    Senior: Math.round(((SeniorP + (SeniorP * percentage) / 100) * 100)) / 100,
-    Child: Math.round(((ChildP + (ChildP * percentage) / 100) * 100)) / 100
+    Adult: Math.round(((AdultP + ((AdultP * percentage) / 100)) * 100)) / 100,
+    Senior: Math.round(((SeniorP + ((SeniorP * percentage) / 100)) * 100)) / 100,
+    Child: Math.round(((ChildP + ((ChildP * percentage) / 100)) * 100)) / 100
   }
   data.prices = novo;
 }
