@@ -4,7 +4,7 @@ function entryCalculator(entrants = {}) {
   const arranjoEntradas = Object.keys(entrants);
   if (entrants !== {}) {
     let valorAPagar = 0;
-    arranjoEntradas.forEach(faixaEtaria => {
+    arranjoEntradas.forEach((faixaEtaria) => {
       valorAPagar += entrants[faixaEtaria] * data.prices[faixaEtaria]
     })
     return valorAPagar
