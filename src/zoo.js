@@ -14,20 +14,13 @@ function entryCalculator(entrants) {
   const { Adult, Child, Senior } = entrants;
 
   return (Adult * adultPrice) + (Child * childPrice) + (Senior * seniorPrice);
-
-  // console.log(Adult, Child, Senior)
-  // console.log(data)
 };
 // console.log(entryCalculator());
 // console.log({} === {})
-// console.log(data)
 
 function schedule(dayName) {
   // seu código aqui
   const horarios = Object.entries(data.hours);
-
-  // console.log(horarios);
-  // Tuesday: `Open from ${openTu}am until ${closeTu - 12}pm`,
 
   // const dias = Object.keys(data.hours);
   // const horarios = Object.values(data.hours)
@@ -109,13 +102,17 @@ const filtraPorRegiao = (regiao) => {
 
 const retornaNomes = (animal, sorted, sex) => {
   let residentes = data.animals.find(item => item.name === animal).residents;
+
   if (sex === 'female') {
     residentes = residentes.filter(item => item.sex === 'female');
   }
+
   const arrayNomes = residentes.map(item => item.name);
+
   if (sorted) {
     return arrayNomes.sort();
   }
+
   return arrayNomes;
 }
 
@@ -174,7 +171,6 @@ function animalMap(options) {
     //   nomes = array.map((item) => ({ [item] : retornaNomes(item) }));
     // }
     // return nomes;
-
   // if (includeNames && sorted) {
   //   return {
   //     NE: adicionaNomes(filtraPorRegiao('NE')),
@@ -196,6 +192,7 @@ function animalMap(options) {
     [NE, NW, SE, SW] = regioes.map(regiao => adicionaNomes(filtraPorRegiao(regiao), sorted, sex));
     return { NE, NW, SE, SW }
   }
+
     // return {
     //   NE: adicionaNomes(filtraPorRegiao('NE')),
     //   NW: adicionaNomes(filtraPorRegiao('NW')),
@@ -216,6 +213,7 @@ function animalsByIds(...ids) {
   if (ids === undefined) {
     return [];
   }
+
   return ids.map(arg => data.animals.find(item => item.id === arg));
 };
 
@@ -253,8 +251,6 @@ function employeeCoverage(idOrName) {
 
   const responsavelpor = data.employees.map(item => item.responsibleFor.map(id =>
     animalsByIds(id)[0].name));
-
-  // console.log(nomesCompletos, responsavelpor)
 
   // let resultado = {};
   // for (let i = 0; i < nomesCompletos.length; i += 1) {
@@ -303,13 +299,12 @@ function animalsOlderThan(animal, age) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const primeiroIdEspecie = data.employees.find(item => item.id === id).responsibleFor[0];
-
   const individuos = animalsByIds(primeiroIdEspecie)[0].residents;
 
   // const animaisEspecie = data.animals.find(item => item.name ===)
 
   const objetoResultado = individuos.reduce((acumulado, item) =>
-    (item.age > acumulado.age) ? (item) : (acumulado));
+    ((item.age > acumulado.age) ? (item) : (acumulado)));
 
   const { name, sex, age } = objetoResultado;
 
@@ -358,7 +353,6 @@ class Animal {
 
 function createAnimals() {
   // seu código aqui
-
   // const novoAnimal = new Animal();
   // data.animals.push(novoAnimal);
 
@@ -369,7 +363,6 @@ function createAnimals() {
 
   const objetos = [];
   for (let i = 0; i < cadaEspecie.length; i += 1) {
-    
     animaisDeCadaEspecie[i].forEach((animal) => {
       animal.species = cadaEspecie[i];
     });
