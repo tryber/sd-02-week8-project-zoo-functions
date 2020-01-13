@@ -34,8 +34,7 @@ function schedule(dayName) {
 }
 
 function animalCount(species) {
-  if (species === undefined)
-};
+}
 
 function animalMap(options) {
   // seu código aqui
@@ -84,9 +83,15 @@ function animalsOlderThan(animal, age) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
-
+// parseFloat(conta.toFixed(2))
 function increasePrices(percentage) {
-  // seu código aqui
+  let { Adult: AdultP, Senior: SeniorP, Child: ChildP }  = data.prices;
+  const novo = {
+    Adult : ((parseFloat(AdultP)) + (parseFloat(Math.round(AdultP * percentage/100)))).toFixed(2),
+    Senior : SeniorP + (SeniorP * percentage /100),
+    Child : ChildP + (ChildP * percentage /100)
+  }
+  data.prices = novo;
 }
 
 class Animal {
