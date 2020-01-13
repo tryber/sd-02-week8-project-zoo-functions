@@ -40,13 +40,9 @@ function employeesByIds(ids) {
 
 function employeeByName(employeeName = {}) {
   const allEmployees = data.employees;
-  for(let employeeObj of allEmployees) {
-    if (employeeObj.firstName === employeeName) {
-      return employeeObj;
-    }
-    else if (employeeObj.lastName === employeeName) {
-      return employeeObj;
-    }
+  for (let i = 0; i < allEmployees.length; i += 1) {
+    if (allEmployees[i].firstName === employeeName) return allEmployees[i];
+    else if (allEmployees[i].lastName === employeeName) return allEmployees[i];
   }
   return employeeName;
 };
