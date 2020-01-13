@@ -87,10 +87,10 @@ function increasePrices(percentage) {
 
 class Animal {
   constructor() {
-    this.name
-    this.sex
-    this.age
-    this.species
+    // this.name
+    // this.sex
+    // this.age
+    // this.species
   }
 
   // createAnimals() {
@@ -100,7 +100,7 @@ class Animal {
 }
 
 function createAnimals() {
-  
+
 }
 
 function createEmployee(personalInfo, associatedWith) {
