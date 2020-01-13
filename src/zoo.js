@@ -94,6 +94,18 @@ const filtraPorRegiao = (regiao) => {
   return itensFiltrados.map(item => item.name);
 };
 
+const retornaNomes = (animal, sorted, sex) => {
+  let residentes = data.animals.find(item => item.name === animal).residents;
+  if (sex === 'female') {
+    residentes = residentes.filter(item => item.sex === 'female');
+  }
+  const arrayNomes = residentes.map(item => item.name);
+  if (sorted) {
+    return arrayNomes.sort();
+  }
+  return arrayNomes;
+}
+
 function animalMap(options) {
   // seu código aqui
   const regioes = ['NE', 'NW', 'SE', 'SW'];
@@ -118,17 +130,17 @@ function animalMap(options) {
 
   const { includeNames = false, sorted = false, sex = undefined } = options;
 
-  const retornaNomes = (animal) => {
-    let residentes = data.animals.find(item => item.name === animal).residents;
-    if (sex === 'female') {
-      residentes = residentes.filter(item => item.sex === 'female');
-    }
-    const arrayNomes = residentes.map(item => item.name);
-    if (sorted) {
-      return arrayNomes.sort();
-    }
-    return arrayNomes;
-  }
+  // const retornaNomes = (animal, sorted, sex) => {
+  //   let residentes = data.animals.find(item => item.name === animal).residents;
+  //   if (sex === 'female') {
+  //     residentes = residentes.filter(item => item.sex === 'female');
+  //   }
+  //   const arrayNomes = residentes.map(item => item.name);
+  //   if (sorted) {
+  //     return arrayNomes.sort();
+  //   }
+  //   return arrayNomes;
+  // }
     //   return residentes.map(item => item.name);
     // }
     // if (sorted) {
@@ -136,8 +148,8 @@ function animalMap(options) {
     // }
     // return residentes.map(item => item.name);
 
-  const adicionaNomes = (animais) =>
-    animais.map(item => ({ [item]: retornaNomes(item) }));
+  const adicionaNomes = (animais, sorted, sex) =>
+    animais.map(item => ({ [item]: retornaNomes(item, sorted, sex) }));
 
     // let nomes;
     // if (sex === 'female') {
@@ -168,7 +180,7 @@ function animalMap(options) {
   // }
 
   if (includeNames) {
-    [NE, NW, SE, SW] = regioes.map(regiao => adicionaNomes(filtraPorRegiao(regiao)));
+    [NE, NW, SE, SW] = regioes.map(regiao => adicionaNomes(filtraPorRegiao(regiao), sorted, sex));
     return { NE, NW, SE, SW }
   }
     // return {
