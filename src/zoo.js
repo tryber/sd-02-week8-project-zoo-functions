@@ -138,7 +138,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const novoEmployee = {...personalInfo, ...associatedWith}
+  const novoEmployee = { ...personalInfo, ...associatedWith }
   return novoEmployee
 }
 
