@@ -11,21 +11,21 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   const {
-    'Tuesday': { open: TuesdayO, close: TuesdayCl },
-    'Wednesday': { open: WednesdayO, close: WednesdayCl },
-    'Thursday': { open: ThursdayO, close: ThursdayCl },
-    'Friday': { open: FridayO, close: FridayCl },
-    'Saturday': { open: SaturdayO, close: SaturdayCl },
-    'Sunday': { open: SundayO, close: SundayCl }
+    Tuesday: { open: TuesdayO, close: TuesdayCl },
+    Wednesday: { open: WednesdayO, close: WednesdayCl },
+    Thursday: { open: ThursdayO, close: ThursdayCl },
+    Friday: { open: FridayO, close: FridayCl },
+    Saturday: { open: SaturdayO, close: SaturdayCl },
+    Sunday: { open: SundayO, close: SundayCl }
   } = data.hours
   const padrao = {
-    'Tuesday': `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
-    'Wednesday': `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
-    'Thursday': `Open from ${ThursdayO}am until ${ThursdayCl - 12}pm`,
-    'Friday': `Open from ${FridayO}am until ${FridayCl - 12}pm`,
-    'Saturday': `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
-    'Sunday': `Open from ${SundayO}am until ${SundayCl - 12}pm`,
-    'Monday': 'CLOSED'
+    Tuesday: `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
+    Wednesday: `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
+    Thursday: `Open from ${ThursdayO}am until ${ThursdayCl - 12}pm`,
+    Friday: `Open from ${FridayO}am until ${FridayCl - 12}pm`,
+    Saturday: `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
+    Sunday: `Open from ${SundayO}am until ${SundayCl - 12}pm`,
+    Monday: 'CLOSED'
   };
   if (dayName === undefined) {
     return padrao;
@@ -34,7 +34,7 @@ function schedule(dayName) {
 }
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined)
 };
 
 function animalMap(options) {
