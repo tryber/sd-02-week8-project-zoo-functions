@@ -21,13 +21,8 @@ const animalCount = (species) => {
   ({ ...acc, [cur.name]: Object.keys(cur.residents).length }), {})  
   if (species === null || species === undefined) {
     return arrFinal;
-  } else {
-    for (let count in arrFinal) {
-      if ( count === species ) {
-        return arrFinal [count];
-      }
-    }
   }
+  return animalQtd (species, arrFinal);
 };
 
 function animalMap(options) {
@@ -92,6 +87,14 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+}
+
+const animalQtd = (species, array) => {
+  for (let count in array) {
+    if ( count === species ) {
+      return array [count];
+    }
+  }
 }
 
 module.exports = {
