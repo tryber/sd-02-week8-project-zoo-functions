@@ -10,7 +10,7 @@ function entryCalculator(entrants) {
     return 0;
   }
 
-  const {  Adult: adultPrice, Child: childPrice, Senior: seniorPrice } = data.prices;
+  const { Adult: adultPrice, Child: childPrice, Senior: seniorPrice } = data.prices;
   const { Adult, Child, Senior } = entrants;
 
   return (Adult * adultPrice) + (Child * childPrice) + (Senior * seniorPrice);
@@ -39,7 +39,7 @@ function schedule(dayName) {
       acumulado[item[0]] = `Open from ${item[1].open}am until ${item[1].close - 12}pm`
     }
     return acumulado;
-  } , {})
+  }, {})
 
   // const {
   //   Tuesday: { open: openTu, close: closeTu },
@@ -71,15 +71,27 @@ function schedule(dayName) {
 };
 // console.log(schedule())
 
+
+const transformaArraysEmObjeto = (keys, values) => {
+  const objeto = {};
+  for (let i = 0; i < keys.length; i += 1) {
+    objeto[keys[i]] = values[i];
+  }
+
+  return objeto;
+}
+
 function animalCount(species) {
   // seu código aqui
   const names = data.animals.map(item => item.name);
   const quantities = data.animals.map(item => item.residents.length);
 
-  const resultado = {};
-  for (let i = 0; i < names.length; i += 1) {
-    resultado[names[i]] = quantities[i];
-  }
+  // const resultado = {};
+  // for (let i = 0; i < names.length; i += 1) {
+  //   resultado[names[i]] = quantities[i];
+  // }
+
+  const resultado = transformaArraysEmObjeto(names, quantities);
 
   if (species === undefined) {
     return resultado;
@@ -148,7 +160,7 @@ function animalMap(options) {
     // }
     // return residentes.map(item => item.name);
 
-  const adicionaNomes = (animais, sorted, sex) =>
+  const adicionaNomes = (animais) =>
     animais.map(item => ({ [item]: retornaNomes(item, sorted, sex) }));
 
     // let nomes;
@@ -232,29 +244,37 @@ function employeeCoverage(idOrName) {
   // seu código aqui
   const primeirosNomes = data.employees.map(item => item.firstName);
   const ultimosNomes = data.employees.map(item => item.lastName);
+
   const nomesCompletos = [];
   for (let i = 0; i < primeirosNomes.length; i += 1) {
     nomesCompletos[i] = `${primeirosNomes[i]} ${ultimosNomes[i]}`;
   }
-  const responsavelpor = data.employees.map(item => item.responsibleFor.map(id => animalsByIds(id)[0].name));
-//  console.log(nomesCompletos, responsavelpor)
 
-  let resultado = {};
-  for (let i = 0; i < nomesCompletos.length; i += 1) {
-    resultado[nomesCompletos[i]] = responsavelpor[i];
-  }
+  const responsavelpor = data.employees.map(item => item.responsibleFor.map(id =>
+    animalsByIds(id)[0].name));
+
+  // console.log(nomesCompletos, responsavelpor)
+
+  // let resultado = {};
+  // for (let i = 0; i < nomesCompletos.length; i += 1) {
+  //   resultado[nomesCompletos[i]] = responsavelpor[i];
+  // }
+
+  let resultado = transformaArraysEmObjeto(nomesCompletos, responsavelpor);
 
   if (idOrName === undefined) {
     return resultado;
   }
 
-  const objetoResultado = data.employees.find(item => idOrName === item.id || idOrName === item.firstName || idOrName === item.lastName);
-  Object.keys(resultado).forEach((key, index) => {
+  const objetoResultado = data.employees.find(item =>
+    idOrName === item.id || idOrName === item.firstName || idOrName === item.lastName);
+  
+    Object.keys(resultado).forEach((key, index) => {
     if (key.split(' ')[0] === objetoResultado.firstName || key.split(' ')[1] === objetoResultado.lastName) {
-//      console.log('foreach')
       resultado = { [key]: Object.values(resultado)[index] };
     }
   });
+
   return resultado
 };
 //  console.log(employeeCoverage('Sharonda'));
@@ -282,10 +302,15 @@ function animalsOlderThan(animal, age) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const primeiroIdEspecie = data.employees.find(item => item.id === id).responsibleFor[0];
-//  console.log(primeiroIdEspecie)
+
   const individuos = animalsByIds(primeiroIdEspecie)[0].residents;
-    // const animaisEspecie = data.animals.find(item => item.name ===)
-  const objetoResultado = individuos.reduce((acumulado, item) => (item.age > acumulado.age) ? item : acumulado);
+
+  // const animaisEspecie = data.animals.find(item => item.name ===)
+  
+  const objetoResultado = individuos.reduce((acumulado, item) => {
+    return (item.age > acumulado.age) ? (item) : (acumulado);
+  });
+
   const { name, sex, age } = objetoResultado;
 
   return [name, sex, age];
@@ -294,14 +319,15 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   // seu código aqui
   let { Adult, Senior, Child } = data.prices;
-  const aumentaPreco = faixaEtaria => (Math.ceil(((100 + percentage) * faixaEtaria)) / 100).toFixed(2);
+
+  const aumentaPreco = faixaEtaria =>
+  (Math.ceil(((100 + percentage) * faixaEtaria)) / 100).toFixed(2);
+  
   Adult = aumentaPreco(Adult);
-//  console.log(Adult);
   Senior = aumentaPreco(Senior);
   Child = aumentaPreco(Child);
 
   data.prices = { Adult, Senior, Child }
-//  console.log(data.prices)
 }
 //  console.log(increasePrices(50))
 
@@ -321,13 +347,13 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
 
-  // contador() {
-  //   contador
-  // }
-
   static totalAnimals() {
     return contador;
   }
+
+  // contador() {
+  //   contador
+  // }
 }
 
 function createAnimals() {
@@ -337,28 +363,28 @@ function createAnimals() {
   // data.animals.push(novoAnimal);
 
   const animaisDeCadaEspecie = data.animals.map(item => item.residents);
-//  console.log(animaisDeCadaEspecie);
-  const cadaEspecie = data.animals.map((item) => 
+
+  const cadaEspecie = data.animals.map(item =>
     item.name.substr(0, item.name.length - 1));
-//  console.log(cadaEspecie);
 
   const objetos = [];
   for (let i = 0; i < cadaEspecie.length; i += 1) {
-    animaisDeCadaEspecie[i].forEach(animal => animal.species = cadaEspecie[i]);
+    animaisDeCadaEspecie[i].forEach(animal => {
+      animal.species = cadaEspecie[i]
+    });
+
     objetos[i] = animaisDeCadaEspecie[i];
-    // objetos[i].species = cadaEspecie[i];
   }
-//  console.log(objetos);
 
   const objetosEspalhados = objetos.reduce((acumulado, item) => [...acumulado, ...item], []);
-//  console.log(objetosEspalhados);
 
-  const objetosClasse = objetosEspalhados.map(objeto => new Animal(objeto.name, objeto.sex, objeto.age, objeto.species));
+  const objetosClasse = objetosEspalhados.map(objeto =>
+    new Animal(objeto.name, objeto.sex, objeto.age, objeto.species));
+
   return objetosClasse;
 }
 // console.log(createAnimals())
 // console.log(createAnimals())
-
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
