@@ -35,11 +35,20 @@ function animalByName(animalName) {
 };
 
 function employeesByIds(ids) {
-  // seu código aqui
+  // não há arquivo de teste
 };
 
-function employeeByName(employeeName) {
-  // seu código aqui
+function employeeByName(employeeName = {}) {
+  const allEmployees = data.employees;
+  for (let i = 0; i < allEmployees.length; i++) {
+    if (allEmployees[i].firstName == employeeName) {
+      return allEmployees[i];
+    }
+    else if (allEmployees[i].lastName == employeeName) {
+      return allEmployees[i];
+    }
+  }
+  return employeeName;
 };
 
 function managersForEmployee(idOrName) {
