@@ -5,7 +5,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { Adult, Child, Senior } = entrants;
-  const {Adult: AdultP, Senior: SeniorP, Child: ChildP}= data.prices;
+  const { Adult: AdultP, Senior: SeniorP, Child: ChildP }  = data.prices;
   return (Adult * AdultP) + (Child * ChildP) + (Senior * SeniorP);
 };
 
@@ -25,7 +25,7 @@ function schedule(dayName) {
     'Friday': `Open from ${FridayO}am until ${FridayCl - 12}pm`,
     'Saturday': `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
     'Sunday': `Open from ${SundayO}am until ${SundayCl - 12}pm`,
-    'Monday': `CLOSED`
+    'Monday': 'CLOSED'
   };
   if (dayName === undefined) {
     return padrao;
