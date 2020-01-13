@@ -1,16 +1,14 @@
 const data = require('./data')
 
-const entryCalculator = (...args) =>
-{ 
-  const { Adult : PriceAdults, Senior : PriceSenior, Child : PriceChild } = data.prices;
-  if ( args[0] == null || args[0] == undefined ) {
+const entryCalculator = (...args) => {
+  const { Adult: PriceAdults, Senior: PriceSenior, Child: PriceChild } = data.prices;
+  if (args[0] !== null || args[0] !== undefined) {
     return args;
-  } else if ( Object.keys(args[0]).length == 0 ) {
+  } else if (Object.keys(args[0]).length === 0) {
     return 0;
-  } else {
-    const [ { Adult, Child, Senior } ] = args;
-    return Adult * PriceAdults + Senior * PriceSenior + Child * PriceChild;
   }
+  const [{ Adult, Child, Senior }] = args;
+  return (Adult * PriceAdults) + (Senior * PriceSenior) + (Child * PriceChild);
 };
 
 function schedule(dayName) {
