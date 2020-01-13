@@ -138,7 +138,8 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const novoEmployee = {...personalInfo, ...associatedWith}
+  return novoEmployee
 }
 
 module.exports = {
