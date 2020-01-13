@@ -66,7 +66,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 
 function isManager(id) {
   const eGerente = data.employees.some(trabalhador =>
-    trabalhador.managers.some(gerentes => 
+    trabalhador.managers.some(gerentes =>
       gerentes === id))
   return eGerente
 }
@@ -77,7 +77,14 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const idAnimal = data.employees.find(empregado => empregado.id === id).responsibleFor[0];
+  const arranjoResidents = data.animals.find(especies => especies.id === idAnimal).residents
+  let maiorIdade = 0;
+  arranjoResidents.forEach(residente => {
+    maiorIdade = maiorIdade < residente.age ? residente.age : maiorIdade
+  })
+  const { name, sex, age } = arranjoResidents.find(residente => residente.age === maiorIdade)
+  return [name, sex, age]
 }
 
 function increasePrices(percentage) {
