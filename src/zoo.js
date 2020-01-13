@@ -10,7 +10,7 @@ function entryCalculator(entrants) {
     return 0;
   }
 
-  const { prices: { Adult: adultPrice, Child: childPrice, Senior: seniorPrice } } = data;
+  const {  Adult: adultPrice, Child: childPrice, Senior: seniorPrice } = data.prices;
   const { Adult, Child, Senior } = entrants;
 
   return (Adult * adultPrice) + (Child * childPrice) + (Senior * seniorPrice);
@@ -18,31 +18,47 @@ function entryCalculator(entrants) {
   // console.log(Adult, Child, Senior)
   // console.log(data)
 };
-
 // console.log(entryCalculator());
 // console.log({} === {})
 // console.log(data)
 
 function schedule(dayName) {
   // seu código aqui
-  const {
-    Tuesday: { open: openTu, close: closeTu },
-    Wednesday: { open: openWe, close: closeWe },
-    Thursday: { open: openTh, close: closeTh },
-    Friday: { open: openFr, close: closeFr },
-    Saturday: { open: openSa, close: closeSa },
-    Sunday: { open: openSu, close: closeSu }
-    // 'Monday': { open: openMo, close: closeMo }
-  } = data.hours
-  const cronogramaLegivel = {
-    Tuesday: `Open from ${openTu}am until ${closeTu - 12}pm`,
-    Wednesday: `Open from ${openWe}am until ${closeWe - 12}pm`,
-    Thursday: `Open from ${openTh}am until ${closeTh - 12}pm`,
-    Friday: `Open from ${openFr}am until ${closeFr - 12}pm`,
-    Saturday: `Open from ${openSa}am until ${closeSa - 12}pm`,
-    Sunday: `Open from ${openSu}am until ${closeSu - 12}pm`,
-    Monday: 'CLOSED'
-  }
+  const horarios = Object.entries(data.hours);
+
+  // console.log(horarios);
+  // Tuesday: `Open from ${openTu}am until ${closeTu - 12}pm`,
+
+  // const dias = Object.keys(data.hours);
+  // const horarios = Object.values(data.hours)
+
+  const cronogramaLegivel = horarios.reduce((acumulado, item) => {
+    if (item[0] === 'Monday') {
+      acumulado[item[0]] = 'CLOSED';
+    } else {
+      acumulado[item[0]] = `Open from ${item[1].open}am until ${item[1].close - 12}pm`
+    }
+    return acumulado;
+  } , {})
+
+  // const {
+  //   Tuesday: { open: openTu, close: closeTu },
+  //   Wednesday: { open: openWe, close: closeWe },
+  //   Thursday: { open: openTh, close: closeTh },
+  //   Friday: { open: openFr, close: closeFr },
+  //   Saturday: { open: openSa, close: closeSa },
+  //   Sunday: { open: openSu, close: closeSu }
+  // 'Monday': { open: openMo, close: closeMo }
+  // } = data.hours
+  // const cronogramaLegivel = {
+  //   Tuesday: `Open from ${openTu}am until ${closeTu - 12}pm`,
+  //   Wednesday: `Open from ${openWe}am until ${closeWe - 12}pm`,
+  //   Thursday: `Open from ${openTh}am until ${closeTh - 12}pm`,
+  //   Friday: `Open from ${openFr}am until ${closeFr - 12}pm`,
+  //   Saturday: `Open from ${openSa}am until ${closeSa - 12}pm`,
+  //   Sunday: `Open from ${openSu}am until ${closeSu - 12}pm`,
+  //   Monday: 'CLOSED'
+  // }
 
   if (dayName === undefined) {
     return cronogramaLegivel;
@@ -73,23 +89,20 @@ function animalCount(species) {
 };
 // console.log(animalCount())
 
+const filtraPorRegiao = (regiao) => {
+  const itensFiltrados = data.animals.filter(item => item.location === regiao);
+  return itensFiltrados.map(item => item.name);
+};
+
 function animalMap(options) {
   // seu código aqui
-
-  const filtraPorRegiao = (regiao) => {
-//    console.log('chegou na filtragem');
-    const itensFiltrados = data.animals.filter(item => item.location === regiao);
-//    console.log(itensFiltrados.map((item) => item.name))
-    return itensFiltrados.map(item => item.name)
-  };
-
   const regioes = ['NE', 'NW', 'SE', 'SW'];
   const animaisPorRegiaoArray = regioes.map(regiao => filtraPorRegiao(regiao));
 
   // const animaisPorRegiao = [ filtraPorRegiao('NE'), filtraPorRegiao('NW'),
-  //filtraPorRegiao('SE'), filtraPorRegiao('SW') ];
+  // filtraPorRegiao('SE'), filtraPorRegiao('SW') ];
 
-  const [NE, NW, SE, SW] = animaisPorRegiaoArray;
+  let [NE, NW, SE, SW] = animaisPorRegiaoArray;
   const animaisPorRegiaoObjeto = { NE, NW, SE, SW };
 
   // const animaisPorLocalizacao = {
@@ -109,23 +122,27 @@ function animalMap(options) {
     let residentes = data.animals.find(item => item.name === animal).residents;
     if (sex === 'female') {
       residentes = residentes.filter(item => item.sex === 'female');
-      return residentes.map(item => item.name);
     }
+    const arrayNomes = residentes.map(item => item.name);
     if (sorted) {
-      return residentes.map(item => item.name).sort();
+      return arrayNomes.sort();
     }
-    return residentes.map(item => item.name);
+    return arrayNomes;
   }
+    //   return residentes.map(item => item.name);
+    // }
+    // if (sorted) {
+    //   return residentes.map(item => item.name).sort();
+    // }
+    // return residentes.map(item => item.name);
 
   const adicionaNomes = (animais) =>
     animais.map(item => ({ [item]: retornaNomes(item) }));
 
     // let nomes;
-
     // if (sex === 'female') {
     //   nomes = array.map((item) => ({ [item] :  }));
     // }
-
     // if (sorted) {
     //   nomes = array.map((item) => ({ [item] : retornaNomes(item).sort() }));
     // } else {
@@ -133,35 +150,33 @@ function animalMap(options) {
     // }
     // return nomes;
 
-  if (includeNames && sorted) {
-//    console.log('é alfabetizado')
-    return {
-      NE: adicionaNomes(filtraPorRegiao('NE')),
-      NW: adicionaNomes(filtraPorRegiao('NW')),
-      SE: adicionaNomes(filtraPorRegiao('SE')),
-      SW: adicionaNomes(filtraPorRegiao('SW'))
-    };
-  }
-
-  if (includeNames && sex === 'female') {
-//    console.log( 'e femea')
-
-    return {
-      NE: adicionaNomes(filtraPorRegiao('NE')),
-      NW: adicionaNomes(filtraPorRegiao('NW')),
-      SE: adicionaNomes(filtraPorRegiao('SE')),
-      SW: adicionaNomes(filtraPorRegiao('SW'))
-    };
-  }
+  // if (includeNames && sorted) {
+  //   return {
+  //     NE: adicionaNomes(filtraPorRegiao('NE')),
+  //     NW: adicionaNomes(filtraPorRegiao('NW')),
+  //     SE: adicionaNomes(filtraPorRegiao('SE')),
+  //     SW: adicionaNomes(filtraPorRegiao('SW'))
+  //   };
+  // }
+  // if (includeNames && sex === 'female') {
+  //   return {
+  //     NE: adicionaNomes(filtraPorRegiao('NE')),
+  //     NW: adicionaNomes(filtraPorRegiao('NW')),
+  //     SE: adicionaNomes(filtraPorRegiao('SE')),
+  //     SW: adicionaNomes(filtraPorRegiao('SW'))
+  //   };
+  // }
 
   if (includeNames) {
-    return {
-      NE: adicionaNomes(filtraPorRegiao('NE')),
-      NW: adicionaNomes(filtraPorRegiao('NW')),
-      SE: adicionaNomes(filtraPorRegiao('SE')),
-      SW: adicionaNomes(filtraPorRegiao('SW'))
-    };
+    [NE, NW, SE, SW] = regioes.map(regiao => adicionaNomes(filtraPorRegiao(regiao)));
+    return { NE, NW, SE, SW }
   }
+    // return {
+    //   NE: adicionaNomes(filtraPorRegiao('NE')),
+    //   NW: adicionaNomes(filtraPorRegiao('NW')),
+    //   SE: adicionaNomes(filtraPorRegiao('SE')),
+    //   SW: adicionaNomes(filtraPorRegiao('SW'))
+    // };
 
   return animaisPorRegiaoObjeto;
 };
