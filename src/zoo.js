@@ -1,77 +1,96 @@
 const data = require('./data')
 
+/* Calculadora de entrada */
 function entryCalculator(entrants) {
   // seu código aqui
 };
 
+/* cronograma */
 function schedule(dayName) {
   // seu código aqui
 };
 
+/* Contagem de animais */
 function animalCount(species) {
   // seu código aqui
 };
 
+/* Mapa animal */
 function animalMap(options) {
   // seu código aqui
 };
 
+/* População Animal */
 function animalPopularity(rating) {
   // seu código aqui
 };
 
+/* Animais por ID */
 function animalsByIds(ids) {
   // seu código aqui
 };
 
+/* Animais por nome */
 function animalByName(animalName) {
   // seu código aqui
 };
 
+/* Empregados por ID */
 function employeesByIds(ids) {
   // seu código aqui
 };
 
+/* Empregados por Nome */
 function employeeByName(employeeName) {
   // seu código aqui
 };
 
+/* Gerentes dos Empregados */
 function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
+/* Responsabilidade dos Empregados */
 function employeeCoverage(idOrName) {
   // seu código aqui
 };
 
+/* Criar Emprego */
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
+/* É gerente */
 function isManager(id) {
   // seu código aqui
 }
 
+/* Animais Mais Velhos */
 function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
+/* Mais velhos por espécie */
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
 
+/* Aumentar preços */
 function increasePrices(percentage) {
   // seu código aqui
 }
 
+/* Fábrica de Animais */
 class Animal {
   // seu código aqui
 }
 
+/* Criar animal */
 function createAnimals() {
   // seu código aqui
 }
 
+/* Criar Emprego */
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
