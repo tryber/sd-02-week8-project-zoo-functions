@@ -3,7 +3,8 @@
   "rules": {
     "no-console": "off",
     "prefer-arrow-callback": "off",
-    "func-names": "off"
+    "func-names": "off",
+    "no-param-reassign": "off"
   },
   "env": {
     "browser": true
