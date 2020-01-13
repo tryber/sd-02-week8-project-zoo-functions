@@ -13,8 +13,16 @@ function entryCalculator(entrants = {}) {
 };
 
 function schedule(dayName) {
-  // seu código aqui
-};
+  let Objeto = {}
+  Object.keys(data.hours).map(dia => {
+    Objeto[dia] = `Open from ${data.hours[dia].open}am until ${data.hours[dia].close - 12}pm`
+    Objeto['Monday'] = 'CLOSED'
+  })
+  if (!dayName) { return Objeto }
+  let retorno = {}
+  retorno[dayName] = Objeto[dayName]
+  return retorno
+}
 
 function animalCount(species) {
   if (species == null) {
