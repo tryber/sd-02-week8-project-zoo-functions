@@ -15,6 +15,7 @@ function entryCalculator(entrants = 0) {
 
 function schedule(dayName) {
   // seu código aqui
+  
 };
 
 function animalCount(species) {
@@ -71,8 +72,13 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-}
+  Object.keys(data.prices).forEach((key) => {
+    data.prices[key] = Math.round((data.prices[key] +
+      (data.prices[key] * (percentage / 100))) * 100) / 100
+  })
+  return data.prices
 
+}
 class Animal {
   // seu código aqui
 }
