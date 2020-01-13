@@ -16,7 +16,7 @@ function schedule(dayName) {
 
 function animalCount(species) {
   const allAnimals = data.animals;
-  if (species == undefined) {
+  if (species === undefined) {
     const newAnimalCountObj = allAnimals.reduce((accumulator, current) => {
       accumulator[current.name] = current.residents.length;
       return accumulator;
@@ -26,6 +26,7 @@ function animalCount(species) {
   for (let i = 0; i < allAnimals.length; i += 1) {
     if (allAnimals[i].name === species) return allAnimals[i].residents.length;
   }
+  return false;
 };
 
 function animalMap(options) {
@@ -101,16 +102,11 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  constructor() {
-    // this.name
-    // this.sex
-    // this.age
-    // this.species
-  }
-
-  // createAnimals() {
-  //   const animals = Object.entries(data.animals);
-  //   console.log(animals)
+  // constructor() {
+  //   this.name
+  //   this.sex
+  //   this.age
+  //   this.species
   // }
 }
 
