@@ -103,8 +103,8 @@ const filtraPorRegiao = (regiao) => {
 const retornaNomes = (animal, sorted, sex) => {
   let residentes = data.animals.find(item => item.name === animal).residents;
 
-  if (sex === 'female') {
-    residentes = residentes.filter(item => item.sex === 'female');
+  if (sex === 'female' || sex === 'male') {
+    residentes = residentes.filter(item => item.sex === sex);
   }
 
   const arrayNomes = residentes.map(item => item.name);
@@ -326,29 +326,28 @@ function increasePrices(percentage) {
 }
 //  console.log(increasePrices(50))
 
-let contador = 0;
+//let contador = 0;
 
 class Animal {
   // seu código aqui
+  static contador = 0;
+
   constructor(name, sex, age, species) {
     this.name = name;
     this.sex = sex;
     this.age = age;
     this.species = species;
-    contador += 1;
+
+    Animal.contador += 1;
   }
 
   info() {
-    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`;
   }
 
   static totalAnimals() {
-    return contador;
+    return Animal.contador;
   }
-
-  // contador() {
-  //   contador
-  // }
 }
 
 function createAnimals() {
