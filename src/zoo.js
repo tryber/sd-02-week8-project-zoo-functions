@@ -15,7 +15,6 @@ function entryCalculator(entrants = 0) {
 
 function schedule(dayName) {
   // seu código aqui
-  
 };
 
 function animalCount(species) {
@@ -77,8 +76,8 @@ function increasePrices(percentage) {
       (data.prices[key] * (percentage / 100))) * 100) / 100
   })
   return data.prices
-
 }
+
 class Animal {
   // seu código aqui
 }
