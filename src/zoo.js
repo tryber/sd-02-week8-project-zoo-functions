@@ -11,7 +11,7 @@ function schedule(dayName) {
 function animalCount(species) {
   if (species == null) {
     const arranjoAnimais = {};
-    data.animals.forEach(especie => {
+    data.animals.forEach((especie) => {
       arranjoAnimais[especie.name] = especie.residents.length
     });
     return arranjoAnimais
@@ -82,7 +82,7 @@ function oldestFromFirstSpecies(id) {
   const idAnimal = data.employees.find(empregado => empregado.id === id).responsibleFor[0];
   const arranjoResidents = data.animals.find(especies => especies.id === idAnimal).residents
   let maiorIdade = 0;
-  arranjoResidents.forEach( (residente) => {
+  arranjoResidents.forEach((residente) => {
     maiorIdade = maiorIdade < residente.age ? residente.age : maiorIdade
   })
   const { name, sex, age } = arranjoResidents.find(residente => residente.age === maiorIdade)
