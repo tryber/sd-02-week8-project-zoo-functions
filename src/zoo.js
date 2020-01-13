@@ -5,7 +5,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   const { Adult, Child, Senior } = entrants;
-  const { Adult: AdultP, Senior: SeniorP, Child: ChildP }  = data.prices;
+  const { Adult: AdultP, Senior: SeniorP, Child: ChildP } = data.prices;
   return (Adult * AdultP) + (Child * ChildP) + (Senior * SeniorP);
 };
 
@@ -85,11 +85,11 @@ function oldestFromFirstSpecies(id) {
 }
 // parseFloat(conta.toFixed(2))
 function increasePrices(percentage) {
-  let { Adult: AdultP, Senior: SeniorP, Child: ChildP }  = data.prices;
+  const { Adult: AdultP, Senior: SeniorP, Child: ChildP } = data.prices;
   const novo = {
-    Adult : ((parseFloat(AdultP)) + (parseFloat(Math.round(AdultP * percentage/100)))).toFixed(2),
-    Senior : SeniorP + (SeniorP * percentage /100),
-    Child : ChildP + (ChildP * percentage /100)
+    Adult: Math.round(((AdultP + (AdultP * percentage) / 100) * 100)) / 100,
+    Senior: Math.round(((SeniorP + (SeniorP * percentage) / 100) * 100)) / 100,
+    Child: Math.round(((ChildP + (ChildP * percentage) / 100) * 100)) / 100
   }
   data.prices = novo;
 }
