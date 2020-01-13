@@ -7,7 +7,7 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-  // seu código aqui
+  // seu código aquip;
 };
 
 function animalCount(species) {
