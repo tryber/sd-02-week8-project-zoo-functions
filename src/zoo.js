@@ -58,8 +58,14 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 };
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  let empregado = {};
+  empregado.id = id;
+  empregado.firstName = firstName;
+  empregado.lastName = lastName;
+  empregado.managers = managers;
+  empregado.responsibleFor = responsibleFor;
+  data.employees.push(empregado)
 }
 
 function isManager(id) {
