@@ -1,7 +1,7 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  return Object.keys(entrants).length == 0 ? 0 : (Object.values(entrants)[0] * 46.985) + (Object.values(entrants)[1] * 23.4925) + (Object.values(entrants)[2] * 23.4925);
 };
 
 function schedule(dayName) {
