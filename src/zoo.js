@@ -11,23 +11,18 @@ const entryCalculator = (...args) => {
   return (Adult * PriceAdults) + (Senior * PriceSenior) + (Child * PriceChild);
 };
 
-const schedule = (dayName) => {
-  /*const days = Object.entries (data.hours);
-  console.log (days[0]);
-  const arrFinal = days.reduce (acc, cur, i) => {
-
-  }
-  /*const objFinal = {};
-    for (let i = 0; i < days.length-1; i += 1) {
-    objFinal = {};
-    objFinal[days[i]] = `Open from ${data.hours[days[i]].open}am until ${(data.hours[days[i]].close) - 12}pm`;
-  }
-  objFinal[days[6]] = 'CLOSED';
-  const arrFinal = createArrayFromObject (objFinal);
-  if (dayName === null || dayName === undefined)
-   
-   console.log (arr);*/
+const schedule = (dayName) => {  
+  const days = dayName ? [dayName] : Object.keys(data.hours);    
+  return days.reduce((acc, day) => {
+    const { open, close } = data.hours[day];
+    const text = day === 'Monday'
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`
+    acc[day] = text;
+      return acc;
+  }, {});
 };
+
 
 const animalCount = (species) => {
   const [...args] = data.animals;
@@ -64,8 +59,11 @@ function employeesByIds(ids) {
   
 };
 
-function employeeByName(employeeName) {
-  // seu código aqui
+function employeeByName(names = {}) {
+  if (names[0] !== undefined ) {
+    names = data.employees.find ( el => el.lastName === names || el.firstName === names )
+  }
+  return names;
 };
 
 function managersForEmployee(idOrName) {
@@ -106,17 +104,6 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-}
-
-const createArrayFromObject = (array) => {
-  arrFinal = [];
-  arrFinal[0] = array;
-  return arrFinal;
-}
-
-const createObjectFromArray = (array) => {
-  const obj = array.reduce((obj, cur, i) =>({ ...obj, [i]: cur }), {})
-  return obj;
 }
 
 module.exports = {
