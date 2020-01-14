@@ -1,18 +1,20 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if (typeof entrants === 'undefined' || Object.values(entrants).length === 0 ){
+  if (typeof entrants === 'undefined' || Object.values(entrants).length === 0) {
     return 0;
   }
   const { Adult, Child, Senior } = entrants;
   const entradasNumero = [Adult, Senior, Child];
   return entradasNumero
   .map((quantIngresso, indice) => quantIngresso * Object.values(data.prices)[indice])
-  .reduce ((a,b) => a+b);
+  .reduce((a , b) => a + b);
 };
 
 function schedule(dayName) {
-  // seu código aquip;
+  if (typeof dayName === 'undefined') {
+    return data.hours;
+  }
 };
 
 function animalCount(species) {
