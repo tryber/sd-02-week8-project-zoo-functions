@@ -3,12 +3,12 @@ const data = require('./data')
 function entryCalculator(entrants) {
   if (typeof entrants === 'undefined' || Object.values(entrants).length === 0 ){
     return 0;
-  } else {
-    const entradasNumero = [Object.values(entrants)[0], Object.values(entrants)[2], Object.values(entrants)[1]];
-    return entradasNumero
-    .map((quantIngresso, indice) => quantIngresso * Object.values(data.prices)[indice])
-    .reduce ((a,b) => a+b);
   }
+  const { Adult, Child, Senior } = entrants;
+  const entradasNumero = [Adult, Senior, Child];
+  return entradasNumero
+  .map((quantIngresso, indice) => quantIngresso * Object.values(data.prices)[indice])
+  .reduce ((a,b) => a+b);
 };
 
 function schedule(dayName) {

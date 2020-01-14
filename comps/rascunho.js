@@ -5,9 +5,9 @@ const prices = {
   'Child': 20.99
 }
 
-const entradasNumero = [Object.values(entrants)[0], Object.values(entrants)[2], Object.values(entrants)[1]];
-const total = entradasNumero
+const { Adult, Child, Senior } = entrants;
+const arrEntrants = [Adult, Senior, Child]
+const total = arrEntrants
 .map((quantIngresso, indice) => quantIngresso * Object.values(prices)[indice])
 .reduce ((a,b) => a+b);
-
-console.log(Object.values(entrants))
+console.log(total)
