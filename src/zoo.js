@@ -95,23 +95,24 @@ function increasePrices(percentage) {
 }
 
 class Animal {
+  static total = 0;
   constructor (name = '', sex = 'male', age = 0, species = '') {
     this.name = name;
     this.sex = sex;
     this.age = age;
     this.species = species.slice(0, -1);    
   }
-  get addTotal () {
-    return this.total;
-  }
-  set addTotal (value) {
-    this.total = value;
-  }
   info () {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
+  static get Total() {
+    return this.total;
+  }
+  static set Total(v) {
+    this.total = v;
+  }
   static totalAnimals () {
-    return createAnimals().length;
+    return this.total;
   }
 }
 
@@ -122,8 +123,8 @@ function createAnimals() {
       animals.push(new Animal (el.name, el.sex, el.age, animais.name));
     })
   })  
-  animals.addTotal = animals.length;  
- return animals;
+  Animal.Total = animals.length;  
+  return animals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
