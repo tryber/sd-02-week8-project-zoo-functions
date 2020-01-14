@@ -11,17 +11,13 @@ function entryCalculator(entrants) {
   }
   // retorna o preço total a ser cobrado dado o número de adultos, crianças e
 // idosos
-  const objPrices = data.prices;
-  const {Child, Adult, Senior} = objPrices;
-
+  const {Child, Adult, Senior} = entrants;
+  const {Child: childPrices, Adult: adultPrices, Senior: seniorPrices} = data.prices;
+  return (Child * childPrices) + (Adult * adultPrices) + (Senior * seniorPrices);
 };
 
 function schedule(dayName) {
   // seu código aqui
-  const dayName = Object.keys(data.hours);
-
-  if ('Monday'){}
-
 };
 
 function animalCount(species) {
@@ -53,6 +49,9 @@ function employeesByIds(ids) {
 
 function employeeByName(employeeName) {
   // seu código aqui
+  if (employeeName === undefined) {
+    return [];
+  }
 };
 
 function managersForEmployee(idOrName) {
