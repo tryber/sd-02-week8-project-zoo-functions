@@ -10,27 +10,54 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-  const {
-    Tuesday: { open: TuesdayO, close: TuesdayCl },
-    Wednesday: { open: WednesdayO, close: WednesdayCl },
-    Thursday: { open: ThursdayO, close: ThursdayCl },
-    Friday: { open: FridayO, close: FridayCl },
-    Saturday: { open: SaturdayO, close: SaturdayCl },
-    Sunday: { open: SundayO, close: SundayCl }
-  } = data.hours;
-  const padrao = {
-    Tuesday: `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
-    Wednesday: `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
-    Thursday: `Open from ${ThursdayO}am until ${ThursdayCl - 12}pm`,
-    Friday: `Open from ${FridayO}am until ${FridayCl - 12}pm`,
-    Saturday: `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
-    Sunday: `Open from ${SundayO}am until ${SundayCl - 12}pm`,
-    Monday: 'CLOSED'
-  };
-  if (dayName === undefined) {
-    return padrao;
-  }
-  return { [dayName]: padrao[dayName] };
+
+  // const {
+  //   Tuesday: { open: TuesdayO, close: TuesdayCl },
+  //   Wednesday: { open: WednesdayO, close: WednesdayCl },
+  //   Thursday: { open: ThursdayO, close: ThursdayCl },
+  //   Friday: { open: FridayO, close: FridayCl },
+  //   Saturday: { open: SaturdayO, close: SaturdayCl },
+  //   Sunday: { open: SundayO, close: SundayCl }
+  // } = data.hours;
+  // const padrao = {
+  //   Tuesday: `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
+  //   Wednesday: `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
+  //   Thursday: `Open from ${ThursdayO}am until ${ThursdayCl - 12}pm`,
+  //   Friday: `Open from ${FridayO}am until ${FridayCl - 12}pm`,
+  //   Saturday: `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
+  //   Sunday: `Open from ${SundayO}am until ${SundayCl - 12}pm`,
+  //   Monday: 'CLOSED'
+  // };
+  // if (dayName === undefined) {
+  //   return padrao;
+  // }
+  // return { [dayName]: padrao[dayName] };
+
+const days = Object.keys (data.hours);
+const arrFinal = {};
+for (let i = 0; i < days.length-1; i += 1) {
+arrFinal[days[i]] = `Open from ${data.hours[days[i]].open}am until ${(data.hours[days[i]].close) - 12}pm`;
+}
+arrFinal[days[6]] = `CLOSED`;
+switch (dayName) {
+  case 'Tuesday':
+    return { Tuesday: arrFinal[days[0]]};
+  case 'Wednesday':
+    return { Wednesday: arrFinal[days[1]]};
+  case 'Thursday':
+    return { Thursday: arrFinal[days[2]]};
+  case 'Friday':
+    return { Friday: arrFinal[days[3]]};
+  case 'Saturday':
+    return { Saturday: arrFinal[days[4]]};
+  case 'Sunday':
+    return { Sunday: arrFinal[days[5]]};
+  case 'Monday':
+    return { Monday: arrFinal[days[6]]};
+  default:
+    return arrFinal;
+}
+
 }
 
 function animalCount(species) {
@@ -40,7 +67,6 @@ function animalCount(species) {
   if (species === null || species === undefined) return arrFinal;
   return arrFinal[species];
 }
-
 function animalMap(options) {
   // seu código aqui
 };
