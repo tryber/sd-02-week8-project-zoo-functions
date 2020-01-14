@@ -118,7 +118,8 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-
+  const ObjEmpArr = { ...personalInfo, ...associatedWith };
+  return ObjEmpArr;
 }
 
 module.exports = {
