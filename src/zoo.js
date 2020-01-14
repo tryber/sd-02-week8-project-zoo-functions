@@ -108,7 +108,7 @@ function animalsOlderThan(animal, age) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
   const worker = data.employees.find(x => x.id === id)
-  const firstAnimal = data.animals.find(y => y.id === worker.responsibleFor[0]).residents.map(z => z)
+  const firstAnimal = data.animals.find(y => y.id ===worker.responsibleFor[0]).residents.map(z => z)
   const allAges = firstAnimal.map(z => z.age)
   const oldestAnimal = Math.max(...allAges)
   const foundMofo = firstAnimal.find(animal => animal.age === oldestAnimal)
