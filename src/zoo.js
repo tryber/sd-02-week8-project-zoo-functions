@@ -7,15 +7,18 @@ function entryCalculator(entrants) {
 function schedule(dayName) {
   // seu código aqui
   const days = dayName ? [dayName] : Object.keys(data.hours);
-  
+
   return days.reduce((acc, day) => {
-    const { open, close } = data.hours[day];
-    const text = day === 'Monday'
-      ? 'CLOSED'
-      : `Open from ${open}am until ${close - 12}pm`
+    const {
+      open,
+      close
+    } = data.hours[day];
+    const text = day === 'Monday' ?
+      'CLOSED' :
+      `Open from ${open}am until ${close - 12}pm`
     acc[day] = text;
     return acc;
-  }, {}); 
+  }, {});
 };
 
 
@@ -26,7 +29,7 @@ function animalCount(species) {
     data.animals.forEach(element => animaisTodos[element.name] = element.residents.length);
     return animaisTodos
   }
-  const animalCountFinder = data.animals.find(element => element.name == species);
+  const animalCountFinder = data.animals.find(element => element.name === species);
   return animalCountFinder.residents.length;
 };
 
@@ -55,8 +58,14 @@ function employeesByIds(ids) {
   // seu código aqui
 };
 
-function employeeByName(employeeName) {
+function employeeByName(empName) {
   // seu código aqui
+  let empNome = {}
+  if (empName === undefined) {
+    return empNome
+  }
+  empNome = data.employees.find(pesq => pesq.firstName === empName || pesq.lastName === empName);
+  return empNome
 };
 
 function managersForEmployee(idOrName) {
@@ -69,7 +78,13 @@ function employeeCoverage(idOrName) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  const ultimoEmp = { id, firstName, lastName, managers, responsibleFor };
+  const ultimoEmp = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  };
   data.employees.push(ultimoEmp);
 }
 
