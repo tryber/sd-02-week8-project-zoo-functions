@@ -6,10 +6,28 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   // seu código aqui
+  const days = dayName ? [dayName] : Object.keys(data.hours);
+  
+  return days.reduce((acc, day) => {
+    const { open, close } = data.hours[day];
+    const text = day === 'Monday'
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`
+    acc[day] = text;
+    return acc;
+  }, {}); 
 };
+
 
 function animalCount(species) {
   // seu código aqui
+  if (species === undefined) {
+    const animaisTodos = {};
+    data.animals.forEach(element => animaisTodos[element.name] = element.residents.length);
+    return animaisTodos
+  }
+  const animalCountFinder = data.animals.find(element => element.name == species);
+  return animalCountFinder.residents.length;
 };
 
 function animalMap(options) {
@@ -21,7 +39,6 @@ function animalPopularity(rating) {
 };
 
 function animalsByIds(...ids) {
-  // seu código aqui - Troquei o nome dos ID pra explicar pro Felipe e não lembro o que tava
   const animaisPorId = [];
   if (ids === undefined) {
     return animaisPorId;
@@ -84,6 +101,7 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+
 }
 
 module.exports = {
