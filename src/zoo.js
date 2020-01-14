@@ -10,30 +10,15 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName = 0) {
-  const days = Object.keys(data.hours);
-  const arrFinal = {};
-  for (let i = 0; i < days.length - 1; i += 1) {
-    arrFinal[days[i]] = `Open from ${data.hours[days[i]].open}am until ${(data.hours[days[i]].close) - 12}pm`;
-  }
-  arrFinal[days[6]] = 'CLOSED';
-  switch (dayName) {
-    case 'Tuesday':
-      return { Tuesday: arrFinal[days[0]] };
-    case 'Wednesday':
-      return { Wednesday: arrFinal[days[1]] };
-    case 'Thursday':
-      return { Thursday: arrFinal[days[2]] };
-    case 'Friday':
-      return { Friday: arrFinal[days[3]] };
-    case 'Saturday':
-      return { Saturday: arrFinal[days[4]] };
-    case 'Sunday':
-      return { Sunday: arrFinal[days[5]] };
-    case 'Monday':
-      return { Monday: arrFinal[days[6]] };
-    default:
-      return arrFinal;
-  }
+  const days = dayName ? [dayName] : Object.keys(data.hours);
+  return days.reduce((acc, day) => {
+    const { open, close } = data.hours[day];
+    const text = day === 'Monday'
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`
+    acc[day] = text;
+    return acc;
+  }, {});
 }
 
 function animalCount(species) {
