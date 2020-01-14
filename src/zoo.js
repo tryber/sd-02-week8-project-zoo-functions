@@ -12,13 +12,27 @@ const entryCalculator = (...args) => {
 };
 
 const schedule = (dayName) => {
-  
+  /*const days = Object.entries (data.hours);
+  console.log (days[0]);
+  const arrFinal = days.reduce (acc, cur, i) => {
+
+  }
+  /*const objFinal = {};
+    for (let i = 0; i < days.length-1; i += 1) {
+    objFinal = {};
+    objFinal[days[i]] = `Open from ${data.hours[days[i]].open}am until ${(data.hours[days[i]].close) - 12}pm`;
+  }
+  objFinal[days[6]] = 'CLOSED';
+  const arrFinal = createArrayFromObject (objFinal);
+  if (dayName === null || dayName === undefined)
+   
+   console.log (arr);*/
 };
 
 const animalCount = (species) => {
   const [...args] = data.animals;
   const arrFinal = args.reduce((acc, cur) => 
-  ({ ...acc, [cur.name]: Object.keys(cur.residents).length }), {})  
+  ({ ...acc, [cur.name]: Object.keys(cur.residents).length }), {})
   if (species === null || species === undefined) {
     return arrFinal;
   }
@@ -30,19 +44,24 @@ function animalMap(options) {
 };
 
 function animalPopularity(rating) {
-  // seu código aqui
+  
 };
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  if (ids[0] === undefined)
+    return [];
+  const arrFinal = ids.reduce ( (arr, cur) => ([
+   ...arr, data.animals.find ( el => el.id === cur )
+  ]), [])
+  return arrFinal;
 };
 
 function animalByName(animalName) {
-  // seu código aqui
+  
 };
 
 function employeesByIds(ids) {
-  // seu código aqui
+  
 };
 
 function employeeByName(employeeName) {
@@ -87,6 +106,17 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+}
+
+const createArrayFromObject = (array) => {
+  arrFinal = [];
+  arrFinal[0] = array;
+  return arrFinal;
+}
+
+const createObjectFromArray = (array) => {
+  const obj = array.reduce((obj, cur, i) =>({ ...obj, [i]: cur }), {})
+  return obj;
 }
 
 module.exports = {
