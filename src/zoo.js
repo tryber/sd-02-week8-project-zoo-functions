@@ -25,7 +25,7 @@ function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     const animaisTodos = {};
-    data.animals.forEach(element => {
+    data.animals.forEach((element) => {
       animaisTodos[element.name] = element.residents.length;
       return null
     });
