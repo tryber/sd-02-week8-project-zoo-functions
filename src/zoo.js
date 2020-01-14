@@ -92,16 +92,6 @@ function increasePrices(percentage) {
   data.prices = novo;
 }
 
-function createAnimals() {
-  const animals = [];
-  data.animals.forEach(animal => (
-    animal.residents.forEach(ele => (
-      animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
-    ))
-  ))
-  return animals;
-}
-
 class Animal {
   constructor(name, age, sex, species) {
     this.name = name
@@ -113,8 +103,18 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
   static totalAnimals() {
-    return createAnimals().length;
+    return data.animals.reduce((total, animal) => total + animal.residents.length, 0);
   }
+}
+
+function createAnimals() {
+  const animals = [];
+  data.animals.forEach(animal => (
+    animal.residents.forEach(ele => (
+      animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
+    ))
+  ))
+  return animals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
