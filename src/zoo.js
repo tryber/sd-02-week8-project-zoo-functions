@@ -15,6 +15,7 @@ function entryCalculator(entrants = 0) {
 
 function schedule(dayName) {
   // seu código aqui
+  const zooHours = data.hours
 };
 
 function animalCount(species) {
@@ -80,10 +81,30 @@ function increasePrices(percentage) {
 
 class Animal {
   // seu código aqui
+  constructor(name, age, sex, species){
+    this.name = name
+    this.age = age
+    this.sex = sex
+    this.species = species.slice(0, -1)
+  }
+  info() {
+    const {name, age, sex, species} = this
+    return `${name} is a ${age} year old ${sex} ${species}`
+  }
+  static totalAnimals() {
+    return data.animals.reduce((count,animal) => count + animal.residents.length, 0)
+  }
 }
 
 function createAnimals() {
   // seu código aqui
+  const animals = []
+  data.animals.forEach(animal => (
+    animal.residents.forEach(({ name, age, sex }) => (
+      animals.push(new Animal(name, age, sex, animal.name))
+    ))
+  ))
+  return animals
 }
 
 function createEmployee(personalInfo, associatedWith) {
