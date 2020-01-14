@@ -15,7 +15,16 @@ function entryCalculator(entrants = 0) {
 
 function schedule(dayName) {
   // seu código aqui
-  const zooHours = data.hours
+  const days = dayName ? [dayName] : Object.keys(data.hours);
+  
+  return days.reduce((acc, day) => {
+    const { open, close } = data.hours[day];
+    const text = day === 'Monday'
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`
+    acc[day] = text;
+    return acc;
+  }, {});
 };
 
 function animalCount(species) {
