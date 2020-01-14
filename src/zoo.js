@@ -326,11 +326,11 @@ function increasePrices(percentage) {
 }
 //  console.log(increasePrices(50))
 
-//let contador = 0;
+//  let contador = 0;
 
 class Animal {
   // seu código aqui
-  //static contador = 0;
+  // static contador = 0;
 
   constructor(name, sex, age, species) {
     this.name = name;
