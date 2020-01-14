@@ -11,7 +11,16 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-
+  const days = dayName ? [dayName] : Object.keys(data.hours);
+  
+  return days.reduce((acc, day) => {
+    const { open, close } = data.hours[day];
+    const text = day === 'Monday'
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`
+    acc[day] = text;
+    return acc;
+  }, {});
 };
 
 function animalCount(species) {
@@ -50,7 +59,7 @@ function employeesByIds(ids) {
 };
 
 function employeeByName(employeeName = {}) {
-  const allEmployees = data.employees;
+  const allEmployees = [...data.employees];
   for (let i = 0; i < allEmployees.length; i += 1) {
     if (allEmployees[i].firstName === employeeName) return allEmployees[i];
     else if (allEmployees[i].lastName === employeeName) return allEmployees[i];
@@ -115,9 +124,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  const personalInfoObj = personalInfo;
-  const associatedWithObj = associatedWith;
-  const employee = { ...personalInfoObj, ...associatedWithObj };
+  const employee = { ...personalInfo, ...associatedWith };
   return employee;
 }
 
