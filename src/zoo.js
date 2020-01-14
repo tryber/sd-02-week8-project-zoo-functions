@@ -77,6 +77,8 @@ function addEmployee(...param) {
 
 function isManager(id) {
   // seu código aqui
+  const worker = data.employees
+  return worker.some(x => x.managers.some(y => y === id))
 }
 
 function animalsOlderThan(animal, age) {
