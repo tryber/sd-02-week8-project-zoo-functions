@@ -123,7 +123,7 @@ function createAnimals() {
       animals.push(new Animal (el.name, el.sex, el.age, animais.name));
     })
   })  
-  Animal.Total = animals.length;  
+  Animal.Total = animals.length;
   return animals;
 }
 
