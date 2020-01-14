@@ -129,22 +129,6 @@ function increasePrices(percentage) {
   })
 }
 
-
-function createAnimals() {
-  const especies = data.animals.map(({ name: especie, residents }) => ({ especie, residents }))
-  especies.forEach(({ especie: especie, residents }) => {
-    residents.forEach(objeto => { objeto['especie'] = especie })
-  })
-  const criarOAnimal = especies.map(({ residents: [...animais] }) => (animais))
-  const arranjoAnimais = []
-  criarOAnimal.forEach(porEspecie => {
-    porEspecie.forEach(({ name, sex, age, especie }) => {
-      arranjoAnimais.push(new Animal(name, sex, age, especie))
-    })
-  })
-  return arranjoAnimais
-}
-
 class Animal {
   constructor(name, sex, age, species) {
     this.name = name;
@@ -159,6 +143,22 @@ class Animal {
     return createAnimals().length
   }
 }
+
+function createAnimals() {
+  const especies = data.animals.map(({ name: especie, residents }) => ({ especie, residents }))
+  especies.forEach(({ especie, residents }) => {
+    residents.forEach((objeto) => { objeto['especie'] = especie })
+  })
+  const criarOAnimal = especies.map(({ residents: [...animais] }) => (animais))
+  const arranjoAnimais = []
+  criarOAnimal.forEach((porEspecie) => {
+    porEspecie.forEach(({ name, sex, age, especie }) => {
+      arranjoAnimais.push(new Animal(name, sex, age, especie))
+    })
+  })
+  return arranjoAnimais
+}
+
 
 function createEmployee(personalInfo, associatedWith) {
   const novoEmployee = { ...personalInfo, ...associatedWith }
