@@ -7,7 +7,7 @@ let actual, expected, options
 /****************/
 /* animalsByIds */
 /****************/
-/*
+
 // sem parâmetros, retorna um array vazio
 actual = zoo.animalsByIds();
 expected = [];
@@ -30,7 +30,7 @@ expected = [{
 }];
 
 assert.deepEqual(actual, expected);
-*/
+
 // com mais de um id, retorna os animais que têm um desses ids
 actual = zoo.animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce',
   'e8481c1d-42ea-4610-8e11-1752cfc05a46');
