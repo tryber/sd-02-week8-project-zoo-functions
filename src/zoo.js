@@ -1,10 +1,11 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if (entrants = ' '){
+  if (entrants = ' ' || entrants.entries.length == 0){
     return 0;
-  };
+  }
 };
+
 
 function schedule(dayName) {
   // seu código aquip;
