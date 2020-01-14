@@ -26,8 +26,21 @@ function schedule(dayName) {
   }, {});
 };
 
-function animalCount(species) {
+function animalCount(species = 0) {
   // seu código aqui
+  const allAnimals = data.animals
+  const obj = {}
+  const isSpecie = (animal, animalSpecies) => animal.name === animalSpecies
+  const filterAnimals = (animalsFiltered, otherSpecies) => animalsFiltered.filter(
+    animal => isSpecie(animal, otherSpecies))
+  if (species === 0) {
+    Object.keys(allAnimals).forEach((key) => {
+      obj[data.animals[key].name] = data.animals[key].residents.length
+    })
+  } else {
+    return filterAnimals(data.animals, species)[0].residents.length
+  }
+  return obj
 };
 
 function animalMap(options) {
