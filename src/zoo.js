@@ -52,11 +52,11 @@ function animalPopularity(rating) {
 };
 
 function animalsByIds(...ids) {
-  if(ids[0] === undefined) {
+  if (ids[0] === undefined) {
     return {};
   }
   const arrFinal = ids.reduce((arr, cur) =>
-  ([...arr, data.animals.find (el => el.id === cur)]), [])
+  ([...arr, data.animals.find(el => el.id === cur)]), [])
   return arrFinal;
 }
 
