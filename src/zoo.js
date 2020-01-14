@@ -34,6 +34,7 @@ function animalMap(options) {
 
 function animalPopularity(rating) {
   // seu código aqui
+  //Não há testes implementados para essa função.
 };
 
 function animalsByIds(ids) {
@@ -42,10 +43,12 @@ function animalsByIds(ids) {
 
 function animalByName(animalName) {
   // seu código aqui
+  //Não há testes implementados para essa função.
 };
 
 function employeesByIds(ids) {
   // seu código aqui
+  //Não há testes implementados para essa função.
 };
 
 function employeeByName(employeeName) {
@@ -54,6 +57,7 @@ function employeeByName(employeeName) {
 
 function managersForEmployee(idOrName) {
   // seu código aqui
+  //Não há testes implementados para essa função.
 };
 
 function employeeCoverage(idOrName) {
