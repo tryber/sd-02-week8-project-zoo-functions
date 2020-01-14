@@ -53,8 +53,9 @@ function employeesByIds(ids) {
   // seu código aqui
 };
 
-function employeeByName(employeeName) {
-  // seu código aqui
+function employeeByName(Name) {
+  const empregadoNome = Name === undefined ? {} : data.employees.find(pesq => Name === pesq.firstName || pesq.lastName === Name);
+  return empregadoNome;
 };
 
 function managersForEmployee(idOrName) {
@@ -98,7 +99,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 module.exports = {
