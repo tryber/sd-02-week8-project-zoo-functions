@@ -9,28 +9,7 @@ function entryCalculator(entrants) {
   return (Adult * AdultP) + (Child * ChildP) + (Senior * SeniorP);
 };
 
-function schedule(dayName) {
-  // const {
-  //   Tuesday: { open: TuesdayO, close: TuesdayCl },
-  //   Wednesday: { open: WednesdayO, close: WednesdayCl },
-  //   Thursday: { open: ThursdayO, close: ThursdayCl },
-  //   Friday: { open: FridayO, close: FridayCl },
-  //   Saturday: { open: SaturdayO, close: SaturdayCl },
-  //   Sunday: { open: SundayO, close: SundayCl }
-  // } = data.hours;
-  // const padrao = {
-  //   Tuesday: `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
-  //   Wednesday: `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
-  //   Thursday: `Open from ${ThursdayO}am until ${ThursdayCl - 12}pm`,
-  //   Friday: `Open from ${FridayO}am until ${FridayCl - 12}pm`,
-  //   Saturday: `Open from ${SaturdayO}am until ${SaturdayCl - 12}pm`,
-  //   Sunday: `Open from ${SundayO}am until ${SundayCl - 12}pm`,
-  //   Monday: 'CLOSED'
-  // };
-  // if (dayName === undefined) {
-  //   return padrao;
-  // }
-  // return { [dayName]: padrao[dayName] };
+function schedule(dayName = 0) {
   const days = Object.keys(data.hours);
   const arrFinal = {};
   for (let i = 0; i < days.length - 1; i += 1) {
@@ -72,9 +51,15 @@ function animalPopularity(rating) {
   // seu código aqui
 };
 
-function animalsByIds(ids) {
-  // seu código aqui
-};
+function animalsByIds(...ids) {
+  if( ids[0] === undefined ){
+    return {};
+  }
+  const arrFinal = ids.reduce ( (arr, cur) => ([
+    ...arr, data.animals.find ( el => el.id === cur )
+   ]), [])
+   return arrFinal;
+}
 
 function animalByName(animalName) {
   // seu código aqui
