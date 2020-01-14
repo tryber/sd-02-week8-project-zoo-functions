@@ -103,7 +103,7 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
   static totalAnimals() {
-    return data.animals.reduce((total, animal) => total + animal.residents.length, 0)
+    return createAnimals().length;
   }
 }
 
