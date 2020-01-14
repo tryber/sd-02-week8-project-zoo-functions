@@ -129,6 +129,8 @@ function increasePrices(percentage) {
   })
 }
 
+let numeroDeAnimais = 0
+
 class Animal {
   constructor(name, sex, age, species) {
     this.name = name;
@@ -140,14 +142,14 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species.substring(0, (this.species.length - 1))}`
   }
   static totalAnimals() {
-    return createAnimals().length
+    return numeroDeAnimais
   }
 }
 
 function createAnimals() {
   const especies = data.animals.map(({ name: especie, residents }) => ({ especie, residents }))
   especies.forEach(({ especie, residents }) => {
-    residents.forEach((objeto) => { objeto['especie'] = especie })
+    residents.forEach((objeto) => { objeto.especie = especie })
   })
   const criarOAnimal = especies.map(({ residents: [...animais] }) => (animais))
   const arranjoAnimais = []
@@ -156,9 +158,9 @@ function createAnimals() {
       arranjoAnimais.push(new Animal(name, sex, age, especie))
     })
   })
+  numeroDeAnimais = arranjoAnimais.length
   return arranjoAnimais
 }
-
 
 function createEmployee(personalInfo, associatedWith) {
   const novoEmployee = { ...personalInfo, ...associatedWith }
