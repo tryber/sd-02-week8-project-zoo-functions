@@ -20,8 +20,14 @@ function animalPopularity(rating) {
   // seu código aqui
 };
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  const expected = [];
+  if (ids === undefined){   
+    return expected;
+  }
+  let animalsId = [];
+    ids.map(arrIds => animalsId.push(data.animals.find(info => info.id === arrIds)));
+    return animalsId
 };
 
 function animalByName(animalName) {
