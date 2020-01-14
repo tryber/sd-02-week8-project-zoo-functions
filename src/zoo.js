@@ -31,6 +31,9 @@ function schedule(dayName) {
 
 function animalCount(species) {
   // seu código aqui
+  if (species === undefined) {
+    return data.animals
+  }
 };
 
 function animalMap(options) {
