@@ -1,4 +1,4 @@
-const data = require('./data')
+const data = require('./data');
 
 /* Calculadora de entrada */
 function entryCalculator(entrants) {
@@ -26,9 +26,18 @@ function animalPopularity(rating) {
 };
 
 /* Animais por ID */
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  debugger
+  const expected = [];
+  if (ids === undefined){
+    return expected;
+  } else {
+    const animalsId = data.animals.find(element => element.id === ids)
+    return animalsId
+}
 };
+
+console.log(animalsByIds('0938aa23-f153-4937-9f88-4858b24d6bce'));
 
 /* Animais por nome */
 function animalByName(animalName) {
@@ -82,12 +91,20 @@ function increasePrices(percentage) {
 
 /* Fábrica de Animais */
 class Animal {
-  // seu código aqui
+/*   constructor(id, name, popularity, location, residents){
+    this.id = id;
+    this.name = name;
+    this.popularity = popularity;
+    this.location = residents;
+  }
+
+  getName(){
+    return this.name;
+  } */
 }
 
 /* Criar animal */
 function createAnimals() {
-  // seu código aqui
 }
 
 /* Criar Emprego */
@@ -95,7 +112,7 @@ function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
 }
 
-module.exports = {
+ module.exports = {
   entryCalculator: entryCalculator,
   schedule: schedule,
   animalCount: animalCount,
