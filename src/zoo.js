@@ -6,13 +6,21 @@ function entryCalculator(entrants) {
     return 0;
   }
   // retorna 0 se um objeto vazio for passado
-  if (Object.values(entrants).length === 0){
+  if (Object.values(entrants).length === 0) {
     return 0;
   }
   // retorna o preço total a ser cobrado dado o número de adultos, crianças e
-// idosos
-  const {Child, Adult, Senior} = entrants;
-  const {Child: childPrices, Adult: adultPrices, Senior: seniorPrices} = data.prices;
+  // idosos
+  const {
+    Child,
+    Adult,
+    Senior
+  } = entrants;
+  const {
+    Child: childPrices,
+    Adult: adultPrices,
+    Senior: seniorPrices
+  } = data.prices;
   return (Child * childPrices) + (Adult * adultPrices) + (Senior * seniorPrices);
 };
 
@@ -50,10 +58,13 @@ function employeesByIds(ids) {
 
 function employeeByName(employeeName) {
   // seu código aqui
+  //// sem parâmetros, retorna um objeto vazio
   if (employeeName === undefined) {
     return {};
   }
-  return data.employees.find (element =>
+  // quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
+  // quando provido o último nome do funcionário, retorna o objeto do funcionário
+  return data.employees.find(element =>
     employeeName === element.firstName || employeeName === element.lastName)
 };
 
@@ -96,7 +107,10 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  return { ...personalInfo, ...associatedWith };
+  return {
+    ...personalInfo,
+    ...associatedWith
+  };
 }
 
 module.exports = {
