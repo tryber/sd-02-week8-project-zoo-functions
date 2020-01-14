@@ -36,7 +36,7 @@ function schedule(dayName) {
 function animalCount(species) {
   const [...args] = data.animals;
   const arrFinal = args.reduce((acc, cur) =>
-  ({ ...acc , [cur.name]: cur.residents.length }),{})
+  ({ ...acc, [cur.name]: cur.residents.length }), {})
   if (species === null || species === undefined) return arrFinal;
   return arrFinal[species];
 }
