@@ -330,7 +330,7 @@ function increasePrices(percentage) {
 
 class Animal {
   // seu código aqui
-  static contador = 0;
+  //static contador = 0;
 
   constructor(name, sex, age, species) {
     this.name = name;
@@ -349,6 +349,8 @@ class Animal {
     return Animal.contador;
   }
 }
+
+Animal.contador = 0;
 
 function createAnimals() {
   // seu código aqui
