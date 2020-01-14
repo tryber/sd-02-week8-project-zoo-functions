@@ -34,9 +34,17 @@ function animalByName(animalName) {
   // seu código aqui
 };
 
-function employeesByIds(ids) {
-  // seu código aqui
+function employeesByIds(...ids) {
+  const expected = [];
+  if (ids === undefined){   
+    return expected;
+  }
+  let employeesId = [];
+    ids.map(arrIds => employeesId.push(data.employees.find(info => info.id === arrIds)));
+    return employeesId
 };
+
+console.log(employeesByIds('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1', '0e7b460e-acf4-4e17-bcb3-ee472265db83'))
 
 function employeeByName(employeeName) {
   // seu código aqui
