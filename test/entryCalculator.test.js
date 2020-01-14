@@ -26,4 +26,3 @@ actual = zoo.entryCalculator(entrants);
 assert.equal(actual, 187.94);
 
 /******************************************************************************/
-
