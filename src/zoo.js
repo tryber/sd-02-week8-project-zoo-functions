@@ -51,8 +51,10 @@ function employeesByIds(ids) {
 function employeeByName(employeeName) {
   // seu código aqui
   if (employeeName === undefined) {
-    return [];
+    return {};
   }
+  return data.employees.find (element =>
+    employeeName === element.firstName || employeeName === element.lastName)
 };
 
 function managersForEmployee(idOrName) {
