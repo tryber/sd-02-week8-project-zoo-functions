@@ -18,6 +18,7 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   // seu código aqui
+
 };
 
 function animalCount(species) {
@@ -93,6 +94,7 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 module.exports = {
