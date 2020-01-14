@@ -72,6 +72,7 @@ function isManager(id) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  return data.animals.find(species => species.name === animal).residents.every(species => species.age >= age)
 }
 
 function oldestFromFirstSpecies(id) {
