@@ -93,10 +93,28 @@ function increasePrices(percentage) {
 }
 
 class Animal {
+  constructor(name, age, sex, species){
+    this.name = name
+    this.age = age
+    this.sex = sex
+    this.species = species.slice(0, -1)
+  }
+  info() {
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
+  }
+  static totalAnimals() {
+    return data.animals.reduce((total,animal) => total + animal.residents.length, 0)
+  }
 }
 
 function createAnimals() {
-  // seu código aqui
+  let animals = [];
+  data.animals.forEach(animal => (
+    animal.residents.forEach((ele) => (
+      animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
+    ))
+  ))
+  return animals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
