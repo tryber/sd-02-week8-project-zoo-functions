@@ -1,11 +1,27 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  // retorna 0 se nenhum argumento for passado
+  if (entrants === undefined) {
+    return 0;
+  }
+  // retorna 0 se um objeto vazio for passado
+  if (Object.values(entrants).length === 0){
+    return 0;
+  }
+  // retorna o preço total a ser cobrado dado o número de adultos, crianças e
+// idosos
+  const objPrices = data.prices;
+  const {Child, Adult, Senior} = objPrices;
+
 };
 
 function schedule(dayName) {
   // seu código aqui
+  const dayName = Object.keys(data.hours);
+
+  if ('Monday'){}
+
 };
 
 function animalCount(species) {
