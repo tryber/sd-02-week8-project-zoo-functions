@@ -17,7 +17,7 @@ function schedule(dayName) {
     Friday: { open: FridayO, close: FridayCl },
     Saturday: { open: SaturdayO, close: SaturdayCl },
     Sunday: { open: SundayO, close: SundayCl }
-  } = data.hours
+  } = data.hours;
   const padrao = {
     Tuesday: `Open from ${TuesdayO}am until ${TuesdayCl - 12}pm`,
     Wednesday: `Open from ${WednesdayO}am until ${WednesdayCl - 12}pm`,
@@ -34,6 +34,11 @@ function schedule(dayName) {
 }
 
 function animalCount(species) {
+  const [...args] = data.animals;
+  const arrFinal = args.reduce((acc, cur) =>
+  ({ ...acc, [cur.name]: cur.residents.length }),{})
+  if (species === null || species === undefined) return arrFinal;
+  return arrFinal[species];
 }
 
 function animalMap(options) {
@@ -82,7 +87,7 @@ function animalsOlderThan(animal, age) {
 
 function oldestFromFirstSpecies(id) {
 }
-// parseFloat(conta.toFixed(2))
+
 function increasePrices(percentage) {
   const { Adult: AdultP, Senior: SeniorP, Child: ChildP } = data.prices;
   const novo = {
