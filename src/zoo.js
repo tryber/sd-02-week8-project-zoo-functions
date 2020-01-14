@@ -81,18 +81,18 @@ function increasePrices(percentage) {
 
 class Animal {
   // seu código aqui
-  constructor(name, age, sex, species){
+  constructor(name, age, sex, species) {
     this.name = name
     this.age = age
     this.sex = sex
     this.species = species.slice(0, -1)
   }
   info() {
-    const {name, age, sex, species} = this
+    const { name, age, sex, species } = this
     return `${name} is a ${age} year old ${sex} ${species}`
   }
   static totalAnimals() {
-    return data.animals.reduce((count,animal) => count + animal.residents.length, 0)
+    return data.animals.reduce((count, animal) => count + animal.residents.length, 0)
   }
 }
 
