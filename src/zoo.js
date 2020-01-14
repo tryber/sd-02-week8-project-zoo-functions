@@ -21,12 +21,14 @@ function schedule(dayName) {
   }, {});
 };
 
-
 function animalCount(species) {
   // seu código aqui
   if (species === undefined) {
     const animaisTodos = {};
-    data.animals.forEach(element => animaisTodos[element.name] = element.residents.length);
+    data.animals.forEach(element => {
+      animaisTodos[element.name] = element.residents.length;
+      return null
+    });
     return animaisTodos
   }
   const animalCountFinder = data.animals.find(element => element.name === species);
