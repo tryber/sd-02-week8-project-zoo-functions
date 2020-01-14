@@ -10,4 +10,4 @@ const total = entradasNumero
 .map((quantIngresso, indice) => quantIngresso * Object.values(prices)[indice])
 .reduce ((a,b) => a+b);
 
-console.log(total)
+console.log(Object.values(entrants))
