@@ -95,11 +95,35 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  // seu código aqui
+  constructor (name = '', sex = 'male', age = 0, species = '') {
+    this.name = name;
+    this.sex = sex;
+    this.age = age;
+    this.species = species.slice(0, -1);    
+  }
+  get addTotal () {
+    return this.total;
+  }
+  set addTotal (value) {
+    this.total = value;
+  }
+  info () {
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
+  }
+  static totalAnimals () {
+    return createAnimals().length;
+  }
 }
 
 function createAnimals() {
-  // seu código aqui
+  let animals = [];
+  data.animals.forEach (animais => {
+    animais.residents.forEach ((el) => {
+      animals.push(new Animal (el.name, el.sex, el.age, animais.name));
+    })
+  })  
+  animals.addTotal = animals.length;  
+ return animals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
