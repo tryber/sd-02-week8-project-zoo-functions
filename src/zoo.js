@@ -12,7 +12,7 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   const days = dayName ? [dayName] : Object.keys(data.hours);
-  
+
   return days.reduce((acc, day) => {
     const { open, close } = data.hours[day];
     const text = day === 'Monday'
@@ -111,16 +111,30 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  // constructor() {
-  //   this.name
-  //   this.sex
-  //   this.age
-  //   this.species
-  // }
+  constructor(name = '', age = 0, sex = 'male', species = '') {
+    this.name = name;
+    this.age = age;
+    this.sex = sex;
+    this.species = species.slice(0, -1);
+  }
+
+  info() {
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`;
+  }
+
+  static totalAnimals() {
+    return createAnimals().length;
+  }
 }
 
 function createAnimals() {
-
+  let allAnimals = [];
+  data.animals.forEach(animal => {
+    animal.residents.forEach(item => {
+      allAnimals.push(new Animal(item.name, item.age, item.sex, animal.name));
+    })
+  })
+  return allAnimals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
