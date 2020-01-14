@@ -30,15 +30,15 @@ function animalCount(species = 0) {
   // seu código aqui
   const allAnimals = data.animals
   const obj = {}
-  const isSpecie = (animal, animalSpecies) => animal.name === animalSpecies
-  const filterAnimals = (animalsFiltered, otherSpecies) => animalsFiltered.filter(
-    animal => isSpecie(animal, otherSpecies))
+  const checkSpecies = (animal, animalSpecies) => animal.name === animalSpecies
+  const filterFunction = (animalsFiltered, otherSpecies) => animalsFiltered.filter(
+    animal => checkSpecies(animal, otherSpecies))
   if (species === 0) {
     Object.keys(allAnimals).forEach((key) => {
       obj[data.animals[key].name] = data.animals[key].residents.length
     })
   } else {
-    return filterAnimals(data.animals, species)[0].residents.length
+    return filterFunction(data.animals, species)[0].residents.length
   }
   return obj
 };
@@ -51,8 +51,14 @@ function animalPopularity(rating) {
   // seu código aqui - Não precisa
 };
 
-function animalsByIds(ids) {
+function animalsByIds(...ids) {
   // seu código aqui
+  const array = [];
+  const aniField = data.animals;
+  if (ids) {
+    ids.map(id => array.push(aniField.find(x => x.id === id)))
+  }
+  return array
 };
 
 function animalByName(animalName) {
@@ -101,6 +107,12 @@ function animalsOlderThan(animal, age) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const worker = data.employees.find(x => x.id === id)
+  const firstAnimal = data.animals.find(y => y.id === worker.responsibleFor[0]).residents.map(z => z)
+  const allAges = firstAnimal.map(z => z.age)
+  const oldestAnimal = Math.max(...allAges)
+  const foundMofo = firstAnimal.find(animal => animal.age === oldestAnimal)
+  return [foundMofo.name, foundMofo.sex, foundMofo.age]
 }
 
 function increasePrices(percentage) {
