@@ -31,7 +31,7 @@ function animalsByIds(...ids) {
   if (ids === undefined){   
     return expected;
   }
-  let animalsId = []
+  let animalsId = [];
     ids.map(arrIds => animalsId.push(data.animals.find(info => info.id === arrIds)));
     return animalsId
 };
