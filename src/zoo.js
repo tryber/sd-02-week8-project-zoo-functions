@@ -1,9 +1,10 @@
 const assert = require('assert');
 const data = require('./data');
+const round = require('../libs/round');
 
 
 function entryCalculator(entrants) {
-  if(typeof entrants === "undefined") {return 0;}
+  if(typeof entrants === 'undefined') {return 0;}
   if(Object.entries(entrants).length === 0 ){ return 0;}
 
   let total = 0;
@@ -15,7 +16,7 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   let hours = {};
-  if(typeof dayName === "undefined") {
+  if(typeof dayName === 'undefined') {
     Object.entries(data.hours).forEach((key) => {
       hours[key[0]] = `Open from ${key[1].open}am until ${key[1].close-12}pm`;
     });
@@ -33,7 +34,7 @@ function animalCount(species) {
     animals[animal.name] = animal.residents.length
   });
 
-  if(typeof species === "undefined") {
+  if(typeof species === 'undefined') {
     return animals;
   } else {
     return {}[species] = animals[species];
@@ -45,30 +46,15 @@ function animalMap(options) {
   const names = {};
 
   Object.assign(locations,
-    data.animals.reduce((acc, val) => {
-      acc[val.location] = [...acc[val.location], val.name]
-      return acc;
-    },{'NE':[], 'NW':[], 'SE': [], 'SW': []})
+    data.animals.reduce(funcao1,{'NE':[], 'NW':[], 'SE': [], 'SW': []})
   );
 
-  if(typeof options === "undefined") {
+  if(typeof options === 'undefined') {
     return locations;
   }
 
   Object.assign(names,
-    data.animals.reduce((acc, val) => {
-
-      let array = [...val.residents];
-      if(options.hasOwnProperty('sex')) {
-        array = array.filter((item) => item.sex === options.sex);
-      }
-      if(options.hasOwnProperty('sorted') && options.sorted === true) {
-        array = array.sort((a, b) => {return a.name < b.name ? -1 : a.name > b.name ? 1 : 0});
-      }
-      array = array.map((item) => item.name);
-      acc[val.name] = array;
-      return acc;
-    }, {})
+    data.animals.reduce(funcao2(options), {})
   );
 
   if( options.includeNames ) {
@@ -82,6 +68,24 @@ function animalMap(options) {
     });
   }
   return locations;
+};
+
+const funcao2 = (options) => (acc, val) => {
+  let array = [...val.residents];
+  if(options.hasOwnProperty('sex')) {
+    array = array.filter((item) => item.sex === options.sex);
+  }
+  if(options.hasOwnProperty('sorted') && options.sorted === true) {
+    array = array.sort((a, b) => {return a.name < b.name ? -1 : a.name > b.name ? 1 : 0});
+  }
+  array = array.map((item) => item.name);
+  acc[val.name] = array;
+  return acc;
+};
+
+const funcao1 = (acc, val) => {
+  acc[val.location] = [...acc[val.location], val.name]
+  return acc;
 };
 
 function animalPopularity(rating) {
@@ -129,21 +133,11 @@ function employeeCoverage(idOrName) {
   });
 
   if(typeof idOrName === 'undefined' || regexName.test(idOrName)) {
-    Object.keys(responsaveisId).forEach((key) => {
-      const newObj = {};
-      newObj[key] = responsaveisId[key];
-      selecionados.push(newObj);
-    });
+    coverageFuncao1(responsaveisId, selecionados);
   }
 
   if(regexId.test(idOrName)) {
-    Object.keys(responsaveisId).forEach((key) => {
-      const newObj = {};
-      if(key === idOrName) {
-        newObj[key] = responsaveisId[key];
-        selecionados.push(newObj);
-      }
-    });
+    coverageFuncao2(responsaveisId, selecionados);
   }
 
   selecionados.forEach((obj) => {
@@ -156,19 +150,43 @@ function employeeCoverage(idOrName) {
   });
 
   if(regexName.test(idOrName)) {
-    Object.keys(responsaveis).forEach(function(k) {
-      let array = k.split(' ');
-      if(array.some((item) => item === idOrName)) {
-        const key = k;
-        const array = responsaveis[k];
-        responsaveis = {};
-        responsaveis[key] = array;
-      }
-    });
+    coverageFuncao3(responsaveis, idOrName);
   }
 
   return responsaveis;
 };
+
+const coverageFuncao1 = (responsaveisId, selecionados) => {
+  Object.keys(responsaveisId).forEach((key) => {
+    const newObj = {};
+    newObj[key] = responsaveisId[key];
+    selecionados.push(newObj);
+  });
+}
+
+const coverageFuncao2 = (responsaveisId, selecionados) => {
+  Object.keys(responsaveisId).forEach((key) => {
+    const newObj = {};
+    if(key === idOrName) {
+      newObj[key] = responsaveisId[key];
+      selecionados.push(newObj);
+    }
+  });
+}
+
+const coverageFuncao3 = (responsaveis, idOrName) => {
+  Object.keys(responsaveis).forEach(function(k) {
+    let array = k.split(' ');
+    if(array.some((item) => item === idOrName)) {
+      const key = k;
+      const array = responsaveis[k];
+      responsaveis = {};
+      responsaveis[key] = array;
+    }
+  });
+}
+
+console.log(employeeCoverage());
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newObj = {id, firstName, lastName, managers, responsibleFor };
@@ -212,21 +230,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const round = (num, places) => {
-    if (!("" + num).includes("e")) {
-      return +(Math.round(num + "e+" + places)  + "e-" + places);
-    } else {
-      let arr = ("" + num).split("e");
-      let sig = ""
-      if (+arr[1] + places > 0) {
-        sig = "+";
-      }
-
-      return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + places)) + "e-" + places);
-    }
-  }
   const fator = (percentage / 100) + 1;
-
   Object.keys(data.prices).forEach((key) => data.prices[key] = round(data.prices[key]*fator, 2));
 }
 
