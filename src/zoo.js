@@ -36,8 +36,53 @@ function animalCount(species) {
   return data.animals.find(animal => (animal.name === species)).residents.length;
 };
 
+function retornarAnimalNomes(animal, sexo = false, sorted = false) {
+  let animaisNomes = data.animals.find(({ name }) => name === animal).residents;
+  if (sexo) {
+      let arranjoNomes = animaisNomes.filter(({ sex }) => sex === sexo).map(({ name }) => name)
+      if (sorted) {
+          let resposta = arranjoNomes.sort()
+          return { [animal]: resposta }
+      }
+      return { [animal]: arranjoNomes }
+  }
+  else {
+      let arranjoNomes = animaisNomes.map(({ name }) => name)
+      if (sorted) {
+          let resposta = arranjoNomes.sort()
+          return { [animal]: resposta }
+      }
+      return { [animal]: arranjoNomes }
+  }
+}
+
+function resultadoPadrao() {
+  let resultado = {}
+  const arranjoCardinais = ['NE', 'NW', 'SE', 'SW']
+  arranjoCardinais.forEach(direcao => {
+      const especiesFiltradasPorLocalizacao = data.animals.filter(({ location }) => location === direcao)
+      resultado[direcao] = especiesFiltradasPorLocalizacao.reduce((acc, { name }) => acc.concat(name), [])
+  })
+  return resultado
+}
+
+function escreverONome(sex = false, sorted) {
+  return Object.values(resultadoPadrao()).map(arranjoEspecies => arranjoEspecies.reduce((acc, especie) =>
+      acc.concat(retornarAnimalNomes(especie, sex, sorted)), []))
+}
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options) {
+      return resultadoPadrao()
+  }
+  const { includeNames, sex = false, sorted = false } = options
+
+  if (includeNames == true) {
+      let [NE, NW, SE, SW] = escreverONome(sex, sorted)
+      return respostacompleta = { NE: NE, NW: NW, SE: SE, SW: SW }
+  }
+
+  return resultadoPadrao()
 };
 
 function animalPopularity(rating) {
