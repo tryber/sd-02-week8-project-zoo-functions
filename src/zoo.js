@@ -1,11 +1,26 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  return Object.keys(entrants).length == 0 ? 0 : (Object.values(entrants)[0] * 46.985) + (Object.values(entrants)[1] * 23.4925) + (Object.values(entrants)[2] * 23.4925);
+  if( Object.keys(entrants).length == 0){
+    return 0;
+  } else {
+    return (Object.values(entrants)[0] * 46.985) + (Object.values(entrants)[1] * 23.4925) + (Object.values(entrants)[2] * 23.4925);
+  } 
 };
 
 function schedule(dayName) {
-  // seu código aqui
+  let newObj = {};
+    if(dayName == null){
+        return 0;
+    } else {
+       Object.keys(data.hours).forEach((key) => {
+           if(key === dayName) {
+               newObj[key] = data.hours[key];
+               console.log(newObj)
+            }
+        }); 
+        return newObj;
+    }
 };
 
 function animalCount(species) {
