@@ -4,7 +4,7 @@ function entryCalculator(entrants) {
   if (entrants === undefined || JSON.stringify(entrants) === '{}') {
     return 0;
   }
-  const { Adult, Child, Senior } = entrants;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   const { Adult: AdultP, Senior: SeniorP, Child: ChildP } = data.prices;
   return (Adult * AdultP) + (Child * ChildP) + (Senior * SeniorP);
 };
@@ -64,22 +64,22 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-}
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
 }
-
+function addEmployee(id, firstName, lastName, managers= [] , responsibleFor= []) {
+  return data.employees.push({ id, firstName, lastName, managers, responsibleFor })
+}
 function isManager(id) {
-  return (data.employees.map(ele => ele.managers).reduce((acc, curr) =>
-  [...acc, ...curr], []).some(ele => ele === id));
+  return data.employees.some(({ managers }) =>
+  managers.some(ids => ids === id))
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return data.animals.find( ele => ele.name === animal).
+  residents.every(ele => ele.age > age);
 }
 
-function oldestFromFirstSpecies(id) {
+function oldestFromFirstSpecies(ids) {
 }
 
 function increasePrices(percentage) {
