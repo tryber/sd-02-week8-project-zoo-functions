@@ -99,16 +99,13 @@ function animalMap(options) {
         acc[cur.location] = [];
       }
       acc[cur.location] =
-        [...acc[cur.location], {
-          [cur.name]: cur.residents
-            .filter(animal => animal.sex === options.sex).map(element => element.name)
-        }]
+      [...acc[cur.location], 
+      { [cur.name]: cur.residents
+      .filter(animal => animal.sex === options.sex).map(element => element.name) }]
       return acc;
     }, {})
-  } else if (options.includeNames) {
-    return reduceAnimalMapNames();
   }
-  return true;
+  return reduceAnimalMapNames();
 };
 
 function animalPopularity(rating) {
