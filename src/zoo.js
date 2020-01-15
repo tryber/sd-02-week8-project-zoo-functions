@@ -87,15 +87,17 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const animaisFunc = data.employees.find(pesq => pesq.id === id).responsibleFor[0]
+  const resultado = data.animals.find(bicho => bicho.id === animaisFunc)
+  const maisVelho = resultado.residents.sort((a, b) => b.age - a.age)[0]
+  return [...Object.values(maisVelho)]
 }
-const data = require('./data')
+
 function increasePrices(percentage) {
   const { Adult, Senior, Child } = data.prices;
   const entradasNumero = [Adult, Senior, Child];
   console.log(entradasNumero);
 }
-console.log(increasePrices())
 
 class Animal {
   // seu código aqui
