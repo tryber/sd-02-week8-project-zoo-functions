@@ -39,15 +39,40 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-  // seu código aqui
+  const arr1 = [];
+  const arr2 = [];
+  const arr3 = [];
+  const arr4 = [];
+  data.animals.forEach(element => {
+    if (element.location === 'NE') {
+      return arr1.push(element.name);
+    }
+
+    if (element.location === 'NW') {
+      return arr2.push(element.name);
+    }
+
+    if (element.location === 'SE') {
+      return (arr3.push(element.name));
+    }
+    
+    if (element.location === 'SW') {
+      return arr4.push(element.name);
+    }
+  })
+  
+  console.log(arr1, arr2, arr3, arr4)
 };
 
 function animalPopularity(rating) {
   // não há arquivo de teste
 };
 
-function animalsByIds(ids) {
-  // seu código aqui
+function animalsByIds(...ids) {
+  if (ids.length === 0) {
+    return [];
+  }
+  return ids.map(element => data.animals.find(item => item.id === element))
 };
 
 function animalByName(animalName) {
@@ -111,7 +136,7 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  static contador = 0;
+  // static contador = 0;
   constructor(name = '', age = 0, sex = 'male', species = '') {
     this.name = name;
     this.age = age;
@@ -128,9 +153,10 @@ class Animal {
     return Animal.contador;
   }
 }
+Animal.contador = 0;
 
 function createAnimals() {
-  let allAnimals = [];
+  const allAnimals = [];
   data.animals.forEach(animal => {
     animal.residents.forEach(item => {
       allAnimals.push(new Animal(item.name, item.age, item.sex, animal.name));
