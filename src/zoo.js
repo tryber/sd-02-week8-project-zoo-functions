@@ -136,7 +136,7 @@ function increasePrices(percentage) {
   const decConvPercentage = parseFloat((percentage / 100).toFixed(3));
   const passDataPrices = {
     Adult: Math.round((Adult * (1 + decConvPercentage) * 100)) / 100,
-    Senior: Math.round((Senior * (1 + decConvPercentage)* 100)) / 100,
+    Senior: Math.round((Senior * (1 + decConvPercentage) * 100)) / 100,
     Child: Math.round((Child * (1 + decConvPercentage) * 100)) / 100
   }
   data.prices = passDataPrices;
