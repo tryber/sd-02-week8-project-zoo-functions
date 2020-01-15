@@ -71,8 +71,8 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function isManager(id) {
-  return (data.employees.map( ele => ele.managers).reduce((acc , curr) =>
-  [...acc , ...curr], []).some(ele => ele === id));
+  return (data.employees.map(ele => ele.managers).reduce((acc, curr) =>
+  [...acc, ...curr], []).some(ele => ele === id));
 }
 
 function animalsOlderThan(animal, age) {
