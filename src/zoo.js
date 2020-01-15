@@ -29,12 +29,29 @@ function schedule(dayName) {
 
 };
 
+
+const catchingAnimals = (who, howMany) => {
+  let animal = {};
+  for (let i = 0; i < who.length; i += 1) {
+    animal[who[i]] = howMany[i];
+  }
+  return animal;
+}
+
 function animalCount(species) {
   // seu código aqui
+  // Sem parâmetros, retorna animais e suas quantidades
+  const names = data.animals.map(element => element.name);
+  const quantity = data.animals.map(element => element.residents.length);
+  const zooList = catchingAnimals(names, quantity);
+
   if (species === undefined) {
-    return data.animals
+    return zooList;
   }
-};
+
+  // com o nome de uma espécide de animal, retorna somente a quantidade
+  return zooList [species]; 
+}
 
 function animalMap(options) {
   // seu código aqui
@@ -42,7 +59,7 @@ function animalMap(options) {
 
 function animalPopularity(rating) {
   // seu código aqui
-  //Não há testes implementados para essa função.
+  // Não há testes implementados para essa função.
 };
 
 function animalsByIds(ids) {
@@ -51,17 +68,17 @@ function animalsByIds(ids) {
 
 function animalByName(animalName) {
   // seu código aqui
-  //Não há testes implementados para essa função.
+  // Não há testes implementados para essa função.
 };
 
 function employeesByIds(ids) {
   // seu código aqui
-  //Não há testes implementados para essa função.
+  // Não há testes implementados para essa função.
 };
 
 function employeeByName(employeeName) {
   // seu código aqui
-  //// sem parâmetros, retorna um objeto vazio
+  // sem parâmetros, retorna um objeto vazio
   if (employeeName === undefined) {
     return {};
   }
@@ -73,7 +90,7 @@ function employeeByName(employeeName) {
 
 function managersForEmployee(idOrName) {
   // seu código aqui
-  //Não há testes implementados para essa função.
+  // Não há testes implementados para essa função.
 };
 
 function employeeCoverage(idOrName) {
