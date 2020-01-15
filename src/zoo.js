@@ -109,13 +109,7 @@ employeeCoverage();
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-  const ultimoEmp = {
-    id,
-    firstName,
-    lastName,
-    managers,
-    responsibleFor
-  };
+  const ultimoEmp = { id, firstName, lastName, managers, responsibleFor };
   data.employees.push(ultimoEmp);
 }
 
@@ -138,6 +132,14 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  const { Adult, Senior, Child } = data.prices;
+  const decConvPercentage = parseFloat((percentage/100).toFixed(3));
+  const passDataPrices = {
+    'Adult': Math.round((Adult * (1+decConvPercentage)*100))/100,
+    'Senior': Math.round((Senior * (1+decConvPercentage)*100))/100,
+    'Child': Math.round((Child * (1+decConvPercentage)*100))/100
+  }
+  data.prices = passDataPrices;
 }
 
 class Animal {
@@ -150,10 +152,7 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const ObjEmpArr = {
-    ...personalInfo,
-    ...associatedWith
-  };
+  const ObjEmpArr = { ...personalInfo, ...associatedWith };
   return ObjEmpArr;
 }
 
