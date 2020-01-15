@@ -73,10 +73,9 @@ function employeeByName(empName) {
 function managersForEmployee(idOrName) {
   // seu código aqui
 };
-const data = require('./data')
 
 function allEmps() {
-  let allEmp = [];
+  const allEmp = [];
   data.employees.map(item => allEmp.push(item.firstName));
   return allEmp
 }
@@ -87,13 +86,13 @@ function employeeCoverage(idOrName) {
    empBusca = []
    console.log(typeof idOrName);
    if (typeof idOrName === 'object') {
-   idOrName.map(todosEmp => empBusca.push(data.employees.find(pesq => pesq.firstName === todosEmp)));
+   idOrName.map(todEmp => empBusca.push(data.employees.find(pesq => pesq.firstName === todEmp)));
    console.log(empBusca);
    aniIds = [...empBusca].responsibleFor;
    console.log(aniIds);
    }
    if (typeof idOrName === 'string') {
-     empBusca = data.employees.find(pesq => pesq.id === idOrName || 
+     empBusca = data.employees.find(pesq => pesq.id === idOrName ||
       pesq.firstName === idOrName || pesq.lastName === idOrName);
      console.log(empBusca);
      aniIds = [...empBusca.responsibleFor];
@@ -123,8 +122,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function isManager(id) {
   // seu código aqui
   const filtro = data.employees.filter(src => src.managers.includes(id));
-  let resp = '';
-  filtro.length !== 0 ? (resp = true) : (resp = false);
+  const resp = filtro.length !== 0 ? true : false;
   return resp
 }
 
