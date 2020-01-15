@@ -53,6 +53,7 @@ function animalMap(options) {
       return acc;
     }, {})
   }
+  return true;
 };
 
 function animalPopularity(rating) {
