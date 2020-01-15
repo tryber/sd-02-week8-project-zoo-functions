@@ -39,30 +39,41 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-  const arr1 = [];
-  const arr2 = [];
-  const arr3 = [];
-  const arr4 = [];
-  data.animals.forEach(element => {
-    if (element.location === 'NE') {
-      return arr1.push(element.name);
-    }
-
-    if (element.location === 'NW') {
-      return arr2.push(element.name);
-    }
-
-    if (element.location === 'SE') {
-      return (arr3.push(element.name));
-    }
-    
-    if (element.location === 'SW') {
-      return arr4.push(element.name);
-    }
-  })
+  // const locations = {'NE':[], 'NW':[], 'SE':[], 'SW':[]}
+  // const arrFinal = data.animals.reduce ( (arr, cur) => ({
+  // ...arr, [cur.location]:species(cur.location)
+  // }),{})
+  // arraySpecies(locations);
+  // console.log (arrFinal);
   
-  console.log(arr1, arr2, arr3, arr4)
+  // const arr1 = [];
+  // const arr2 = [];
+  // const arr3 = [];
+  // const arr4 = [];
+  // data.animals.forEach((element) => {
+  //   if (element.location === 'NE') {
+  //     return arr1.push(element.name);
+  //   }
+
+  //   if (element.location === 'NW') {
+  //     return arr2.push(element.name);
+  //   }
+
+  //   if (element.location === 'SE') {
+  //     return (arr3.push(element.name));
+  //   }
+    
+  //   if (element.location === 'SW') {
+  //     return arr4.push(element.name);
+  //   }
+  // })
+  
+  // console.log(arr1, arr2, arr3, arr4)
 };
+// const names = (string) => {
+
+// }
+// const locations = {'NE':[], 'NW':[], 'SE':[], 'SW':[]}
 
 function animalPopularity(rating) {
   // não há arquivo de teste
@@ -72,7 +83,7 @@ function animalsByIds(...ids) {
   if (ids.length === 0) {
     return [];
   }
-  return ids.map(element => data.animals.find(item => item.id === element))
+  return ids.map(item => data.animals.find(obj => obj.id === item))
 };
 
 function animalByName(animalName) {
@@ -157,8 +168,8 @@ Animal.contador = 0;
 
 function createAnimals() {
   const allAnimals = [];
-  data.animals.forEach(animal => {
-    animal.residents.forEach(item => {
+  data.animals.forEach((animal) => {
+    animal.residents.forEach((item) => {
       allAnimals.push(new Animal(item.name, item.age, item.sex, animal.name));
     })
   })
