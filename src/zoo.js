@@ -38,46 +38,77 @@ function animalCount(species) {
   return false;
 };
 
+// função que retorna animais categorizados por localização
+const reduceAnimalMapLoc = () => {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], cur.name]
+    return acc;
+  }, {})
+}
+
+// função que retorna nomes de animais ordenados
+const reduceAnimalMapSort = () => {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] =
+      [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name).sort() }]
+    return acc;
+  }, {})
+}
+
+// // função que retorna somente nomes de animais macho/fêmea
+// const reduceAnimalMapSex = () => {
+//   return data.animals.reduce((acc, cur) => {
+//     if (acc[cur.location] === undefined) {
+//       acc[cur.location] = [];
+//     }
+//     acc[cur.location] =
+//       [...acc[cur.location], {
+//         [cur.name]: cur.residents
+//           .filter(animal => animal.sex === options.sex).map(element => element.name)
+//       }]
+//     return acc;
+//   }, {})
+// }
+
+// função que retorna nomes de animais ordenados
+const reduceAnimalMapNames = () => {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] =
+      [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name) }]
+    return acc;
+  }, {})
+}
+
 function animalMap(options) {
   if (!options || !options.includeNames) {
-    return data.animals.reduce((acc, cur) => {
-      if (acc[cur.location] === undefined) {
-        acc[cur.location] = [];
-      }
-      acc[cur.location] = [...acc[cur.location], cur.name]
-      return acc;
-    }, {})
-  }
-  else if (options.sorted && options.includeNames) {
+    return reduceAnimalMapLoc();
+  } else if (options.sorted && options.includeNames) {
+    return reduceAnimalMapSort();
+  } else if (options.sex) {
     return data.animals.reduce((acc, cur) => {
       if (acc[cur.location] === undefined) {
         acc[cur.location] = [];
       }
       acc[cur.location] =
-        [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name).sort() }]
+        [...acc[cur.location], {
+          [cur.name]: cur.residents
+            .filter(animal => animal.sex === options.sex).map(element => element.name)
+        }]
       return acc;
     }, {})
+  } else if (options.includeNames) {
+    return reduceAnimalMapNames();
   }
-  else if (options.sex) {
-    return data.animals.reduce((acc, cur) => {
-      if (acc[cur.location] === undefined) {
-        acc[cur.location] = [];
-      }
-      acc[cur.location] =
-      [...acc[cur.location], { [cur.name]: cur.residents.filter(animal => animal.sex == options.sex).map(element => element.name) }]
-      return acc;
-    }, {})
-  }
-  else if (options.includeNames) {
-    return data.animals.reduce((acc, cur) => {
-      if (acc[cur.location] === undefined) {
-        acc[cur.location] = [];
-      }
-      acc[cur.location] =
-        [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name) }]
-      return acc;
-    }, {})
-  }
+  return true;
 };
 
 function animalPopularity(rating) {
