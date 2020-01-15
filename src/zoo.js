@@ -78,37 +78,33 @@ function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
-function allEmps() {
-  const allEmp = [];
-  data.employees.map(item => allEmp.push(item.firstName));
-  return allEmp
-}
-
-const data = require('./data')
 function employeeCoverage(idOrName) {
   // seu código aqui
    objResp = {}
    empBusca = []
    if (idOrName === undefined) {
-     let animaisEmp = [] 
-    const teste = data.employees.forEach(todos => console.log(todos.responsibleFor) )   
-       console.log(teste);
+     let nomeEmp = []
+     let animaisIdEmp = [] 
+     data.employees.forEach(infoEmp => {
+     const {firstName, lastName, responsibleFor } = infoEmp;
+      console.log(firstName);
+      console.log(firstName[0]);
+     })
+     data.employees.forEach(todos => nomeEmp.push(`${todos.firstName} ${todos.lastName}`));
+     data.employees.forEach(todos => animaisIdEmp.push(todos.responsibleFor));
+  
       }
    if (typeof idOrName === 'string') {
      empBusca = data.employees.find(pesq => pesq.id === idOrName ||
       pesq.firstName === idOrName || pesq.lastName === idOrName);
-     console.log(empBusca);
      aniIds = [...empBusca.responsibleFor];
-     console.log(aniIds);
      aniResp = aniIds.map(findId => data.animals.find(pesqA => pesqA.id === findId));
      aniFinal = []
      aniResp.map(item => aniFinal.push(item.name));
      objResp[`${empBusca.firstName} ${empBusca.lastName}`] = aniFinal;
-     console.log(objResp);
      return objResp
    }
 }
-employeeCoverage()
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
@@ -131,6 +127,13 @@ function animalsOlderThan(animal, age) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  const funcFind = data.employees.find(itemF => itemF.id === id );
+  const aniFind = data.animals.find(itemA => itemA.id === funcFind.responsibleFor[0]);
+  let arrAges = aniFind.residents.map(item => item.age);
+  arrAges = arrAges.sort((min, max) => max - min);
+  const objResp = aniFind.residents.find(itemZ => itemZ.age === arrAges[0]);
+  const { name, sex, age } = objResp;
+  return [name, sex, age]
 }
 
 function increasePrices(percentage) {
