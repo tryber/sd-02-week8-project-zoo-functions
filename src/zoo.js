@@ -64,15 +64,15 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-};
+}
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
 
 function isManager(id) {
-  // seu código aqui
+  return (data.employees.map( ele => ele.managers).reduce((acc , curr) =>
+  [...acc , ...curr], []).some(ele => ele === id));
 }
 
 function animalsOlderThan(animal, age) {
@@ -92,6 +92,8 @@ function increasePrices(percentage) {
   data.prices = novo;
 }
 
+let numero = 0;
+
 class Animal {
   constructor(name, age, sex, species) {
     this.name = name
@@ -103,7 +105,7 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
   static totalAnimals() {
-    return data.animals.reduce((total, animal) => total + animal.residents.length, 0);
+    return numero;
   }
 }
 
@@ -114,6 +116,7 @@ function createAnimals() {
       animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
     ))
   ))
+  numero = animals.length;
   return animals;
 }
 
