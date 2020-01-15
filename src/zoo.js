@@ -84,15 +84,7 @@ function employeeCoverage(idOrName) {
 
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const employee = {
-  id: id,
-  firstName: firstName,
-  lastName: lastName,
-  managers: managers,
-  responsibleFor: responsibleFor
-  }
-  data.employees.push(employee);
-  return data.employee;
+  return data.employees.push ({id, firstName, lastName, managers, responsibleFor});
 }
 
 function isManager(id) {
