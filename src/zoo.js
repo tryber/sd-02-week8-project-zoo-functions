@@ -87,7 +87,6 @@ const funcao1 = (acc, val) => {
 };
 
 function animalPopularity(rating) {
-  // seu código aqui
 };
 
 function animalsByIds(...ids) {
@@ -99,11 +98,9 @@ function animalsByIds(...ids) {
 };
 
 function animalByName(animalName) {
-  // seu código aqui
 };
 
 function employeesByIds(ids) {
-  // seu código aqui
 };
 
 function employeeByName(employeeName) {
@@ -115,8 +112,6 @@ function employeeByName(employeeName) {
 function managersForEmployee(idOrName) {
   // seu código aqui
 };
-
-
 
 const coverageFuncao1 = (responsaveisId, selecionados) => {
   Object.keys(responsaveisId).forEach((key) => {
@@ -237,7 +232,6 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  static qt = 0;
   constructor(name, sex, age, species) {
     this.name = name;
     this.sex = sex;
