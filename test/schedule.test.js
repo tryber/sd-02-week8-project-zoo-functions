@@ -10,7 +10,7 @@ let actual, expected, options
 
 // sem parâmetros, retorna um cronograma legível para humanos
 actual = zoo.schedule();
-/*expected = {
+expected = {
   'Tuesday': 'Open from 8am until 6pm',
   'Wednesday': 'Open from 8am until 6pm',
   'Thursday': 'Open from 10am until 8pm',

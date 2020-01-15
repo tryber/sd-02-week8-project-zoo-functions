@@ -18,7 +18,7 @@ expected = {
 };
 
 assert.deepEqual(actual, expected);
-
+/*
 // com opções especificadas, retorna nomes de animais
 options = { includeNames: true }
 actual = zoo.animalMap(options);
