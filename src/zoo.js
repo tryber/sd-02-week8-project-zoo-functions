@@ -2,13 +2,12 @@ const data = require('./data')
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if ( JSON.stringify(entrants) === '{}' || entrants === undefined) {
+  if (JSON.stringify(entrants) === '{}' || entrants === undefined) {
     return 0
   }
   const { Adult: multA, Child: multC, Senior: multS } = entrants;
   const { Adult, Senior, Child } = data.prices;
-  valorTot = Math.round(((Adult*multA)+(Child*multC)+(Senior*multS))*100)/100;
-  return valorTot
+  return Math.round(((Adult * multA) + (Child * multC) + (Senior * multS)) * 100) / 100;
 };
 
 function schedule(dayName) {
@@ -69,12 +68,10 @@ function employeesByIds(ids) {
 
 function employeeByName(empName) {
   // seu código aqui
-  let empNome = {}
   if (empName === undefined) {
-    return empNome
+    return {}
   }
-  empNome = data.employees.find(pesq => pesq.firstName === empName || pesq.lastName === empName);
-  return empNome
+  return data.employees.find(pesq => pesq.firstName === empName || pesq.lastName === empName);
 };
 
 function managersForEmployee(idOrName) {
