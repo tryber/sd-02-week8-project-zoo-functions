@@ -45,7 +45,7 @@ function animalMap(options) {
   // }),{})
   // arraySpecies(locations);
   // console.log (arrFinal);
-  
+
   // const arr1 = [];
   // const arr2 = [];
   // const arr3 = [];
@@ -62,12 +62,12 @@ function animalMap(options) {
   //   if (element.location === 'SE') {
   //     return (arr3.push(element.name));
   //   }
-    
+
   //   if (element.location === 'SW') {
   //     return arr4.push(element.name);
   //   }
   // })
-  
+
   // console.log(arr1, arr2, arr3, arr4)
 };
 // const names = (string) => {
