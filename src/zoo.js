@@ -39,7 +39,7 @@ function animalCount(species) {
 };
 
 // função que retorna animais categorizados por localização
-const reduceAnimalMapLoc = () => {
+function reduceAnimalMapLoc() {
   return data.animals.reduce((acc, cur) => {
     if (acc[cur.location] === undefined) {
       acc[cur.location] = [];
@@ -50,7 +50,7 @@ const reduceAnimalMapLoc = () => {
 }
 
 // função que retorna nomes de animais ordenados
-const reduceAnimalMapSort = () => {
+function reduceAnimalMapSort() {
   return data.animals.reduce((acc, cur) => {
     if (acc[cur.location] === undefined) {
       acc[cur.location] = [];
@@ -61,23 +61,8 @@ const reduceAnimalMapSort = () => {
   }, {})
 }
 
-// // função que retorna somente nomes de animais macho/fêmea
-// const reduceAnimalMapSex = () => {
-//   return data.animals.reduce((acc, cur) => {
-//     if (acc[cur.location] === undefined) {
-//       acc[cur.location] = [];
-//     }
-//     acc[cur.location] =
-//       [...acc[cur.location], {
-//         [cur.name]: cur.residents
-//           .filter(animal => animal.sex === options.sex).map(element => element.name)
-//       }]
-//     return acc;
-//   }, {})
-// }
-
 // função que retorna nomes de animais ordenados
-const reduceAnimalMapNames = () => {
+function reduceAnimalMapNames() {
   return data.animals.reduce((acc, cur) => {
     if (acc[cur.location] === undefined) {
       acc[cur.location] = [];
@@ -99,9 +84,9 @@ function animalMap(options) {
         acc[cur.location] = [];
       }
       acc[cur.location] =
-      [...acc[cur.location], 
-      { [cur.name]: cur.residents
-      .filter(animal => animal.sex === options.sex).map(element => element.name) }]
+      [...acc[cur.location],
+        { [cur.name]: cur.residents
+        .filter(animal => animal.sex === options.sex).map(element => element.name) }]
       return acc;
     }, {})
   }
