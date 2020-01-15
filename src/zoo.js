@@ -2,6 +2,13 @@ const data = require('./data')
 
 function entryCalculator(entrants) {
   // seu código aqui
+  if ( JSON.stringify(entrants) === '{}' || entrants === undefined) {
+    return 0
+  }
+  const { Adult: multA, Child: multC, Senior: multS } = entrants;
+  const { Adult, Senior, Child } = data.prices;
+  valorTot = Math.round(((Adult*multA)+(Child*multC)+(Senior*multS))*100)/100;
+  return valorTot
 };
 
 function schedule(dayName) {
