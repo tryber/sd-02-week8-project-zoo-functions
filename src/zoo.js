@@ -15,15 +15,10 @@ function entryCalculator(entrants) {
 
   return (Adult * adultPrice) + (Child * childPrice) + (Senior * seniorPrice);
 };
-// console.log(entryCalculator());
-// console.log({} === {})
 
 function schedule(dayName) {
   // seu código aqui
   const horarios = Object.entries(data.hours);
-
-  // const dias = Object.keys(data.hours);
-  // const horarios = Object.values(data.hours)
 
   const cronogramaLegivel = horarios.reduce((acumulado, item) => {
     if (item[0] === 'Monday') {
@@ -35,36 +30,12 @@ function schedule(dayName) {
     return acumulado;
   }, {});
 
-  // const {
-  //   Tuesday: { open: openTu, close: closeTu },
-  //   Wednesday: { open: openWe, close: closeWe },
-  //   Thursday: { open: openTh, close: closeTh },
-  //   Friday: { open: openFr, close: closeFr },
-  //   Saturday: { open: openSa, close: closeSa },
-  //   Sunday: { open: openSu, close: closeSu }
-  // 'Monday': { open: openMo, close: closeMo }
-  // } = data.hours
-  // const cronogramaLegivel = {
-  //   Tuesday: `Open from ${openTu}am until ${closeTu - 12}pm`,
-  //   Wednesday: `Open from ${openWe}am until ${closeWe - 12}pm`,
-  //   Thursday: `Open from ${openTh}am until ${closeTh - 12}pm`,
-  //   Friday: `Open from ${openFr}am until ${closeFr - 12}pm`,
-  //   Saturday: `Open from ${openSa}am until ${closeSa - 12}pm`,
-  //   Sunday: `Open from ${openSu}am until ${closeSu - 12}pm`,
-  //   Monday: 'CLOSED'
-  // }
-
   if (dayName === undefined) {
     return cronogramaLegivel;
   }
 
-  // const indice = Object.keys(cronogramaLegivel).indexOf(dayName);
-  // const keyValue = Object.entries(cronogramaLegivel)[indice];
-
   return { [dayName]: cronogramaLegivel[dayName] };
 };
-// console.log(schedule())
-
 
 const transformaArraysEmObjeto = (keys, values) => {
   const objeto = {};
@@ -80,11 +51,6 @@ function animalCount(species) {
   const names = data.animals.map(item => item.name);
   const quantities = data.animals.map(item => item.residents.length);
 
-  // const resultado = {};
-  // for (let i = 0; i < names.length; i += 1) {
-  //   resultado[names[i]] = quantities[i];
-  // }
-
   const resultado = transformaArraysEmObjeto(names, quantities);
 
   if (species === undefined) {
@@ -93,7 +59,6 @@ function animalCount(species) {
 
   return resultado[species];
 };
-// console.log(animalCount())
 
 const filtraPorRegiao = (regiao) => {
   const itensFiltrados = data.animals.filter(item => item.location === regiao);
@@ -121,18 +86,8 @@ function animalMap(options) {
   const regioes = ['NE', 'NW', 'SE', 'SW'];
   const animaisPorRegiaoArray = regioes.map(regiao => filtraPorRegiao(regiao));
 
-  // const animaisPorRegiao = [ filtraPorRegiao('NE'), filtraPorRegiao('NW'),
-  // filtraPorRegiao('SE'), filtraPorRegiao('SW') ];
-
   let [NE, NW, SE, SW] = animaisPorRegiaoArray;
   const animaisPorRegiaoObjeto = { NE, NW, SE, SW };
-
-  // const animaisPorLocalizacao = {
-  //   NE: filtraPorRegiao('NE'),
-  //   NW: filtraPorRegiao('NW'),
-  //   SE: filtraPorRegiao('SE'),
-  //   SW: filtraPorRegiao('SW')
-  // };
 
   if (options === undefined) {
     return animaisPorRegiaoObjeto;
@@ -140,69 +95,16 @@ function animalMap(options) {
 
   const { includeNames = false, sorted = false, sex = undefined } = options;
 
-  // const retornaNomes = (animal, sorted, sex) => {
-  //   let residentes = data.animals.find(item => item.name === animal).residents;
-  //   if (sex === 'female') {
-  //     residentes = residentes.filter(item => item.sex === 'female');
-  //   }
-  //   const arrayNomes = residentes.map(item => item.name);
-  //   if (sorted) {
-  //     return arrayNomes.sort();
-  //   }
-  //   return arrayNomes;
-  // }
-    //   return residentes.map(item => item.name);
-    // }
-    // if (sorted) {
-    //   return residentes.map(item => item.name).sort();
-    // }
-    // return residentes.map(item => item.name);
-
   const adicionaNomes = animais =>
     animais.map(item => ({ [item]: retornaNomes(item, sorted, sex) }));
-
-    // let nomes;
-    // if (sex === 'female') {
-    //   nomes = array.map((item) => ({ [item] :  }));
-    // }
-    // if (sorted) {
-    //   nomes = array.map((item) => ({ [item] : retornaNomes(item).sort() }));
-    // } else {
-    //   nomes = array.map((item) => ({ [item] : retornaNomes(item) }));
-    // }
-    // return nomes;
-  // if (includeNames && sorted) {
-  //   return {
-  //     NE: adicionaNomes(filtraPorRegiao('NE')),
-  //     NW: adicionaNomes(filtraPorRegiao('NW')),
-  //     SE: adicionaNomes(filtraPorRegiao('SE')),
-  //     SW: adicionaNomes(filtraPorRegiao('SW'))
-  //   };
-  // }
-  // if (includeNames && sex === 'female') {
-  //   return {
-  //     NE: adicionaNomes(filtraPorRegiao('NE')),
-  //     NW: adicionaNomes(filtraPorRegiao('NW')),
-  //     SE: adicionaNomes(filtraPorRegiao('SE')),
-  //     SW: adicionaNomes(filtraPorRegiao('SW'))
-  //   };
-  // }
 
   if (includeNames) {
     [NE, NW, SE, SW] = regioes.map(regiao => adicionaNomes(filtraPorRegiao(regiao), sorted, sex));
     return { NE, NW, SE, SW }
   }
 
-    // return {
-    //   NE: adicionaNomes(filtraPorRegiao('NE')),
-    //   NW: adicionaNomes(filtraPorRegiao('NW')),
-    //   SE: adicionaNomes(filtraPorRegiao('SE')),
-    //   SW: adicionaNomes(filtraPorRegiao('SW'))
-    // };
-
   return animaisPorRegiaoObjeto;
 };
-// console.log(animalMap({includeNames: true})['NW'][1])
 
 function animalPopularity(rating) {
   // seu código aqui
@@ -252,11 +154,6 @@ function employeeCoverage(idOrName) {
   const responsavelpor = data.employees.map(item => item.responsibleFor.map(id =>
     animalsByIds(id)[0].name));
 
-  // let resultado = {};
-  // for (let i = 0; i < nomesCompletos.length; i += 1) {
-  //   resultado[nomesCompletos[i]] = responsavelpor[i];
-  // }
-
   let resultado = transformaArraysEmObjeto(nomesCompletos, responsavelpor);
 
   if (idOrName === undefined) {
@@ -274,7 +171,6 @@ function employeeCoverage(idOrName) {
 
   return resultado
 };
-//  console.log(employeeCoverage('Sharonda'));
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
@@ -301,8 +197,6 @@ function oldestFromFirstSpecies(id) {
   const primeiroIdEspecie = data.employees.find(item => item.id === id).responsibleFor[0];
   const individuos = animalsByIds(primeiroIdEspecie)[0].residents;
 
-  // const animaisEspecie = data.animals.find(item => item.name ===)
-
   const objetoResultado = individuos.reduce((acumulado, item) =>
   (item.age > acumulado.age ? item : acumulado));
 
@@ -324,14 +218,9 @@ function increasePrices(percentage) {
 
   data.prices = { Adult, Senior, Child }
 }
-//  console.log(increasePrices(50))
-
-//  let contador = 0;
 
 class Animal {
   // seu código aqui
-  // static contador = 0;
-
   constructor(name, sex, age, species) {
     this.name = name;
     this.sex = sex;
@@ -354,9 +243,6 @@ Animal.contador = 0;
 
 function createAnimals() {
   // seu código aqui
-  // const novoAnimal = new Animal();
-  // data.animals.push(novoAnimal);
-
   const animaisDeCadaEspecie = data.animals.map(item => item.residents);
 
   const cadaEspecie = data.animals.map(item =>
@@ -378,8 +264,6 @@ function createAnimals() {
 
   return objetosClasse;
 }
-// console.log(createAnimals())
-// console.log(createAnimals())
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
