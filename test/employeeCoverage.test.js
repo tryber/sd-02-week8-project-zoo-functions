@@ -11,7 +11,7 @@ let actual, expected, options
 // sem parâmetros, retorna uma lista de funcionários e os animais pelos quais
 // eles são responsáveis
 actual = zoo.employeeCoverage();
-expected = {
+/*expected = {
   'Nigel Nelson': ['lions', 'tigers'],
   'Burl Bethea': ['lions', 'tigers', 'bears', 'penguins'],
   'Ola Orloff': ['otters', 'frogs', 'snakes', 'elephants'],

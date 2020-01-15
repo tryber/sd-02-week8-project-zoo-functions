@@ -35,43 +35,17 @@ const animalCount = (species) => {
 };
 
 function animalMap(options) { 
-  const locations = {'NE':[], 'NW':[], 'SE':[], 'SW':[]}
-  const arrFinal = data.animals.reduce ( (arr, cur) => ({
-  ...arr, [cur.location]:species(cur.location)
-  }),{})
-  arraySpecies(locations);
+  const arrFinal = data.animals.reduce ( (arr, cur) => {
+    if ( arr[cur.location] === undefined ) {
+      arr[cur.location] = [];
+    }
+    arr[cur.location] = [...arr[cur.location], cur.name]
+    return arr;
+  },{})
   console.log (arrFinal);
 };
 
-const names = (string) => {
-
-}
-const locations = {'NE':[], 'NW':[], 'SE':[], 'SW':[]}
-
-
-
-const arraySpecies = (location) => {
-  /*const array = [];
-  [data.animals.forEach(element => {
-      if (element.location === string) {
-        return array.push(element.name)
-      }
-    })]
-  return array;*/
-  console.log (location);
-}
-
-arraySpecies(locations);
-
-const species = (string) => {
-  const array = [];
-  [data.animals.forEach(element => {
-      if (element.location === string) {
-        return array.push(element.name)
-      }
-    })]
-  return array;
-}
+//animalMap();
 
 function animalPopularity(rating) {
 
@@ -106,11 +80,19 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
-};
+  };
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const employee = {
+  id: id,
+  firstName: firstName,
+  lastName: lastName,
+  managers: managers,
+  responsibleFor: responsibleFor
+  }
+  data.employees.push(employee);
+  return data.employee;
 }
 
 function isManager(id) {
@@ -118,7 +100,8 @@ function isManager(id) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+ return data.animals.find (specie =>
+ specie.name === animal ).residents.every (animalAge => animalAge.age >= age);
 }
 
 function oldestFromFirstSpecies(id) {
@@ -126,7 +109,14 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const value = ((percentage/100) + 1)*100;
+  const  teste = Object.keys (data.prices).reduce ((acc, cur) => {
+    acc[cur] = Math.ceil (data.prices[cur] * value) / 100;
+    return acc; 
+  }, {})
+  data.prices.Adult = teste.Adult;
+  data.prices.Child = teste.Child;
+  data.prices.Senior = teste.Senior;  
 }
 
 class Animal {  
