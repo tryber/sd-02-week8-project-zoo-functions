@@ -46,7 +46,7 @@ const funcao2 = options => (acc, val) => {
   }
   if (Object.prototype.hasOwnProperty.call(options, 'sorted')
     && options.sorted === true) {
-    array = array.sort((a, b) => a.name < b.name ? -1 : 1);
+    array = array.sort((a, b) => (a.name < b.name ? -1 : 1));
   }
   array = array.map(item => item.name);
   acc[val.name] = array;
