@@ -1,4 +1,4 @@
-/* const data = require('./data') */
+const data = require('./data')
 
 function entryCalculator(entrants) {
   // seu código aqui
@@ -76,34 +76,35 @@ function managersForEmployee(idOrName) {
 const data = require('./data')
 
 function allEmps() {
-  allEmp = []
+  let allEmp = [];
   data.employees.map(item => allEmp.push(item.firstName));
   return allEmp
-} 
+}
 
-function employeeCoverage(idOrName = allEmps()) {
+function employeeCoverage(idOrName) {
   // seu código aqui
- /*  objResp = {}
-  empBusca = []
-  console.log(typeof idOrName);
-  if (typeof idOrName === 'object') {
-  idOrName.map(todosEmp => empBusca.push(data.employees.find(pesq => pesq.firstName === todosEmp)));
-  console.log(empBusca);
-  aniIds = [...empBusca].responsibleFor;
-  console.log(aniIds);
-  }
-  if (typeof idOrName === 'string') {
-    empBusca = data.employees.find(pesq => pesq.id === idOrName || pesq.firstName === idOrName || pesq.lastName === idOrName);
-    console.log(empBusca);
-    aniIds = [...empBusca.responsibleFor];
-    console.log(aniIds);
-    aniResp = aniIds.map(findId => data.animals.find(pesqA => pesqA.id === findId));
-    aniFinal = []
-    aniResp.map(item => aniFinal.push(item.name));
-    objResp[`${empBusca.firstName} ${empBusca.lastName}`] = aniFinal;
-    console.log(objResp);
-    return objResp
-  } */
+  /*  objResp = {}
+   empBusca = []
+   console.log(typeof idOrName);
+   if (typeof idOrName === 'object') {
+   idOrName.map(todosEmp => empBusca.push(data.employees.find(pesq => pesq.firstName === todosEmp)));
+   console.log(empBusca);
+   aniIds = [...empBusca].responsibleFor;
+   console.log(aniIds);
+   }
+   if (typeof idOrName === 'string') {
+     empBusca = data.employees.find(pesq => pesq.id === idOrName || 
+      pesq.firstName === idOrName || pesq.lastName === idOrName);
+     console.log(empBusca);
+     aniIds = [...empBusca.responsibleFor];
+     console.log(aniIds);
+     aniResp = aniIds.map(findId => data.animals.find(pesqA => pesqA.id === findId));
+     aniFinal = []
+     aniResp.map(item => aniFinal.push(item.name));
+     objResp[`${empBusca.firstName} ${empBusca.lastName}`] = aniFinal;
+     console.log(objResp);
+     return objResp
+   } */
 };
 employeeCoverage();
 
@@ -123,7 +124,7 @@ function isManager(id) {
   // seu código aqui
   const filtro = data.employees.filter(src => src.managers.includes(id));
   let resp = '';
-  (filtro.length !== 0 ? resp = true : resp = false);
+  filtro.length !== 0 ? (resp = true) : (resp = false);
   return resp
 }
 
@@ -151,7 +152,10 @@ function createAnimals() {
 
 function createEmployee(personalInfo, associatedWith) {
   // seu código aqui
-  const ObjEmpArr = { ...personalInfo, ...associatedWith };
+  const ObjEmpArr = {
+    ...personalInfo,
+    ...associatedWith
+  };
   return ObjEmpArr;
 }
 
