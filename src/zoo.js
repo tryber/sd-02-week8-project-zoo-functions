@@ -35,10 +35,15 @@ function animalPopularity(rating) {
   // seu código aqui
 };
 
-function animalsByIds(ids) {
+function animalsByIds(ids, id2 = '') {
   let descreveAnimal = []
   if (ids === undefined) {
     return descreveAnimal
+  }
+  if (id2 !== '') {
+    const descreveAnimal = data.animals.filter(pesq => pesq.id === ids);
+    const descreveAnimal2 = data.animals.filter(pesq => pesq.id === id2);
+    return descreveAnimal.concat(descreveAnimal2)
   }
   descreveAnimal = data.animals.filter(pesq => pesq.id === ids)
   return descreveAnimal
@@ -74,7 +79,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(codigo => codigo.managers.some(codigo => codigo == id))
 }
 
 function animalsOlderThan(animal, age) {
@@ -86,7 +91,10 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const { Adult, Senior, Child } = data.prices;
+  const entradasNumero = [Adult, Senior, Child];
+  return entradasNumero
+  .map((element) => element * 5)
 }
 
 class Animal {
