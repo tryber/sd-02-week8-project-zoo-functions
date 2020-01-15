@@ -39,16 +39,22 @@ function employeesByIds(...ids) {
   if (ids === undefined){   
     return expected;
   }
-  let employeesId = [];
-    ids.map(arrIds => employeesId.push(data.employees.find(info => info.id === arrIds)));
-    return employeesId
+  return data.employees.filter( employee => ids.includes(employee.id) );
 };
 
-console.log(employeesByIds('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1', '0e7b460e-acf4-4e17-bcb3-ee472265db83'))
+console.log(employeesByIds('56d43ba3-a5a7-40f6-8dd7-cbb05082383f', '9e7d4524-363c-416a-8759-8aa7e50c0992'));
 
 function employeeByName(employeeName) {
-  // seu código aqui
+  const expected = [];
+  if (employeeName === undefined) {
+    return expected;
+  } else {
+    const employName = data.employees.find(info => info.firstName === employeeName || info.lastName === employeeName);
+    return employName;
+  }
 };
+
+//console.log(employeeByName('Wishart'));
 
 function managersForEmployee(idOrName) {
   // seu código aqui
