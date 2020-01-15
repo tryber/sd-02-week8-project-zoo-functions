@@ -41,11 +41,11 @@ function animalsByIds(ids, id2 = '') {
     return descreveAnimal
   }
   if (id2 !== '') {
-    const descreveAnimal = data.animals.filter(pesq => pesq.id === ids);
+    descreveAnimal = data.animals.filter(pesq => pesq.id === ids);
     const descreveAnimal2 = data.animals.filter(pesq => pesq.id === id2);
     return descreveAnimal.concat(descreveAnimal2)
   }
-  descreveAnimal = data.animals.filter(pesq => pesq.id === ids)
+  descreveAnimal = data.animals.filter(pesq => pesq.id === ids);
   return descreveAnimal
 };
 
@@ -61,10 +61,10 @@ function employeeByName(employeeName) {
   if (employeeName === undefined) {
     return empNome
   }
-  empNome = data.employees.find(pesq => pesq.firstName === employeeName || 
+  empNome = data.employees.find(pesq => pesq.firstName === employeeName ||
     pesq.lastName === employeeName);
   return empNome
-}; 
+};
 
 function managersForEmployee(idOrName) {
   // seu código aqui
@@ -79,7 +79,7 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function isManager(id) {
-  return data.employees.some(codigo => codigo.managers.some(codigo => codigo == id))
+  return data.employees.some(codigo => codigo.managers.some(code => code === id))
 }
 
 function animalsOlderThan(animal, age) {
@@ -89,13 +89,13 @@ function animalsOlderThan(animal, age) {
 function oldestFromFirstSpecies(id) {
   // seu código aqui
 }
-
+const data = require('./data')
 function increasePrices(percentage) {
   const { Adult, Senior, Child } = data.prices;
   const entradasNumero = [Adult, Senior, Child];
-  return entradasNumero
-  .map((element) => element * 5)
+  console.log(entradasNumero);
 }
+console.log(increasePrices())
 
 class Animal {
   // seu código aqui
@@ -110,7 +110,7 @@ function createAnimals() {
 //       this.species = species;
 //     }
 //     set tipodeCampo (name, sex, age, species) {
-      
+
 //     }
 //   }
 }
