@@ -46,24 +46,23 @@ function retornarAnimalNomes(animal, sexo = false, sorted = false) {
     }
     return { [animal]: arranjoNomes }
   }
-  else {
-    const arranjoNomes = animaisNomes.map(({ name }) => name)
-    if (sorted) {
-      const resposta = arranjoNomes.sort()
-      return { [animal]: resposta }
-    }
-    return { [animal]: arranjoNomes }
+  const arranjoNomes = animaisNomes.map(({ name }) => name)
+  if (sorted) {
+    const resposta = arranjoNomes.sort()
+    return { [animal]: resposta }
   }
+  return { [animal]: arranjoNomes }
 }
 
+
 function resultadoPadrao() {
-  let resultado = {}
+  const resultado = {}
   const arranjoCardinais = ['NE', 'NW', 'SE', 'SW']
   arranjoCardinais.forEach((direcao) => {
     const especiesFiltradasPorLocalizacao =
       data.animals.filter(({ location }) => location === direcao)
-    resultado[direcao] = especiesFiltradasPorLocalizacao.reduce
-      ((acc, { name }) => acc.concat(name), [])
+    resultado[direcao] = especiesFiltradasPorLocalizacao.reduce((acc, { name }) =>
+      acc.concat(name), [])
   })
   return resultado
 }
@@ -82,7 +81,7 @@ function animalMap(options) {
 
   if (includeNames === true) {
     const [NE, NW, SE, SW] = escreverONome(sex, sorted)
-    const respostacompleta = { 'NE': NE, 'NW': NW, 'SE': SE, 'SW': SW }
+    const respostacompleta = { NE, NW, SE, SW }
     return respostacompleta
   }
 
