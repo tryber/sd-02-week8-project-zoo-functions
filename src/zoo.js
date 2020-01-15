@@ -42,8 +42,6 @@ function employeesByIds(...ids) {
   return data.employees.filter( employee => ids.includes(employee.id) );
 };
 
-console.log(employeesByIds('56d43ba3-a5a7-40f6-8dd7-cbb05082383f', '9e7d4524-363c-416a-8759-8aa7e50c0992'));
-
 function employeeByName(employeeName) {
   const expected = [];
   if (employeeName === undefined) {
@@ -54,14 +52,19 @@ function employeeByName(employeeName) {
   }
 };
 
-//console.log(employeeByName('Wishart'));
 
 function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName === undefined){
+    let expected = {};
+    expected.push(data.employees.filter(info => {
+      info.firstName && info.lastName
+      return ex
+    }));
+  }
 };
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
@@ -69,7 +72,12 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const result = data.employees.filter(info => info.managers.includes(id));
+  if ( result.length !== 0 ) {
+    return true
+  } else {
+    return false
+  }
 }
 
 function animalsOlderThan(animal, age) {
