@@ -8,13 +8,19 @@ function entryCalculator(entrants) {
   const entradasNumero = [Adult, Senior, Child];
   return entradasNumero
   .map((quantIngresso, indice) => quantIngresso * Object.values(data.prices)[indice])
-  .reduce((a , b) => a + b);
+  .reduce((a, b) => a + b);
 };
 
 function schedule(dayName) {
-  if (typeof dayName === 'undefined') {
-    return data.hours;
-  }
+  // const days = dayName ? [dayName] : Object.keys(data.hours);
+  //   return days.reduce((acc, day) => {
+  //   const { open, close } = data.hours[day];
+  //   const text = day === 'Monday'
+  //     ? 'CLOSED'
+  //     : `Open from ${open}am until ${close - 12}pm`
+  //   acc[day] = text;
+  //   return acc;
+  // }, {})
 };
 
 function animalCount(species) {
@@ -30,7 +36,12 @@ function animalPopularity(rating) {
 };
 
 function animalsByIds(ids) {
-  // seu código aqui
+  let descreveAnimal = []
+  if (ids === undefined) {
+    return descreveAnimal
+  }
+  descreveAnimal = data.animals.filter(pesq => pesq.id === ids)
+  return descreveAnimal
 };
 
 function animalByName(animalName) {
@@ -38,12 +49,17 @@ function animalByName(animalName) {
 };
 
 function employeesByIds(ids) {
-  // seu código aqui
 };
 
 function employeeByName(employeeName) {
-  // seu código aqui
-};
+  let empNome = {}
+  if (employeeName === undefined) {
+    return empNome
+  }
+  empNome = data.employees.find(pesq => pesq.firstName === employeeName || 
+    pesq.lastName === employeeName);
+  return empNome
+}; 
 
 function managersForEmployee(idOrName) {
   // seu código aqui
@@ -78,11 +94,21 @@ class Animal {
 }
 
 function createAnimals() {
-  // seu código aqui
+//   class animal {
+//     constructor (name, sex, age, species) {
+//       this.name = name;
+//       this.sex = sex;
+//       this.age = age;
+//       this.species = species;
+//     }
+//     set tipodeCampo (name, sex, age, species) {
+      
+//     }
+//   }
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 module.exports = {
