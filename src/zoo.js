@@ -39,41 +39,46 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-  // const locations = {'NE':[], 'NW':[], 'SE':[], 'SW':[]}
-  // const arrFinal = data.animals.reduce ( (arr, cur) => ({
-  // ...arr, [cur.location]:species(cur.location)
-  // }),{})
-  // arraySpecies(locations);
-  // console.log (arrFinal);
-
-  // const arr1 = [];
-  // const arr2 = [];
-  // const arr3 = [];
-  // const arr4 = [];
-  // data.animals.forEach((element) => {
-  //   if (element.location === 'NE') {
-  //     return arr1.push(element.name);
-  //   }
-
-  //   if (element.location === 'NW') {
-  //     return arr2.push(element.name);
-  //   }
-
-  //   if (element.location === 'SE') {
-  //     return (arr3.push(element.name));
-  //   }
-
-  //   if (element.location === 'SW') {
-  //     return arr4.push(element.name);
-  //   }
-  // })
-
-  // console.log(arr1, arr2, arr3, arr4)
+  if (!options || !options.includeNames) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] = [...acc[cur.location], cur.name]
+      return acc;
+    }, {})
+  }
+  else if (options.sorted && options.includeNames) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] =
+        [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name).sort() }]
+      return acc;
+    }, {})
+  }
+  else if (options.sex) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] =
+      [...acc[cur.location], { [cur.name]: cur.residents.filter(animal => animal.sex == options.sex).map(element => element.name) }]
+      return acc;
+    }, {})
+  }
+  else if (options.includeNames) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] =
+        [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name) }]
+      return acc;
+    }, {})
+  }
 };
-// const names = (string) => {
-
-// }
-// const locations = {'NE':[], 'NW':[], 'SE':[], 'SW':[]}
 
 function animalPopularity(rating) {
   // não há arquivo de teste
