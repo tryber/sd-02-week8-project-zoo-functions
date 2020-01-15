@@ -96,7 +96,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some ( ele => ele.managers.some ( el => el === id ))
 }
 
 function animalsOlderThan(animal, age) {
@@ -105,7 +105,10 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  const specie = data.employees.find (ele => ele.id === id).responsibleFor[0];
+  return Object.values ((data.animals.find (el =>
+     el.id === specie)).residents.sort ((a, b) =>
+    b.age - a.age)[0])
 }
 
 function increasePrices(percentage) {
