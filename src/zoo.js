@@ -32,21 +32,21 @@ function animalCount(species) {
 function animalMap(options) {
   if (!options || !options.includeNames) {
     return data.animals.reduce((acc, cur) => {
-      if ( acc[cur.location] === undefined) { acc[cur.location] = []; }
+      if (acc[cur.location] === undefined) { acc[cur.location] = []; }
       acc[cur.location] = [...acc[cur.location], cur.name]
       return acc;
     }, {})
   } else if (options.includeNames) {
     return data.animals.reduce((acc, cur) => {
-      if (acc[cur.location] === undefined) { acc[cur.location] = [];
-      } if (options.sorted) {
+      if (acc[cur.location] === undefined) acc[cur.location] = [];
+      if (options.sorted) {
         acc[cur.location] =
         [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name).sort() }]
         return acc;
       } if (options.sex) {
-        acc[cur.location] =
-      [...acc[cur.location], { [cur.name]: cur.residents.filter(animal => animal.sex == options.sex).map(element => element.name) }]
-      return acc;
+        acc[cur.location] = [...acc[cur.location], { [cur.name]:
+        cur.residents.filter(animal => animal.sex === options.sex).map(element => element.name) }]
+        return acc;
       }
       acc[cur.location] =
         [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name) }]
