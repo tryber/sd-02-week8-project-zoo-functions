@@ -37,49 +37,53 @@ function animalCount(species) {
 };
 
 function retornarAnimalNomes(animal, sexo = false, sorted = false) {
-  let animaisNomes = data.animals.find(({ name }) => name === animal).residents;
+  const animaisNomes = data.animals.find(({ name }) => name === animal).residents;
   if (sexo) {
-      let arranjoNomes = animaisNomes.filter(({ sex }) => sex === sexo).map(({ name }) => name)
-      if (sorted) {
-          let resposta = arranjoNomes.sort()
-          return { [animal]: resposta }
-      }
-      return { [animal]: arranjoNomes }
+    const arranjoNomes = animaisNomes.filter(({ sex }) => sex === sexo).map(({ name }) => name)
+    if (sorted) {
+      const resposta = arranjoNomes.sort()
+      return { [animal]: resposta }
+    }
+    return { [animal]: arranjoNomes }
   }
   else {
-      let arranjoNomes = animaisNomes.map(({ name }) => name)
-      if (sorted) {
-          let resposta = arranjoNomes.sort()
-          return { [animal]: resposta }
-      }
-      return { [animal]: arranjoNomes }
+    const arranjoNomes = animaisNomes.map(({ name }) => name)
+    if (sorted) {
+      const resposta = arranjoNomes.sort()
+      return { [animal]: resposta }
+    }
+    return { [animal]: arranjoNomes }
   }
 }
 
 function resultadoPadrao() {
   let resultado = {}
   const arranjoCardinais = ['NE', 'NW', 'SE', 'SW']
-  arranjoCardinais.forEach(direcao => {
-      const especiesFiltradasPorLocalizacao = data.animals.filter(({ location }) => location === direcao)
-      resultado[direcao] = especiesFiltradasPorLocalizacao.reduce((acc, { name }) => acc.concat(name), [])
+  arranjoCardinais.forEach((direcao) => {
+    const especiesFiltradasPorLocalizacao =
+      data.animals.filter(({ location }) => location === direcao)
+    resultado[direcao] = especiesFiltradasPorLocalizacao.reduce
+      ((acc, { name }) => acc.concat(name), [])
   })
   return resultado
 }
 
 function escreverONome(sex = false, sorted) {
-  return Object.values(resultadoPadrao()).map(arranjoEspecies => arranjoEspecies.reduce((acc, especie) =>
+  return Object.values(resultadoPadrao()).map(arranjoEspecies =>
+    arranjoEspecies.reduce((acc, especie) =>
       acc.concat(retornarAnimalNomes(especie, sex, sorted)), []))
 }
 
 function animalMap(options) {
   if (!options) {
-      return resultadoPadrao()
+    return resultadoPadrao()
   }
   const { includeNames, sex = false, sorted = false } = options
 
-  if (includeNames == true) {
-      let [NE, NW, SE, SW] = escreverONome(sex, sorted)
-      return respostacompleta = { NE: NE, NW: NW, SE: SE, SW: SW }
+  if (includeNames === true) {
+    const [NE, NW, SE, SW] = escreverONome(sex, sorted)
+    const respostacompleta = { 'NE': NE, 'NW': NW, 'SE': SE, 'SW': SW }
+    return respostacompleta
   }
 
   return resultadoPadrao()
