@@ -1,7 +1,5 @@
 const assert = require('assert');
 const data = require('./data');
-const round = require('../libs/round');
-
 
 function entryCalculator(entrants) {
   if(typeof entrants === 'undefined') {return 0;}
@@ -118,43 +116,7 @@ function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
-function employeeCoverage(idOrName) {
-  const responsaveisId = {};
-  let responsaveis = {};
-  let selecionados = [];
-  const regexId = /[\-A -Za -z0 - 9]{36}/;
-  const regexName = /[A-Za-z]{4,}/;
 
-  data.employees.forEach((employee) => {
-    responsaveisId[`${employee.id}`] =
-      employee.responsibleFor.map((id) =>
-        data.animals.find((animal) => animal.id === id)
-      );
-  });
-
-  if(typeof idOrName === 'undefined' || regexName.test(idOrName)) {
-    coverageFuncao1(responsaveisId, selecionados);
-  }
-
-  if(regexId.test(idOrName)) {
-    coverageFuncao2(responsaveisId, selecionados);
-  }
-
-  selecionados.forEach((obj) => {
-    Object.keys(obj).forEach(function(k) {
-      let { firstName, lastName } = data.employees.find((employee) => employee.id === k);
-      let animals = obj[k].map((animal) => animal.name);
-
-      responsaveis[`${firstName} ${lastName}`] = animals;
-    });
-  });
-
-  if(regexName.test(idOrName)) {
-    coverageFuncao3(responsaveis, idOrName);
-  }
-
-  return responsaveis;
-};
 
 const coverageFuncao1 = (responsaveisId, selecionados) => {
   Object.keys(responsaveisId).forEach((key) => {
@@ -186,7 +148,47 @@ const coverageFuncao3 = (responsaveis, idOrName) => {
   });
 }
 
-console.log(employeeCoverage());
+const coverageFuncao4 = (responsaveisId) => (employee) => {
+  responsaveisId[`${employee.id}`] =
+    employee.responsibleFor.map((id) =>
+      data.animals.find((animal) => animal.id === id)
+    );
+}
+
+function employeeCoverage(idOrName) {
+  const responsaveisId = {};
+  let responsaveis = {};
+  let selecionados = [];
+  const regexId = /[\-A -Za -z0 - 9]{36}/;
+  const regexName = /[A-Za-z]{4,}/;
+
+  data.employees.forEach(coverageFuncao4(responsaveisId));
+
+  if(typeof idOrName === 'undefined' || regexName.test(idOrName)) {
+    coverageFuncao1(responsaveisId, selecionados);
+  }
+
+  if(regexId.test(idOrName)) {
+    coverageFuncao2(responsaveisId, selecionados);
+  }
+
+  selecionados.forEach((obj) => {
+    Object.keys(obj).forEach(function(k) {
+      let { firstName, lastName } = data.employees.find((employee) => employee.id === k);
+      let animals = obj[k].map((animal) => animal.name);
+
+      responsaveis[`${firstName} ${lastName}`] = animals;
+    });
+  });
+
+  if(regexName.test(idOrName)) {
+    coverageFuncao3(responsaveis, idOrName);
+  }
+
+  return responsaveis;
+};
+
+console.log(employeeCoverage())
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newObj = {id, firstName, lastName, managers, responsibleFor };
@@ -231,7 +233,7 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const fator = (percentage / 100) + 1;
-  Object.keys(data.prices).forEach((key) => data.prices[key] = round(data.prices[key]*fator, 2));
+  Object.keys(data.prices).forEach((key) => data.prices[key] = Math.round(data.prices[key]*fator*100) / 100);
 }
 
 class Animal {
