@@ -122,7 +122,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function isManager(id) {
   // seu código aqui
   const filtro = data.employees.filter(src => src.managers.includes(id));
-  const resp = filtro.length !== 0 ? true : false;
+  const resp = filtro.length !== 0;
   return resp
 }
 
