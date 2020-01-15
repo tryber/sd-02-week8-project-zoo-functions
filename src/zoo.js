@@ -28,8 +28,40 @@ function animalCount(species) {
   if (species === null || species === undefined) return arrFinal;
   return arrFinal[species];
 }
+
 function animalMap(options) {
-  // seu código aqui
+  if (!options || !options.includeNames) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] = [...acc[cur.location], cur.name]
+      return acc;
+    }, {})
+  } else if (options.sex) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] =
+      [...acc[cur.location], { [cur.name]: cur.residents.filter(animal => animal.sex == options.sex).map(element => element.name) }]
+      return acc;
+    }, {})
+  } else if (options.includeNames) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      if (options.sorted) {
+        acc[cur.location] =
+        [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name).sort() }]
+        return acc;
+      }
+      acc[cur.location] =
+        [...acc[cur.location], { [cur.name]: cur.residents.map(element => element.name) }]
+      return acc;
+    }, {})
+  }
 };
 
 function animalPopularity(rating) {
@@ -92,7 +124,7 @@ function increasePrices(percentage) {
   data.prices = novo;
 }
 
-let numero = 0;
+let numberOfAnimals = 0;
 
 class Animal {
   constructor(name, age, sex, species) {
@@ -105,7 +137,7 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
   static totalAnimals() {
-    return numero;
+    return numberOfAnimals;
   }
 }
 
@@ -116,7 +148,7 @@ function createAnimals() {
       animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
     ))
   ))
-  numero = animals.length;
+  numberOfAnimals = animals.length;
   return animals;
 }
 
