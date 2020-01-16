@@ -169,13 +169,12 @@ function isManager(id) {
 }
 
 function animalsOlderThan(animal, age) {
-  return animalName = data.animals
-  .find(element => element.name === animal)
-  .residents.every(animals => animals.age > age);
+  return data.animals
+  .find(element => element.name === animal).residents.every(animals => animals.age > age);
 }
 
 function oldestFromFirstSpecies(id) {
-  
+
 }
 
 function increasePrices(percentage) {
