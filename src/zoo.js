@@ -10,7 +10,7 @@ function entryCalculator(entrants) {
     return adult + senior + child;
   }
 
-function schedule() {
+function schedule(dayName) {
   const newObj = {};
   if (dayName === null) {
     return 0;
@@ -24,7 +24,7 @@ function schedule() {
   return newObj;
 };
 
-function animalCount() {
+function animalCount(species) {
   const obj = {};
   if (species === undefined) {
     data.animals.forEach((item) => {
@@ -38,7 +38,7 @@ function animalCount() {
     return contagem[0].residents.length;
   };
 
-function animalMap() {
+function animalMap(options) {
   const objMain = {};
   if (options === undefined) {
     const objKeys = {};
