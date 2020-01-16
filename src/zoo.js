@@ -120,7 +120,7 @@ function oldestFromFirstSpecies(id) {
 }
 
 function adiciona(item, percentage) {
-  return Math.round(((item+ ((item * percentage) / 100)) * 100)) / 100;
+  return Math.round(((item + ((item * percentage) / 100)) * 100)) / 100;
 }
 
 function increasePrices(percentage) {
