@@ -23,37 +23,88 @@ const schedule = (dayName) => {
   }, {});
 };
 
-
 const animalCount = (species) => {
   const [...args] = data.animals;
   const arrFinal = args.reduce((acc, cur) =>
-    ({ ...acc, [cur.name]: Object.keys(cur.residents).length }), {})
+    ({ ...acc, [cur.name]: cur.residents.length }), {})
   if (species === null || species === undefined) {
     return arrFinal;
   }
   return arrFinal[species];
 };
-
-function animalMap(options) {
-  const arrFinal = data.animals.reduce((arr, cur) => {
+function primeiroAssert() {
+  return data.animals.reduce((arr, cur) => {
     if (arr[cur.location] === undefined) {
       arr[cur.location] = [];
     }
     arr[cur.location] = [...arr[cur.location], cur.name]
     return arr;
   }, {})
-  console.log(arrFinal);
-};
+}
 
-//animalMap();
+function segundoAssert(sort) {
+  if (sort) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] = [...acc[cur.location], {
+        [cur.name]: cur.residents.map(el =>
+          el.name).sort()
+      }]
+      return acc;
+    }, {})
+  } else {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] = [...acc[cur.location], {
+        [cur.name]: cur.residents.map(el =>
+          el.name)
+      }]
+      return acc;
+    }, {})
+  }
+}
+
+function terceiroAssert(value) {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], {
+      [cur.name]: cur.residents.filter(el =>
+        el.sex === value).map(ele => ele.name)
+    }]
+    return acc;
+  }, {})
+}
+
+function animalMap(options) {
+  if (options !== undefined ) {
+    const { includeNames = false, sorted = false, sex = false } = options;
+    if (includeNames) {
+      if (sorted) {
+        return segundoAssert(sorted);
+      }
+      if (sex) {
+        return terceiroAssert(sex);
+      }
+      return segundoAssert (sorted);
+    }
+  }
+  return primeiroAssert();
+};
 
 function animalPopularity(rating) {
 
 };
 
 function animalsByIds(...ids) {
-  if (ids[0] === undefined)
+  if (ids[0] === undefined) {
     return [];
+  }
   const arrFinal = ids.reduce((arr, cur) => ([
     ...arr, data.animals.find(el => el.id === cur)
   ]), [])
@@ -86,12 +137,12 @@ function employeeCoverage(str) {
         data.animals.find(el => el.id === ele).name)
       return arr
     }, {}))
-  }  
+  }
   const arrai = data.employees.find(el =>
     str === el.id || str === el.firstName || str === el.lastName);
-  const arrFinal = arrai.responsibleFor.map (ele => data.animals.find (el =>
+  const arrFinal = arrai.responsibleFor.map(ele => data.animals.find(el =>
     ele === el.id).name);
-  return {[`${arrai.firstName} ${arrai.lastName}`]: arrFinal};
+  return { [`${arrai.firstName} ${arrai.lastName}`]: arrFinal };
 };
 
 
@@ -149,7 +200,7 @@ class Animal {
 
 function createAnimals() {
   let animals = [];
-  data.animals.forEach(animais => {
+  data.animals.forEach((animais) => {
     animais.residents.forEach((el) => {
       animals.push(new Animal(el.name, el.sex, el.age, animais.name));
     })

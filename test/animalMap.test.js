@@ -10,7 +10,7 @@ let actual, expected, options
 
 // sem parâmetros, retorna animais categorizados por localização
 actual = zoo.animalMap();
-/*expected = {
+expected = {
   NE: ['lions', 'giraffes'],
   NW: ['tigers', 'bears', 'elephants'],
   SE: ['penguins', 'otters'],
@@ -18,7 +18,7 @@ actual = zoo.animalMap();
 };
 
 assert.deepEqual(actual, expected);
-/*
+
 // com opções especificadas, retorna nomes de animais
 options = { includeNames: true }
 actual = zoo.animalMap(options);
