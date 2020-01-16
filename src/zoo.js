@@ -1,7 +1,7 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if( Object.keys(entrants).length == 0){
+  if( Object.keys(entrants).length === 0){
     return 0;
   } else {
     return (Object.values(entrants)[0] * 46.985) + (Object.values(entrants)[1] * 23.4925) + (Object.values(entrants)[2] * 23.4925);
@@ -10,7 +10,7 @@ function entryCalculator(entrants) {
 
 function schedule(dayName) {
   let newObj = {};
-    if(dayName == null){
+    if(dayName === null){
         return 0;
     } else {
        Object.keys(data.hours).forEach((key) => {
