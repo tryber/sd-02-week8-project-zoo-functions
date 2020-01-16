@@ -43,8 +43,60 @@ function animalCount(species = 0) {
   return obj
 };
 
+function primeiroAssert() {
+  return data.animals.reduce((arr, cur) => {
+    if (arr[cur.location] === undefined) {
+      arr[cur.location] = [];
+    }
+    arr[cur.location] = [...arr[cur.location], cur.name]
+    return arr;
+  }, {})
+}
+
+function segundoAssert(sort) {
+  if (sort) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] = [...acc[cur.location], {
+        [cur.name]: cur.residents.map(el =>
+          el.name).sort()
+      }]
+      return acc;
+    }, {})
+  }
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], {
+      [cur.name]: cur.residents.map(el =>
+        el.name)
+    }]
+    return acc;
+  }, {})
+}
+
+function terceiroAssert(value) {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], {
+      [cur.name]: cur.residents.filter(el =>
+        el.sex === value).map(ele => ele.name)
+    }]
+    return acc;
+  }, {})
+}
+
 function animalMap(options) {
   // seu código aqui
+  if (!options || !options.includeNames) return primeiroAssert();
+  if (options.sorted) return segundoAssert(options.sorted);
+  else if (options.sex) return terceiroAssert(options.sex);
+  return segundoAssert(options.sorted);
 };
 
 function animalPopularity(rating) {
@@ -84,7 +136,23 @@ function managersForEmployee(idOrName) {
 
 function employeeCoverage(idOrName) {
   // seu código aqui
+  const worker = data.employees
+  const obj = {}
+  if (!idOrName) {
+    Object.keys(worker).forEach((key) => {
+      obj[`${worker[key].firstName} ${worker[key].lastName}`] = worker[key].responsibleFor.map(who =>
+        data.animals.find(animal => animal.id === who).name)
+    })
+  } else {
+    const workerId = worker.find(workerX => workerX.id === idOrName ||
+      workerX.firstName === idOrName || workerX.lastName === idOrName)
+    obj[`${workerId.firstName} ${workerId.lastName}`] = workerId.responsibleFor.map(wId =>
+      data.animals.find(animal => animal.id === wId).name)
+  }
+  return obj
+
 };
+
 
 function addEmployee(...param) {
   // seu código aqui
