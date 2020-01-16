@@ -65,6 +65,11 @@ function animalCount(species) {
 
 function animalMap(options) {
   // seu código aqui
+  // sem parâmetros, retorna animais categorizados por localização
+  // com opções especificadas, retorna nomes de animais
+  // com opções especificadas, retorna nomes de animais ordenados
+  // com oções especificadas, retorna somente nomes de animais macho/fêmea
+  // só retorna informações específicas de gênero se includeNames for setado
 };
 
 function animalPopularity(rating) {
@@ -146,6 +151,9 @@ function animalsOlderThan(animal, age) {
 
 function oldestFromFirstSpecies(id) {
   // seu código aqui
+  // passado o id de um funcionário, encontra a primeira espécie de animal
+  // gerenciado pelo funcionáio, e retorna um array com nome, sexo e idade do
+  // animal mais velho dessa espécie
 }
 
 function increasePrices(percentage) {
@@ -164,6 +172,10 @@ class Animal {
 
 function createAnimals() {
   // seu código aqui
+  // retorna um array de objetos da classe Animal. Esta classe contém os atributos
+  // name, sex, age and species.
+  // retorna uma string formatada descrevendo o animal
+  // retorna o número total de animais existentes
 }
 
 function createEmployee(personalInfo, associatedWith) {
