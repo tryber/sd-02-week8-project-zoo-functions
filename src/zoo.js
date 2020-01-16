@@ -82,12 +82,9 @@ function terceiroAssert(value) {
 
 function animalMap(options) {
   if (!options || !options.includeNames) return primeiroAssert();
-  if (options.includeNames) {
-    if (options.sorted) return segundoAssert(options.sorted);
-    else if (options.sex) return terceiroAssert(options.sex);
-    return segundoAssert(options.sorted);
-  }
-  return null;
+  if (options.sorted) return segundoAssert(options.sorted);
+  else if (options.sex) return terceiroAssert(options.sex);
+  return segundoAssert(options.sorted);
 };
 
 function animalPopularity(rating) {
