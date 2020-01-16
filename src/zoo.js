@@ -157,7 +157,7 @@ function increasePrices(percentage) {
 let numberOfAnimals = 0;
 
 class Animal {
-  constructor(name, age, sex, species) {
+  constructor(name ='', age = 0, sex = 'male', species = '') {
     this.name = name
     this.age = age
     this.sex = sex
