@@ -38,9 +38,62 @@ function animalCount(species) {
   return animalCountFinder.residents.length;
 };
 
+function primeiroAssert() {
+  return data.animals.reduce((arr, cur) => {
+    if (arr[cur.location] === undefined) {
+      arr[cur.location] = [];
+    }
+    arr[cur.location] = [...arr[cur.location], cur.name]
+    return arr;
+  }, {})
+}
+
+function segundoAssert(sort) {
+  if (sort) {
+    return data.animals.reduce((acc, cur) => {
+      if (acc[cur.location] === undefined) {
+        acc[cur.location] = [];
+      }
+      acc[cur.location] = [...acc[cur.location], {
+        [cur.name]: cur.residents.map(el =>
+          el.name).sort()
+      }]
+      return acc;
+    }, {})
+  }
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], {
+      [cur.name]: cur.residents.map(el =>
+        el.name)
+    }]
+    return acc;
+  }, {})
+}
+
+function terceiroAssert(value) {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], {
+      [cur.name]: cur.residents.filter(el =>
+        el.sex === value).map(ele => ele.name)
+    }]
+    return acc;
+  }, {})
+}
+
 function animalMap(options) {
   // seu código aqui
+  if (!options || !options.includeNames) return primeiroAssert();
+  if (options.sorted) return segundoAssert(options.sorted);
+  else if (options.sex) return terceiroAssert(options.sex);
+  return segundoAssert(options.sorted);
 };
+
 
 function animalPopularity(rating) {
   // seu código aqui
@@ -99,8 +152,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function isManager(id) {
   // seu código aqui
   const filtro = data.employees.filter(src => src.managers.includes(id));
-  const resp = filtro.length !== 0;
-  return resp
+  return filtro.length !== 0;
 }
 
 function animalsOlderThan(animal, age) {
