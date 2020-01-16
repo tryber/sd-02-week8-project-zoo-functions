@@ -68,12 +68,12 @@ function animalsByIds(ids, id2 = '') {
   const nothing = [];
   if (ids && id2 === undefined) {
     return nothing
-  } 
-    // com um único id, retorna os animais com este id
-    // com mais de um id, retorna os animais que têm um desses ids
-    const findOne = data.animals.filter(animal => animal.id === ids);
-    const findSome = data.animals.filter(animal => animal.id === id2);
-    return findOne.concat(findSome);
+} 
+  // com um único id, retorna os animais com este id
+  // com mais de um id, retorna os animais que têm um desses ids
+  const findOne = data.animals.filter(animal => animal.id === ids);
+  const findSome = data.animals.filter(animal => animal.id === id2);
+  return findOne.concat(findSome);
 };
 
 
@@ -123,7 +123,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 function isManager(id) {
   // seu código aqui
   // testa se o id passado é de um gerente
-  return data.employees.some(algum => algum.managers.some(algum => algum === id))
+  return data.employees.some(algum => algum.managers.some(alguem => alguem === id))
 }
 
 function animalsOlderThan(animal, age) {
