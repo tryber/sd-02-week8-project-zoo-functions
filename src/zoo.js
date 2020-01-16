@@ -10,13 +10,11 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName = 0) {
-  const days = dayName ? [dayName] : Object.keys(data.hours);
-  return days.reduce((acc, day) => {
+
+  return (dayName ? [dayName] : Object.keys(data.hours)).reduce((acc, day) => {
     const { open, close } = data.hours[day];
-    const text = day === 'Monday'
-      ? 'CLOSED'
-      : `Open from ${open}am until ${close - 12}pm`
-    acc[day] = text;
+    acc[day] = day === 'Monday' ? 'CLOSED'
+    : `Open from ${open}am until ${close - 12}pm`
     return acc;
   }, {});
 }
