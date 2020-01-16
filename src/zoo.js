@@ -34,7 +34,7 @@ function animalsByIds(...ids) {
     return expected;
   }
   const animalsId = [];
-    ids.map(arrIds => animalsId.push(data.animals.find(info => info.id === arrIds)));
+  ids.map(arrIds => animalsId.push(data.animals.find(info => info.id === arrIds)));
   return animalsId
 };
 
@@ -68,8 +68,10 @@ function managersForEmployee(idOrName) {
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     const expected = {};
-    expected.push(data.employees.filter(info => { info.firstName && info.lastName
-    return expected}));
+    expected.push(data.employees.filter((info) => {
+      info.firstName && info.lastName;
+      return expected
+    }));
   }
 };
 
@@ -117,7 +119,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
- return {  ...personalInfo, ...associatedWith  }
+ return {...personalInfo, ...associatedWith}
 }
 
 module.exports = {
