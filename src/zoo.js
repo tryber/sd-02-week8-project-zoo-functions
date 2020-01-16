@@ -167,7 +167,8 @@ function oldestFromFirstSpecies(id) {
   const aniFind = data.animals.find(itemA => itemA.id === funcFind.responsibleFor[0]);
   let arrAges = aniFind.residents.map(item => item.age);
   arrAges = arrAges.sort((min, max) => max - min);
-  const objResp = aniFind.residents.find(itemZ => itemZ.age === arrAges[0]);
+  const [maxAge, ...others] = arrAges;
+  const objResp = aniFind.residents.find(itemZ => itemZ.age === maxAge);
   const { name, sex, age } = objResp;
   return [name, sex, age]
 }
@@ -186,10 +187,36 @@ function increasePrices(percentage) {
 
 class Animal {
   // seu código aqui
+  constructor(name = '', sex = 'male', age = 0, species = '') {
+    this.name = name;
+    this.sex = sex;
+    this.age = age;
+    this.species = species.slice(0, -1);
+  }
+  info() {
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
+  }
+  static get Total() {
+    return this.total;
+  }
+  static set Total(v) {
+    this.total = v;
+  }
+  static totalAnimals() {
+    return this.total;
+  }
 }
 
 function createAnimals() {
   // seu código aqui
+  const animals = [];
+  data.animals.forEach((animais) => {
+    animais.residents.forEach((el) => {
+      animals.push(new Animal(el.name, el.sex, el.age, animais.name));
+    })
+  })
+  Animal.Total = animals.length;
+  return animals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
