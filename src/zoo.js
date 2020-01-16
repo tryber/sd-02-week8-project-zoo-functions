@@ -206,10 +206,6 @@ function createEmployee(personalInfo, associatedWith) {
   return { ...personalInfo, ...associatedWith };
 }
 
-function createEmployee(personalInfo, associatedWith) {
-  return { ...personalInfo, ...associatedWith };
-}
-
 module.exports = {
   entryCalculator: entryCalculator,
   schedule: schedule,
