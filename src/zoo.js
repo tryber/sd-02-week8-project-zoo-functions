@@ -165,15 +165,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function isManager(id) {
-  // seu código aqui
+  return data.employees.some(element => element.managers.some(el => el === id));
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  return animalName = data.animals
+  .find(element => element.name === animal)
+  .residents.every(animals => animals.age > age);
 }
 
 function oldestFromFirstSpecies(id) {
-  // seu código aqui
+  
 }
 
 function increasePrices(percentage) {
