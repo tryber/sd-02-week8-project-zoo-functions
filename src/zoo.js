@@ -120,9 +120,8 @@ function employeeByName(employeeName = {}) {
   // }
   // return employeeName;
   if (employeeName.length > 0) {
-    return data.employees.reduce((acc, cur) => {
-      return acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur;
-    });
+    return data.employees.reduce((acc, cur) =>
+    acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur);
   }
   return employeeName;
 };
