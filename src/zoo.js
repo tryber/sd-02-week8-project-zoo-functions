@@ -28,7 +28,7 @@ function schedule(dayName) {
   // seu código aqui
   // sem parâmetros, retorna um cronograma legível para humanos
   // se um único dia for passado, retorna somente este dia em um formato
-// legível para humanos
+  // legível para humanos
   const days = dayName ? [dayName] : Object.keys(data.hours);
   return days.reduce((acc, day) => {
     const { open, close } = data.hours[day];
