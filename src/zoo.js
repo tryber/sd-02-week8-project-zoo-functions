@@ -1,57 +1,57 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if (Object.keys(entrants).length === 0){
+  if (Object.keys(entrants).length === 0) {
     return 0;
   } else {
-      return (Object.values(entrants)[0] * 46.985) + (Object.values(entrants)[1] * 23.4925) + (Object.values(entrants)[2] * 23.4925);
+    return (Object.values(entrants)[0] * 46.985) + (Object.values(entrants)[1] * 23.4925) + (Object.values(entrants)[2] * 23.4925);
   }
 };
 
 function schedule(dayName) {
   const newObj = {};
-  if (dayName === null){
+  if (dayName === null) {
     return 0;
   };
-    Object.keys(data.hours).forEach((key) => {
-        if (key === dayName) {
-           newObj[key] = data.hours[key];
-           console.log(newObj)
-         }
-      });
-    return newObj;
-  };
+  Object.keys(data.hours).forEach((key) => {
+      if (key === dayName) {
+          newObj[key] = data.hours[key];
+          console.log(newObj)
+        }
+    });
+  return newObj;
+};
 
 function animalCount(species) {
   const obj = {};
-  if (species === undefined){
-      const contagem = data.animals.forEach((item) => {
-    obj[item.name] = item.residents.length;
-  });
-      return obj; 
-  } else {
-      const contagem = animals.filter(({name}) => {
-          return name === species;
+  if (species === undefined) {
+    data.animals.forEach((item) => {
+        obj[item.name] = item.residents.length;
       });
-      return contagem[0].residents.length;
+    return obj;
+  } else {
+    const contagem = data.animals.filter(({ name }) => {
+        return name === species;
+      });
+    return contagem[0].residents.length;
   };
 };
 
 function animalMap(options) {
-  if (options === undefined){
-    let objKeys = {};
-    const local = data.animals.forEach(item => {
+  if (options === undefined) {
+    const objKeys = {};
+    data.animals.forEach(item => {
       objKeys[item.location] = null;
     });
     const keys = Object.keys(objKeys);
-    let objMain = {};
+    const objMain = {};
     const atribuirKeys = keys.forEach(element => {
-      const localizarNome = data.animals.filter(({location}) => location === element);
-      objMain[element] = localizarNome.reduce((acumulador, {name}) =>
+      const localizarNome = data.animals.filter(({ location }) => location === element);
+      objMain[element] = localizarNome.reduce((acumulador, { name }) =>
       acumulador.concat(name), []);
     });
-  return objMain;
   }
+    return objMain;
 };
 
 function animalPopularity(rating) {
