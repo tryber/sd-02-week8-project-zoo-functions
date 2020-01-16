@@ -37,7 +37,7 @@ function check(acc, cur) {
   return false;
 }
 
-function sex(acc, cur, options) {
+function sexSearch(acc, cur, options) {
   acc[cur.location] = [...acc[cur.location], { [cur.name]:
   cur.residents.filter(animal => animal.sex === options.sex).map(element => element.name) }]
   return acc;
@@ -71,7 +71,7 @@ function animalMap(options) {
     return data.animals.reduce((acc, cur) => {
       check(acc, cur);
       if (options.sorted) return sorted(acc, cur)
-      if (options.sex) return sex(acc, cur, options);
+      if (options.sex) return sexSearch(acc, cur, options);
       return normal(acc, cur);
     }, {})
   }
