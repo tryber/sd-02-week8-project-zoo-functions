@@ -38,6 +38,20 @@ function animalCount(species) {
   return false;
 };
 
+// função que retorna nomes de animais macho/fêmea
+function reduceAnimalMapSex(sex) {
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = 
+      [...acc[cur.location], { [cur.name]: cur.residents
+        .filter(animal => animal.sex === sex)
+        .map(element => element.name) }]
+    return acc;
+  }, {})
+}
+
 // função que retorna animais categorizados por localização
 function reduceAnimalMapLoc() {
   return data.animals.reduce((acc, cur) => {
@@ -76,20 +90,7 @@ function reduceAnimalMapNames() {
 function animalMap(options) {
   if (!options || !options.includeNames) return reduceAnimalMapLoc();
   else if (options.sorted) return reduceAnimalMapSort();
-  else if (options.sex) {
-    return data.animals.reduce((acc, cur) => {
-      if (acc[cur.location] === undefined) {
-        acc[cur.location] = [];
-      }
-      acc[cur.location] =
-        [...acc[cur.location],
-        {
-          [cur.name]: cur.residents
-            .filter(animal => animal.sex === options.sex).map(element => element.name)
-        }]
-      return acc;
-    }, {})
-  }
+  else if (options.sex) return reduceAnimalMapSex(options.sex);
   return reduceAnimalMapNames();
 };
 
