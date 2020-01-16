@@ -82,12 +82,12 @@ function employeeCoverage(idOrName) {
         data.animals.find(el => el.id === ele).name)
       return acum
     }, {}))
-  }  
+  }
   const keyObj = data.employees.find(el =>
     idOrName === el.id || idOrName === el.firstName || idOrName === el.lastName);
-  const valueObj = keyObj.responsibleFor.map (ele => data.animals.find (el =>
+  const valueObj = keyObj.responsibleFor.map(ele => data.animals.find(el =>
     ele === el.id).name);
-  return {[`${keyObj.firstName} ${keyObj.lastName}`]: valueObj};
+  return { [`${keyObj.firstName} ${keyObj.lastName}`]: valueObj };
 };
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
