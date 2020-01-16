@@ -10,7 +10,6 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName = 0) {
-
   return (dayName ? [dayName] : Object.keys(data.hours)).reduce((acc, day) => {
     const { open, close } = data.hours[day];
     acc[day] = day === 'Monday' ? 'CLOSED'
