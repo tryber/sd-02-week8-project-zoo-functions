@@ -78,7 +78,7 @@ function employeesByIds(ids) {
 };
 
 function employeeByName(Name) {
-  return  (Name === undefined) ? {} : data.employees
+  return (Name === undefined) ? {} : data.employees
   .find(pesq => Name === pesq.firstName || pesq.lastName === Name);
 };
 
