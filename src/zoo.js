@@ -85,8 +85,8 @@ function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
-function employeeCoverage(str) {
-  if (str === undefined) {
+function employeeCoverage(element) {
+  if (element === undefined) {
     return (data.employees.reduce((arr, cur) => {
       arr[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(ele =>
       data.animals.find(el => el.id === ele).name)
@@ -94,10 +94,10 @@ function employeeCoverage(str) {
     }, {}))
   }
   const arrai = data.employees.find(el =>
-    str === el.id || str === el.firstName || str === el.lastName);
-  const arrFinal = arrai.responsibleFor.map (ele => data.animals.find (el =>
+    element === el.id || element === el.firstName || element === el.lastName);
+  const arrFinal = arrai.responsibleFor.map(ele => data.animals.find(el =>
     ele === el.id).name);
-  return {[`${arrai.firstName} ${arrai.lastName}`]: arrFinal};
+  return { [`${arrai.firstName} ${arrai.lastName}`]: arrFinal };
 };
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
