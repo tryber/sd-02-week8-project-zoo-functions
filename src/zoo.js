@@ -68,10 +68,7 @@ function managersForEmployee(idOrName) {
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     const expected = {};
-    expected.push(data.employees.filter((info) => {
-      info.firstName && info.lastName;
-      return expected
-    }));
+    expected.push(data.employees.filter((info) => { info.firstName && info.lastName; expected }));
   }
 };
 
@@ -119,7 +116,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
- return {...personalInfo, ...associatedWith}
+  return {...personalInfo, ...associatedWith}
 }
 
 module.exports = {
