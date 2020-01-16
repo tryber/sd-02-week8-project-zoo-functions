@@ -62,7 +62,7 @@ function employeeCoverage(idOrName) {
     let expected = {};
     expected.push(data.employees.filter(info => {
       info.firstName && info.lastName
-      return ex
+      return expected
     }));
   }
 };
@@ -84,8 +84,13 @@ function animalsOlderThan(animal, age) {
   // seu código aqui
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+function oldestFromFirstSpecies(idEmployee) {
+  const employer = data.employees.filter(info => info.id === idEmployee);
+  const responsibleId = employer[0].responsibleFor;
+  const filteredAnimals = responsibleId.map(element => data.animals.find(infoId => infoId.id === element));
+  const firstAnimals = filteredAnimals[0].residents.sort((maisNovo, maisVelho) => maisVelho.age - maisNovo.age);
+  
+  return Object.values(firstAnimals[0]);
 }
 
 function increasePrices(percentage) {
