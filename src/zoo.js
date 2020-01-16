@@ -115,11 +115,13 @@ function employeesByIds(ids) {
 function employeeByName(employeeName = {}) {
   // const allEmployees = [...data.employees];
   // for (let i = 0; i < allEmployees.length; i += 1) {
-  //   if (allEmployees[i].firstName === employeeName || allEmployees[i].lastName === employeeName) return allEmployees[i];
+  //   if (allEmployees[i].firstName === employeeName || allEmployees[i].lastName === employeeName) 
+  //     return allEmployees[i];
   // }
   // return employeeName;
   if (employeeName.length > 0) {
-    return data.employees.reduce((acc, cur) => acc.firstName == employeeName || acc.lastName == employeeName ? acc : cur);
+    return data.employees.reduce((acc, cur) => 
+    acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur);
   }
   return employeeName;
 };
