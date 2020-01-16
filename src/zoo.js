@@ -150,9 +150,7 @@ function employeeCoverage(idOrName) {
       data.animals.find(animal => animal.id === wId).name)
   }
   return obj
-
 };
-
 
 function addEmployee(...param) {
   // seu código aqui
