@@ -81,12 +81,13 @@ function terceiroAssert(value) {
 }
 
 function animalMap(options) {
-  if (!options || !options.includeNames) return primeiroAssert(); 
+  if (!options || !options.includeNames) return primeiroAssert();
   if (options.includeNames) {
-    if (options.sorted) return segundoAssert(options.sorted); 
+    if (options.sorted) return segundoAssert(options.sorted);
     else if (options.sex) return terceiroAssert(options.sex);
     return segundoAssert(options.sorted);
   }
+  return true;
 };
 
 function animalPopularity(rating) {
@@ -191,7 +192,7 @@ class Animal {
 }
 
 function createAnimals() {
-  let animals = [];
+  const animals = [];
   data.animals.forEach((animais) => {
     animais.residents.forEach((el) => {
       animals.push(new Animal(el.name, el.sex, el.age, animais.name));
