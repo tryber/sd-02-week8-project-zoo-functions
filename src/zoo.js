@@ -65,10 +65,11 @@ function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
+//Função ainda incompleta
 function employeeCoverage(idOrName) {
   const expected = [];
   if (idOrName === undefined) {
-    expected.push(data.employees.filter(info => info.firstName && info.lastName ));
+    expected.push(data.employees.filter(info => info.firstName && info.lastName));
     return expected;
   }
   return expected;
