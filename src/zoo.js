@@ -31,7 +31,7 @@ function schedule(dayName) {
 
 
 const catchingAnimals = (who, howMany) => {
-  let animal = {};
+  const animal = {};
   for (let i = 0; i < who.length; i += 1) {
     animal[who[i]] = howMany[i];
   }
@@ -50,7 +50,7 @@ function animalCount(species) {
   }
 
   // com o nome de uma espécide de animal, retorna somente a quantidade
-  return zooList [species]; 
+  return zooList[species];
 }
 
 function animalMap(options) {
@@ -62,9 +62,22 @@ function animalPopularity(rating) {
   // Não há testes implementados para essa função.
 };
 
-function animalsByIds(ids) {
+function animalsByIds(ids, id2 ='') {
   // seu código aqui
+  // sem parâmetros, retorna um array vazio
+  const nothing = [];
+  
+  if (ids && id2 === undefined) {
+    return nothing
+  } else {
+  // com um único id, retorna os animais com este id
+  // com mais de um id, retorna os animais que têm um desses ids
+  const findOne = data.animals.filter(animal => animal.id === ids);
+  const findSome = data.animals.filter(animal => animal.id === id2);
+  return findOne.concat(findSome);
+  }
 };
+
 
 function animalByName(animalName) {
   // seu código aqui
@@ -85,7 +98,7 @@ function employeeByName(employeeName) {
   // quando provido o primeiro nome do funcionário, retorna o objeto do funcionário
   // quando provido o último nome do funcionário, retorna o objeto do funcionário
   return data.employees.find(element =>
-    employeeName === element.firstName || employeeName === element.lastName)
+    employeeName === element.firstName || employeeName === element.lastName);
 };
 
 function managersForEmployee(idOrName) {
