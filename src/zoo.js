@@ -5,13 +5,12 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-
   const days = dayName ? [dayName] : Object.keys(data.hours);
   return days.reduce((acc, day) => {
     const { open, close } = data.hours[day];
-    const text = day === 'Monday' // if
-      ? 'CLOSED'// {}
-      : `Open from ${open}am until ${close - 12}pm` //: else
+    const text = day === 'Monday'
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`
     acc[day] = text;
     return typeof acc;
   }, {});
@@ -22,7 +21,7 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-  
+
 };
 
 function animalPopularity(rating) {
@@ -31,12 +30,12 @@ function animalPopularity(rating) {
 
 function animalsByIds(...ids) {
   const expected = [];
-  if (ids === undefined){   
+  if (ids === undefined) {
     return expected;
   }
-  let animalsId = [];
+  const animalsId = [];
     ids.map(arrIds => animalsId.push(data.animals.find(info => info.id === arrIds)));
-    return animalsId
+  return animalsId
 };
 
 function animalByName(animalName) {
@@ -45,20 +44,20 @@ function animalByName(animalName) {
 
 function employeesByIds(...ids) {
   const expected = [];
-  if (ids === undefined){   
+  if (ids === undefined) {
     return expected;
   }
-  return data.employees.filter( employee => ids.includes(employee.id) );
+  return data.employees.filter(employee => ids.includes(employee.id));
 };
 
 function employeeByName(employeeName) {
   const expected = [];
   if (employeeName === undefined) {
     return expected;
-  } else {
-    const employName = data.employees.find(info => info.firstName === employeeName || info.lastName === employeeName);
-    return employName;
   }
+  const employName = data.employees
+  .find(info => info.firstName === employeeName || info.lastName === employeeName);
+  return employName;
 };
 
 
@@ -67,12 +66,10 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined){
-    let expected = {};
-    expected.push(data.employees.filter(info => {
-      info.firstName && info.lastName
-      return expected
-    }));
+  if (idOrName === undefined) {
+    const expected = {};
+    expected.push(data.employees.filter(info => { info.firstName && info.lastName
+    return expected}));
   }
 };
 
@@ -82,11 +79,10 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
 
 function isManager(id) {
   const result = data.employees.filter(info => info.managers.includes(id));
-  if ( result.length !== 0 ) {
+  if (result.length !== 0) {
     return true
-  } else {
-    return false
   }
+  return false
 }
 
 function animalsOlderThan(animal, age) {
@@ -99,8 +95,8 @@ function oldestFromFirstSpecies(idEmployee) {
     .find(infoId => infoId.id === element))[0].residents
     .sort((maisNovo, maisVelho) => maisVelho.age - maisNovo.age);
   const [arr] = filteredAnimals
-  const { name , sex , age } = arr
-  return [ name , sex , age ]
+  const { name, sex, age } = arr
+  return [name, sex, age]
 }
 
 function increasePrices(percentage) {
@@ -121,7 +117,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
- return { ...personalInfo, ...associatedWith }
+ return {  ...personalInfo, ...associatedWith  }
 }
 
 module.exports = {
