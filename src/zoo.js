@@ -110,12 +110,16 @@ function employeeCoverage(idOrName) {
   // seu código aqui
 };
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
+  // adiciona um funcionário no fim da lista
+  return data.employees.push({ id, firstName, lastName, managers, responsibleFor })
 }
 
 function isManager(id) {
   // seu código aqui
+  // testa se o id passado é de um gerente (ALGUM???)
+  return data.employees.some(algum => algum.managers.some(algum => algum === id))
 }
 
 function animalsOlderThan(animal, age) {
