@@ -62,19 +62,18 @@ function animalPopularity(rating) {
   // Não há testes implementados para essa função.
 };
 
-function animalsByIds(ids, id2 ='') {
+function animalsByIds(ids, id2 = '') {
   // seu código aqui
   // sem parâmetros, retorna um array vazio
   const nothing = [];
-  
   if (ids && id2 === undefined) {
     return nothing
   } else {
-  // com um único id, retorna os animais com este id
-  // com mais de um id, retorna os animais que têm um desses ids
-  const findOne = data.animals.filter(animal => animal.id === ids);
-  const findSome = data.animals.filter(animal => animal.id === id2);
-  return findOne.concat(findSome);
+    // com um único id, retorna os animais com este id
+    // com mais de um id, retorna os animais que têm um desses ids
+    const findOne = data.animals.filter(animal => animal.id === ids);
+    const findSome = data.animals.filter(animal => animal.id === id2);
+    return findOne.concat(findSome);
   }
 };
 
@@ -113,7 +112,13 @@ function employeeCoverage(idOrName) {
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
   // adiciona um funcionário no fim da lista
-  return data.employees.push({ id, firstName, lastName, managers, responsibleFor })
+  return data.employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor
+  })
 }
 
 function isManager(id) {
@@ -124,6 +129,10 @@ function isManager(id) {
 
 function animalsOlderThan(animal, age) {
   // seu código aqui
+  // passados o nome de uma espécie e uma idade, testa se todos os animais desta
+  // espécie possuem a idade mínima especificada (todos = every)
+  return data.animals.find(who =>
+    who.name === animal).residents.every(hisAge => hisAge.age >= age);
 }
 
 function oldestFromFirstSpecies(id) {
@@ -132,6 +141,12 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  // data uma porcentagem, incrementa todos os preços, arrendondados em duas casas
+  const valor = ((percentage / 100) + 1) * 100;
+  const [adultPrices, seniorPrices, childPrices] = Object.values(data.prices);
+  data.prices.Adult = Math.ceil(adultPrices * valor) / 100;
+  data.prices.Senior = Math.ceil(seniorPrices * valor) / 100;
+  data.prices.Child = Math.ceil(childPrices * valor) / 100;
 }
 
 class Animal {
