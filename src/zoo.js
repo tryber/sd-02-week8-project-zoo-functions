@@ -44,10 +44,10 @@ function reduceAnimalMapSex(sex) {
     if (acc[cur.location] === undefined) {
       acc[cur.location] = [];
     }
-    acc[cur.location] = 
-      [...acc[cur.location], { [cur.name]: cur.residents
-        .filter(animal => animal.sex === sex)
-        .map(element => element.name) }]
+    acc[cur.location] =
+    [...acc[cur.location], { [cur.name]: cur.residents
+      .filter(animal => animal.sex === sex)
+      .map(element => element.name) }]
     return acc;
   }, {})
 }
