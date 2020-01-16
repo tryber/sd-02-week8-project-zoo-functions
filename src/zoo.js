@@ -114,14 +114,17 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(id) {
-  return [...Object.values(((data.animals.find(ele => ele.id === data.employees.find(pesq => pesq.id === id).responsibleFor[0])).residents.sort((a, b) => b.age - a.age)[0]))]
+  return [...Object.values(((data.animals.find(ele => ele.id === data.employees
+  .find(pesq => pesq.id === id).responsibleFor[0]))
+  .residents.sort((a, b) => b.age - a.age)[0]))]
 }
 
-function adiciona(item, percentage){
+function adiciona(item, percentage) {
   return Math.round(((item+ ((item * percentage) / 100)) * 100)) / 100;
 }
+
 function increasePrices(percentage) {
-  const [ AdultP, SeniorP, ChildP ] = Object.values(data.prices);
+  const [AdultP, SeniorP, ChildP] = Object.values(data.prices);
   data.prices = {
     Adult: adiciona(AdultP, percentage),
     Senior: adiciona(SeniorP, percentage),
