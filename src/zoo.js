@@ -54,18 +54,17 @@ function segundoAssert(sort) {
       }]
       return acc;
     }, {})
-  } else {
-    return data.animals.reduce((acc, cur) => {
-      if (acc[cur.location] === undefined) {
-        acc[cur.location] = [];
-      }
-      acc[cur.location] = [...acc[cur.location], {
-        [cur.name]: cur.residents.map(el =>
-          el.name)
-      }]
-      return acc;
-    }, {})
   }
+  return data.animals.reduce((acc, cur) => {
+    if (acc[cur.location] === undefined) {
+      acc[cur.location] = [];
+    }
+    acc[cur.location] = [...acc[cur.location], {
+      [cur.name]: cur.residents.map(el =>
+        el.name)
+    }]
+    return acc;
+  }, {})
 }
 
 function terceiroAssert(value) {
@@ -82,18 +81,12 @@ function terceiroAssert(value) {
 }
 
 function animalMap(options) {
-  if (options !== undefined ) {
-    if (options.includeNames) {
-      if (options.sorted) {
-        return segundoAssert(options.sorted);
-      }
-      if (options.sex) {
-        return terceiroAssert(options.sex);
-      }
-      return segundoAssert (options.sorted);
-    }
+  if (!options || !options.includeNames) return primeiroAssert(); 
+  if (options.includeNames) {
+    if (options.sorted) return segundoAssert(options.sorted); 
+    else if (options.sex) return terceiroAssert(options.sex);
+    return segundoAssert(options.sorted);
   }
-  return primeiroAssert();
 };
 
 function animalPopularity(rating) {
