@@ -68,7 +68,7 @@ function animalsByIds(ids, id2 = '') {
   const nothing = [];
   if (ids && id2 === undefined) {
     return nothing
-} 
+  } 
   // com um único id, retorna os animais com este id
   // com mais de um id, retorna os animais que têm um desses ids
   const findOne = data.animals.filter(animal => animal.id === ids);
