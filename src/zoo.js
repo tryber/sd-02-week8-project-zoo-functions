@@ -65,7 +65,7 @@ function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
-//Função ainda incompleta
+// Função ainda incompleta
 function employeeCoverage(idOrName) {
   const expected = [];
   if (idOrName === undefined) {
