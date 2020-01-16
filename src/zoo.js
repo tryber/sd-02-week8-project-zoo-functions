@@ -14,11 +14,11 @@ function schedule(dayName) {
     return 0;
   };
   Object.keys(data.hours).forEach((key) => {
-      if (key === dayName) {
-          newObj[key] = data.hours[key];
-          console.log(newObj)
-        }
-    });
+    if (key === dayName) {
+        newObj[key] = data.hours[key];
+        console.log(newObj)
+      }
+  });
   return newObj;
 };
 
@@ -26,13 +26,13 @@ function animalCount(species) {
   const obj = {};
   if (species === undefined) {
     data.animals.forEach((item) => {
-        obj[item.name] = item.residents.length;
-      });
+      obj[item.name] = item.residents.length;
+    });
     return obj;
   } else {
     const contagem = data.animals.filter(({ name }) => {
-        return name === species;
-      });
+      return name === species;
+    });
     return contagem[0].residents.length;
   };
 };
@@ -51,7 +51,7 @@ function animalMap(options) {
       acumulador.concat(name), []);
     });
   }
-    return objMain;
+  return objMain;
 };
 
 function animalPopularity(rating) {
