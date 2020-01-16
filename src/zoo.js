@@ -30,14 +30,17 @@ function animalCount(species) {
 }
 
 function check(acc, cur) {
-  if (acc[cur.location] === undefined)
-    return acc[cur.location] = [];
+  if (acc[cur.location] === undefined) {
+    acc[cur.location] = [];
+    return acc;
+  }
+  return false;
 }
 
-function sex(acc ,cur, options) {
+function sex(acc, cur, options) {
   acc[cur.location] = [...acc[cur.location], { [cur.name]:
-    cur.residents.filter(animal => animal.sex === options.sex).map(element => element.name) }]
-    return acc;
+  cur.residents.filter(animal => animal.sex === options.sex).map(element => element.name) }]
+  return acc;
 }
 
 function sorted(acc, cur) {
@@ -53,14 +56,15 @@ function normal(acc, cur) {
 }
 
 function all(acc, cur) {
-  return acc[cur.location] = [...acc[cur.location], cur.name]
+  acc[cur.location] = [...acc[cur.location], cur.name];
+  return acc;
 }
 
 function animalMap(options) {
   if (!options || !options.includeNames) {
     return data.animals.reduce((acc, cur) => {
       check(acc, cur);
-      all(acc,cur);
+      all(acc, cur);
       return acc;
     }, {})
   } else if (options.includeNames) {
