@@ -125,7 +125,7 @@ function employeeByName(employeeName) {
   // }
   // return employeeName;
   return employeeName === undefined ? {} : data.employees.reduce((acc, cur) => {
-    acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur
+    return acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur
   })
 };
 
