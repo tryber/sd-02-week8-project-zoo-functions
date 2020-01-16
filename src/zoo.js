@@ -158,13 +158,10 @@ function oldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   const value = ((percentage / 100) + 1) * 100;
-  const teste = Object.keys(data.prices).reduce((acc, cur) => {
-    acc[cur] = Math.ceil(data.prices[cur] * value) / 100;
-    return acc;
-  }, {})
-  data.prices.Adult = teste.Adult;
-  data.prices.Child = teste.Child;
-  data.prices.Senior = teste.Senior;
+  const [adultPrices, seniorPrices, childPrices] = Object.values (data.prices);
+  data.prices.Adult = Math.ceil(adultPrices * value) / 100;
+  data.prices.Child = Math.ceil(childPrices * value) / 100;
+  data.prices.Senior = Math.ceil(seniorPrices * value) / 100;
 }
 
 class Animal {
