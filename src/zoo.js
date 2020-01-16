@@ -12,7 +12,7 @@ function schedule(dayName) {
       ? 'CLOSED'
       : `Open from ${open}am until ${close - 12}pm`
     acc[day] = text;
-    return typeof acc;
+    return acc;
   }, {});
 };
 
@@ -68,9 +68,10 @@ function managersForEmployee(idOrName) {
 function employeeCoverage(idOrName) {
   const expected = [];
   if (idOrName === undefined) {
-    expected.push(data.employees.filter((info) => info.firstName && info.lastName ));
-    return expected
+    expected.push(data.employees.filter(info => info.firstName && info.lastName ));
+    return expected;
   }
+  return expected;
 };
 console.log(employeeCoverage())
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
