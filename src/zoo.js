@@ -174,7 +174,11 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(id) {
-
+  const employeeFirstAnimalId = data.employees.find(el => el.id === id).responsibleFor[0];
+  const oldestAnimal = data.animals
+  .find(el => el.id === employeeFirstAnimalId)
+  .residents.reduce((acc, cur) => acc.age > cur.age ? acc : cur);
+  return [oldestAnimal.name, oldestAnimal.sex, oldestAnimal.age];
 }
 
 function increasePrices(percentage) {
