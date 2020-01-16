@@ -83,15 +83,14 @@ function terceiroAssert(value) {
 
 function animalMap(options) {
   if (options !== undefined ) {
-    const { includeNames = false, sorted = false, sex = false } = options;
-    if (includeNames) {
-      if (sorted) {
-        return segundoAssert(sorted);
+    if (options.includeNames) {
+      if (options.sorted) {
+        return segundoAssert(options.sorted);
       }
-      if (sex) {
-        return terceiroAssert(sex);
+      if (options.sex) {
+        return terceiroAssert(options.sex);
       }
-      return segundoAssert (sorted);
+      return segundoAssert (options.sorted);
     }
   }
   return primeiroAssert();
