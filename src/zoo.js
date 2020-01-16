@@ -5,7 +5,16 @@ function entryCalculator(entrants) {
 };
 
 function schedule(dayName) {
-  // seu código aqui
+
+  const days = dayName ? [dayName] : Object.keys(data.hours);
+  return days.reduce((acc, day) => {
+    const { open, close } = data.hours[day];
+    const text = day === 'Monday' // if
+      ? 'CLOSED'// {}
+      : `Open from ${open}am until ${close - 12}pm` //: else
+    acc[day] = text;
+    return typeof acc;
+  }, {});
 };
 
 function animalCount(species) {
@@ -13,7 +22,7 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-  // seu código aqui
+  
 };
 
 function animalPopularity(rating) {
@@ -85,12 +94,13 @@ function animalsOlderThan(animal, age) {
 }
 
 function oldestFromFirstSpecies(idEmployee) {
-  const employer = data.employees.filter(info => info.id === idEmployee);
-  const responsibleId = employer[0].responsibleFor;
-  const filteredAnimals = responsibleId.map(element => data.animals.find(infoId => infoId.id === element));
-  const firstAnimals = filteredAnimals[0].residents.sort((maisNovo, maisVelho) => maisVelho.age - maisNovo.age);
-  
-  return Object.values(firstAnimals[0]);
+  const employer = data.employees.filter(info => info.id === idEmployee)[0].responsibleFor;
+  const filteredAnimals = employer.map(element => data.animals
+    .find(infoId => infoId.id === element))[0].residents
+    .sort((maisNovo, maisVelho) => maisVelho.age - maisNovo.age);
+  const [arr] = filteredAnimals
+  const { name , sex , age } = arr
+  return [ name , sex , age ]
 }
 
 function increasePrices(percentage) {
@@ -98,7 +108,12 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  // seu código aqui
+  // constructor(){
+  // this.name = name;
+  // this.sex = sex;
+  // this age = age;
+  // }
+
 }
 
 function createAnimals() {
@@ -106,7 +121,7 @@ function createAnimals() {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+ return { ...personalInfo, ...associatedWith }
 }
 
 module.exports = {
