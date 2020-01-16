@@ -1,19 +1,58 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
-};
+  const adult = (Object.values(entrants)[0] * 46.985);
+  const senior = (Object.values(entrants)[1] * 23.4925);
+  const child = (Object.values(entrants)[2] * 23.4925);
+  if (Object.keys(entrants).length === 0) {
+    return 0;
+  }
+    return adult + senior + child;
+  }
 
 function schedule(dayName) {
-  // seu código aqui
+  const newObj = {};
+  if (dayName === null) {
+    return 0;
+  };
+  Object.keys(data.hours).forEach((key) => {
+    if (key === dayName) {
+        newObj[key] = data.hours[key];
+        console.log(newObj)
+      }
+  });
+  return newObj;
 };
 
 function animalCount(species) {
-  // seu código aqui
-};
+  const obj = {};
+  if (species === undefined) {
+    data.animals.forEach((item) => {
+      obj[item.name] = item.residents.length;
+    });
+    return obj;
+  }
+    const contagem = data.animals.filter(({ name }) => {
+      return name === species;
+    });
+    return contagem[0].residents.length;
+  };
 
 function animalMap(options) {
-  // seu código aqui
+  const objMain = {};
+  if (options === undefined) {
+    const objKeys = {};
+    data.animals.forEach(item => {
+      objKeys[item.location] = null;
+    });
+    const keys = Object.keys(objKeys);
+    const atribuirKeys = keys.forEach(element => {
+      const localizarNome = data.animals.filter(({ location }) => location === element);
+      objMain[element] = localizarNome.reduce((acumulador, { name }) =>
+      acumulador.concat(name), []);
+    });
+  }
+  return objMain;
 };
 
 function animalPopularity(rating) {
