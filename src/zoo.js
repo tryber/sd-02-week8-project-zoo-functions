@@ -61,7 +61,7 @@ function reduceAnimalMapSort() {
   }, {})
 }
 
-// função que retorna nomes de animais ordenados
+// função que retorna nomes de animais
 function reduceAnimalMapNames() {
   return data.animals.reduce((acc, cur) => {
     if (acc[cur.location] === undefined) {
@@ -74,19 +74,19 @@ function reduceAnimalMapNames() {
 }
 
 function animalMap(options) {
-  if (!options || !options.includeNames) {
-    return reduceAnimalMapLoc();
-  } else if (options.sorted && options.includeNames) {
-    return reduceAnimalMapSort();
-  } else if (options.sex) {
+  if (!options || !options.includeNames) return reduceAnimalMapLoc();
+  else if (options.sorted) return reduceAnimalMapSort();
+  else if (options.sex) {
     return data.animals.reduce((acc, cur) => {
       if (acc[cur.location] === undefined) {
         acc[cur.location] = [];
       }
       acc[cur.location] =
-      [...acc[cur.location],
-        { [cur.name]: cur.residents
-        .filter(animal => animal.sex === options.sex).map(element => element.name) }]
+        [...acc[cur.location],
+        {
+          [cur.name]: cur.residents
+            .filter(animal => animal.sex === options.sex).map(element => element.name)
+        }]
       return acc;
     }, {})
   }
@@ -119,13 +119,16 @@ function employeeByName(employeeName) {
   //     return allEmployees[i];
   // }
   // return employeeName;
+
   // if (employeeName.length > 0) {
-  //   return data.employees
-  //   .reduce((acc, cur) => acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur);
+  //   return data.employees.reduce((acc, cur) =>
+  //   acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur);
   // }
   // return employeeName;
+
   return employeeName === undefined ? {} : data.employees.reduce((acc, cur) => {
-    return acc.firstName === employeeName || acc.lastName === employeeName ? acc : cur
+    if (acc.firstName === employeeName || acc.lastName === employeeName) return acc;
+    return cur;
   })
 };
 
@@ -134,7 +137,18 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  if (idOrName === undefined) {
+    return data.employees.reduce((acc, cur) => {
+      acc[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(element =>
+        data.animals.find(el => el.id === element).name)
+      return acc;
+    }, {})
+  }
+  const employee = data.employees.find(element =>
+    idOrName === element.id || idOrName === element.firstName || idOrName === element.lastName);
+  const arrayEmployee = employee.responsibleFor.map(animalId =>
+    data.animals.find(element => animalId === element.id).name);
+  return { [`${employee.firstName} ${employee.lastName}`]: arrayEmployee };
 };
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
