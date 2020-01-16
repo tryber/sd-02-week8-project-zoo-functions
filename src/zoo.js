@@ -78,9 +78,8 @@ function employeesByIds(ids) {
 };
 
 function employeeByName(Name) {
-  const empregadoNome = Name === undefined ? {}
-  : data.employees.find(pesq => Name === pesq.firstName || pesq.lastName === Name);
-  return empregadoNome;
+  return  (Name === undefined) ? {} : data.employees
+  .find(pesq => Name === pesq.firstName || pesq.lastName === Name);
 };
 
 function managersForEmployee(idOrName) {
