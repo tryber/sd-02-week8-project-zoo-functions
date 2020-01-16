@@ -66,7 +66,7 @@ function animalsByIds(ids, id2 = '') {
   // seu código aqui
   // sem parâmetros, retorna um array vazio
   const nothing = [];
-  if (ids && id2 ===undefined) {
+  if (ids && id2 === undefined) {
     return nothing
   }
   // com um único id, retorna os animais com este id
