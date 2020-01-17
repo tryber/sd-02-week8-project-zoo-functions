@@ -177,8 +177,6 @@ function increasePrices(percentage) {
   })
 }
 
-let numeroDeAnimais = 0
-
 class Animal {
   constructor(name, sex, age, species) {
     this.name = name;
@@ -191,7 +189,7 @@ class Animal {
   }
   static totalAnimals() {
     let a = 0
-    Object.values(animalCount()).forEach(elemento => {
+    Object.values(animalCount()).forEach((elemento) => {
       a += elemento
     })
     return a
