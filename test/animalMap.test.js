@@ -12,7 +12,7 @@ let actual, expected, options
 actual = zoo.animalMap();
 expected = {
   NE: ['lions', 'giraffes'],
-  NW: ['tigers', 'bears', 'elephants'],
+  NW: ['tigers', 'bears', 'elephants'],// seu código aqui
   SE: ['penguins', 'otters'],
   SW: ['frogs', 'snakes']
 };
