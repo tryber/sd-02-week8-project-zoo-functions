@@ -190,7 +190,11 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species.substring(0, (this.species.length - 1))}`
   }
   static totalAnimals() {
-    return numeroDeAnimais
+    let a = 0
+    Object.values(animalCount()).forEach(elemento => {
+      a += elemento
+    })
+    return a
   }
 }
 
@@ -206,7 +210,6 @@ function createAnimals() {
       arranjoAnimais.push(new Animal(name, sex, age, especie))
     })
   })
-  numeroDeAnimais = arranjoAnimais.length
   return arranjoAnimais
 }
 
