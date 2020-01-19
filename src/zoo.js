@@ -151,8 +151,6 @@ function increasePrices(percentage) {
   }
 }
 
-let numberOfAnimals = 0;
-
 class Animal {
   constructor(name = '', age = 0, sex = 'male', species = '') {
     this.name = name
@@ -164,18 +162,17 @@ class Animal {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
   static totalAnimals() {
-    return numberOfAnimals;
+    return createAnimals().length;
   }
 }
 
 function createAnimals() {
-  const animals = [];
+  let animals = [];
   data.animals.forEach(animal => (
     animal.residents.forEach(ele => (
       animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
     ))
   ))
-  numberOfAnimals = animals.length;
   return animals;
 }
 
