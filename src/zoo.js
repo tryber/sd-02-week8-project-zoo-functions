@@ -1,13 +1,9 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if (entrants === undefined){
-    return 0
-  } else if (Object.keys(entrants).length === 0){
-    return 0
-  }
+  if ( entrants === undefined || Object.keys(entrants).length === 0 ) return 0;
   const { Adult, Senior, Child } = data.prices;
-  const { Adult: Adulto, Senior: Velhinho, Child: Pirralho } = entrants;
+  const { Adult: Adulto = 0, Senior: Velhinho = 0, Child: Pirralho = 0} = entrants;
   return (( Adulto * Adult ) + ( Velhinho * Senior ) + ( Pirralho * Child ));
 };
 
@@ -81,7 +77,6 @@ function managersForEmployee(idOrName) {
   // seu código aqui
 };
 
-// Função ainda incompleta
 function employeeCoverage(idOrName) {
   if (idOrName === undefined){
     const reducto = data.employees.reduce((emptyInitial, valueActual) => {
@@ -100,8 +95,15 @@ function employeeCoverage(idOrName) {
 };
 
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  const employer = new Object;
+  employer.id = id;
+  employer.firstName = firstName;
+  employer.lastName = lastName;
+  employer.managers = managers;
+  employer.responsibleFor = responsibleFor;
+
+  data.employees.push(employer);
 }
 
 function isManager(id) {
