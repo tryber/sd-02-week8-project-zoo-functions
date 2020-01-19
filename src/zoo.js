@@ -17,7 +17,16 @@ function schedule(dayName) {
 };
 
 function animalCount(species) {
-  // seu código aqui
+  if (species === undefined){
+    const animaisCount = data.animals.reduce((emptyValue, CurrentValue) => {
+      emptyValue[`${CurrentValue.name}`] = CurrentValue.residents.length
+      return emptyValue
+    }, {})
+    return animaisCount
+  }
+
+  return data.animals.find(animal => animal.name === species).residents.length
+  
 };
 
 function animalMap(options) {
