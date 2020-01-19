@@ -5,7 +5,7 @@ function entryCalculator(entrants) {
   if (JSON.stringify(entrants) === '{}' || entrants === undefined) {
     return 0
   }
-  const { Adult: multA, Child: multC, Senior: multS } = entrants;
+  const { Adult: multA = 0, Child: multC = 0, Senior: multS = 0 } = entrants;
   const { Adult, Senior, Child } = data.prices;
   return Math.round(((Adult * multA) + (Child * multC) + (Senior * multS)) * 100) / 100;
 };
