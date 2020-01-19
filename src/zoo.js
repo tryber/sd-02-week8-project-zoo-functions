@@ -1,8 +1,9 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if (!entrants || !Object.getOwnPropertyNames(entrants).length) return 0;
-  const { Adult, Child, Senior } = entrants;
+  // if (!entrants || !Object.getOwnPropertyNames(entrants).length) return 0;
+  if (!entrants) return 0;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   const entriesQuantity = [Adult, Senior, Child];
   const price = Object.values(data.prices);
   return entriesQuantity.map((entries, i) => entries * price[i]).reduce((acc, cur) => acc + cur);
@@ -16,7 +17,7 @@ function schedule(dayName) {
   const days = dayName ? [dayName] : Object.keys(data.hours);
 
   return days.reduce((acc, day) => {
-    const { open = 0, close = 0 } = data.hours[day];
+    const { open, close } = data.hours[day];
     const text = day === 'Monday'
       ? 'CLOSED'
       : `Open from ${open}am until ${close - 12}pm`
