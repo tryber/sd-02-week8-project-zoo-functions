@@ -115,7 +115,8 @@ function isManager(id) {
 }
 
 function animalsOlderThan(animal, age) {
-  // seu código aqui
+  const bichos = data.animals.find(animais => animais.name === animal);
+  return bichos.residents.every(bicho => bicho.age >= age);
 }
 
 function oldestFromFirstSpecies(idEmployee) {
