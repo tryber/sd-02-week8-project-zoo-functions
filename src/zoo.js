@@ -2,9 +2,7 @@ const data = require('./data')
 
 function entryCalculator(entrants) {
   // seu código aqui
-  if (JSON.stringify(entrants) === '{}' || entrants === undefined) {
-    return 0
-  }
+  if ( entrants === undefined || Object.keys(entrants).length === 0 ) return 0;
   const { Adult: multA = 0, Child: multC = 0, Senior: multS = 0 } = entrants;
   const { Adult, Senior, Child } = data.prices;
   return Math.round(((Adult * multA) + (Child * multC) + (Senior * multS)) * 100) / 100;
@@ -101,9 +99,7 @@ function animalPopularity(rating) {
 
 function animalsByIds(...ids) {
   const animaisPorId = [];
-  if (ids === undefined) {
-    return animaisPorId;
-  }
+  if (ids === undefined) return animaisPorId;
   ids.map(idsArr => animaisPorId.push(data.animals.find(dataItem => dataItem.id === idsArr)));
   return animaisPorId;
 };
