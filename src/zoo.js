@@ -1,7 +1,14 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  // seu código aqui
+  if (entrants === undefined){
+    return 0
+  } else if (Object.keys(entrants).length === 0){
+    return 0
+  }
+  const { Adult, Senior, Child } = data.prices;
+  const { Adult: Adulto, Senior: Velhinho, Child: Pirralho } = entrants;
+  return (( Adulto * Adult ) + ( Velhinho * Senior ) + ( Pirralho * Child ));
 };
 
 function schedule(dayName) {
@@ -30,7 +37,7 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-
+  // Seu código aqui
 };
 
 function animalPopularity(rating) {
@@ -124,12 +131,7 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  constructor(){
-  this.name = name;
-  this.sex = sex;
-  age;
-  }
-
+ // Seu código aqui
 }
 
 function createAnimals() {
