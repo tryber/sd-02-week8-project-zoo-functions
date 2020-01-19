@@ -1,13 +1,15 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if (entrants === undefined || Object.getOwnPropertyNames(entrants).length === 0) {
-    return 0;
-  }
-  const adultsPriceCalculator = entrants.Adult * data.prices.Adult;
-  const seniorsPriceCalculator = entrants.Senior * data.prices.Senior;
-  const childrenPriceCalculator = entrants.Child * data.prices.Child;
-  return adultsPriceCalculator + seniorsPriceCalculator + childrenPriceCalculator;
+  if (!entrants || !Object.getOwnPropertyNames(entrants).length) return 0;
+  const {Adult, Child, Senior} = entrants;
+  const entriesQuantity = [Adult, Senior, Child];
+  const price = Object.values(data.prices);
+  return entriesQuantity.map((entries, i) => entries * price[i]).reduce((acc, cur) => acc + cur);
+  // const adultsPriceCalculator = entrants.Adult * data.prices.Adult;
+  // const seniorsPriceCalculator = entrants.Senior * data.prices.Senior;
+  // const childrenPriceCalculator = entrants.Child * data.prices.Child;
+  // return adultsPriceCalculator + seniorsPriceCalculator + childrenPriceCalculator;
 };
 
 function schedule(dayName) {
