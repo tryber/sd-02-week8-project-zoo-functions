@@ -158,15 +158,17 @@ class Animal {
     this.age = age
     this.sex = sex
     this.species = species.slice(0, -1)
-    Animal.contador += 1;
+    Animal.total += 1;
   }
   info() {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
   static totalAnimals() {
-    return Animal.contador;
+    return Animal.total;
   }
 }
+
+Animal.total = 0;
 
 function createAnimals() {
   const animals = [];
