@@ -19,11 +19,11 @@ function schedule(dayName = 0) {
 }
 
 function animalCount(species) {
-  const [...args] = data.animals;
-  const arrFinal = args.reduce((acc, cur) =>
+  let [...args] = data.animals;
+  args = args.reduce((acc, cur) =>
   ({ ...acc, [cur.name]: cur.residents.length }), {})
-  if (species === null || species === undefined) return arrFinal;
-  return arrFinal[species];
+  if (species === null || species === undefined) return args;
+  return args[species];
 }
 
 function check(acc, cur) {
@@ -167,7 +167,7 @@ class Animal {
 }
 
 function createAnimals() {
-  let animals = [];
+  const animals = [];
   data.animals.forEach(animal => (
     animal.residents.forEach(ele => (
       animals.push(new Animal(ele.name, ele.age, ele.sex, animal.name))
