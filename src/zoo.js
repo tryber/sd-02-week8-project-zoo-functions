@@ -67,14 +67,23 @@ function managersForEmployee(idOrName) {
 
 // Função ainda incompleta
 function employeeCoverage(idOrName) {
-  const expected = [];
-  if (idOrName === undefined) {
-    expected.push(data.employees.filter(info => info.firstName && info.lastName));
-    return expected;
+  if (idOrName === undefined){
+    const reducto = data.employees.reduce((emptyInitial, valueActual) => {
+      emptyInitial[`${valueActual.firstName} ${valueActual.lastName}`] = valueActual.responsibleFor
+      .map(responsible => data.animals.find(animal => animal.id === responsible).name)
+      return emptyInitial
+    }, {})
+    return reducto
   }
-  return expected;
+
+  const name = data.employees.find(employer => employer.id === idOrName || employer.firstName === idOrName || employer.lastName === idOrName)
+  const animalFiltered = name.responsibleFor.map(responsible => data.animals.find(animal => animal.id === responsible).name)
+  const finalResult = {}
+  finalResult[`${name.firstName} ${name.lastName}`] = animalFiltered
+  return finalResult
 };
-console.log(employeeCoverage())
+
+
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
 }
@@ -106,11 +115,11 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  // constructor(){
-  // this.name = name;
-  // this.sex = sex;
-  // this age = age;
-  // }
+  constructor(){
+  this.name = name;
+  this.sex = sex;
+  age;
+  }
 
 }
 
