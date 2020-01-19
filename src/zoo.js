@@ -152,7 +152,6 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  static contador = 0;
   constructor(name = '', age = 0, sex = 'male', species = '') {
     this.name = name
     this.age = age
