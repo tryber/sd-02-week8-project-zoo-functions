@@ -186,20 +186,16 @@ class Animal {
     this.sex = sex;
     this.age = age;
     this.species = species.slice(0, -1);
+    Animal.contador += 1;
   }
   info() {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
-  static get Total() {
-    return this.total;
-  }
-  static set Total(v) {
-    this.total = v;
-  }
   static totalAnimals() {
-    return this.total;
+    return Animal.contador;
   }
 }
+Animal.contador = 0;
 
 function createAnimals() {
   // seu código aqui
