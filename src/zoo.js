@@ -95,8 +95,8 @@ function employeeCoverage(idOrName) {
     return reducto
   }
 
-  const name = data.employees.find(employ => {
-  return employ.id === idOrName || employ.firstName === idOrName || employ.lastName === idOrName
+  const name = data.employees.find((employ) => {
+    return employ.id === idOrName || employ.firstName === idOrName || employ.lastName === idOrName
   })
   const animalFiltered = name.responsibleFor
   .map(responsavel => data.animals.find(bicho => bicho.id === responsavel).name)
@@ -107,7 +107,7 @@ function employeeCoverage(idOrName) {
 
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const employer = new Object();
+  const employer = new Object({});
   employer.id = id;
   employer.firstName = firstName;
   employer.lastName = lastName;
