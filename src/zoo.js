@@ -96,7 +96,7 @@ function employeeCoverage(idOrName) {
   }
 
   const name = data.employees
-  .find((employ) => employ.id === idOrName || employ.firstName === idOrName ||
+  .find(employ => employ.id === idOrName || employ.firstName === idOrName ||
   employ.lastName === idOrName)
   const animalFiltered = name.responsibleFor
   .map(responsavel => data.animals.find(bicho => bicho.id === responsavel).name)
