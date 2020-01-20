@@ -82,16 +82,13 @@ function animalMap(options) {
   if (!options || (options.sex && !options.includeNames)) {
     return primeiroRequisito()
   }
-  if (options.includeNames && !options.sorted && !options.sex) {
+  if (options.includeNames && !options.sex) {
+    if (options.sorted) {
+      return terceiroRequisito()
+    }
     return segundoRequisito()
   }
-  if (options.includeNames && options.sorted && !options.sex) {
-    return terceiroRequisito()
-  }
-  if (options.includeNames && !options.sorted && options.sex) {
-    return quartoRequisito()
-  }
-  return alert('Deu ruim fera, volta 2 passos')
+  return quartoRequisito()
 };
 
 function animalPopularity(rating) {
