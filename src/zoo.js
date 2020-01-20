@@ -4,7 +4,7 @@ function entryCalculator(entrants) {
   if (typeof entrants === 'undefined' || Object.values(entrants).length === 0) {
     return 0;
   }
-  const { Adult, Child, Senior } = entrants;
+  const { Adult = 0, Child = 0, Senior = 0 } = entrants;
   const entradasNumero = [Adult, Senior, Child];
   return entradasNumero
   .map((quantIngresso, indice) => quantIngresso * Object.values(data.prices)[indice])
