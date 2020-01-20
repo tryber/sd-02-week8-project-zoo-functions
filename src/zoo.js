@@ -31,10 +31,13 @@ function schedule(dayName) {
   // legível para humanos
   const days = dayName ? [dayName] : Object.keys(data.hours);
   return days.reduce((acc, day) => {
-    const { open, close } = data.hours[day];
-    const text = day === 'Monday'
-      ? 'CLOSED'
-      : `Open from ${open}am until ${close - 12}pm`
+    const {
+      open,
+      close
+    } = data.hours[day];
+    const text = day === 'Monday' ?
+      'CLOSED' :
+      `Open from ${open}am until ${close - 12}pm`
     acc[day] = text;
     return acc;
   }, {});
@@ -119,8 +122,22 @@ function managersForEmployee(idOrName) {
   // Não há testes implementados para essa função.
 };
 
-function employeeCoverage(idOrName) {
+function employeeCoverage(resp) {
   // seu código aqui
+  if (resp === undefined) {
+    return (data.employees.reduce((arr, cur) => {
+      arr[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(ele =>
+        data.animals.find(el => el.id === ele).name)
+      return arr
+    }, {}))
+  }
+  const namelist = data.employees.find(el =>
+    resp === el.id || resp === el.firstName || resp === el.lastName);
+  const arrFinal = namelist.responsibleFor.map(ele => data.animals.find(el =>
+    ele === el.id).name);
+  return {
+    [`${namelist.firstName} ${namelist.lastName}`]: arrFinal
+  };
 };
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -154,6 +171,10 @@ function oldestFromFirstSpecies(id) {
   // passado o id de um funcionário, encontra a primeira espécie de animal
   // gerenciado pelo funcionáio, e retorna um array com nome, sexo e idade do
   // animal mais velho dessa espécie
+  const animalsEmp = data.employees.find(pesq => pesq.id === id).responsibleFor[0];
+  const result = data.animals.find(animal => animal.id === animalsEmp);
+  const older = result.residents.sort((young, old) => old.age - young.age)[0];
+  return Object.values(older)
 }
 
 function increasePrices(percentage) {
@@ -168,14 +189,48 @@ function increasePrices(percentage) {
 
 class Animal {
   // seu código aqui
+  constructor(name, sex, age, species) {
+    this.name = name;
+    this.sex = sex;
+    this.age = age;
+    this.species = species;
+
+    Animal.counter += 1;
+  }
+
+  info() {
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`;
+  }
+
+  static totalAnimals() {
+    return Animal.counter;
+  }
 }
+
+Animal.counter = 0;
 
 function createAnimals() {
   // seu código aqui
-  // retorna um array de objetos da classe Animal. Esta classe contém os atributos
-  // name, sex, age and species.
-  // retorna uma string formatada descrevendo o animal
-  // retorna o número total de animais existentes
+  const eachAnimals = data.animals.map(item => item.residents);
+
+  const eachSpecies = data.animals.map(item =>
+    item.name.substr(0, item.name.length - 1));
+
+  const objetos = [];
+  for (let i = 0; i < eachSpecies.length; i += 1) {
+    eachAnimals[i].forEach((animal) => {
+      animal.species = eachSpecies[i];
+    });
+
+    objetos[i] = eachAnimals[i];
+  }
+
+  const spreadedObj = objetos.reduce((accum, item) => [...accum, ...item], []);
+
+  const classObj = spreadedObj.map(object =>
+    new Animal(object.name, object.sex, object.age, object.species));
+
+  return classObj;
 }
 
 function createEmployee(personalInfo, associatedWith) {
