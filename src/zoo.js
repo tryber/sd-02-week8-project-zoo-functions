@@ -31,7 +31,7 @@ function animalCount(species) {
   return data.animals.find(animal => animal.name === species).residents.length
 };
 
-function primeiroRequisito(){
+function primeiroRequisito() {
   return data.animals.reduce((emptyValue, CurrentValue) => {
     if (emptyValue[CurrentValue.location] === undefined) {
       emptyValue[CurrentValue.location] = [];
@@ -42,55 +42,56 @@ function primeiroRequisito(){
   }, {})
 }
 
-function segundoRequisito(){
+function segundoRequisito() {
   return data.animals.reduce((emptyValue, CurrentValue) => {
     if (emptyValue[CurrentValue.location] === undefined) {
       emptyValue[CurrentValue.location] = [];
     }
-    emptyValue[CurrentValue.location] = 
-    [...emptyValue[CurrentValue.location], {[CurrentValue.name]: CurrentValue.residents
-      .map(resident => resident.name)}]
+    emptyValue[CurrentValue.location] =
+    [...emptyValue[CurrentValue.location], { [CurrentValue.name]: CurrentValue.residents
+      .map(resident => resident.name) }]
     return emptyValue;
   }, {})
 }
 
-function terceiroRequisito (){
-    return data.animals.reduce((emptyValue, CurrentValue) => {
-      if (emptyValue[CurrentValue.location] === undefined) {
-        emptyValue[CurrentValue.location] = [];
-      }
-      emptyValue[CurrentValue.location] = 
-      [...emptyValue[CurrentValue.location], {[CurrentValue.name]: CurrentValue.residents
-        .map(resident => resident.name).sort()}]
-      return emptyValue;
-    }, {})
-}
-
-function quartoRequisito(){
+function terceiroRequisito() {
   return data.animals.reduce((emptyValue, CurrentValue) => {
     if (emptyValue[CurrentValue.location] === undefined) {
       emptyValue[CurrentValue.location] = [];
     }
-    emptyValue[CurrentValue.location] = 
-    [...emptyValue[CurrentValue.location], {[CurrentValue.name]: CurrentValue.residents
-      .filter(resident => resident.sex === 'female').map(animal => animal.name)}]
+    emptyValue[CurrentValue.location] =
+    [...emptyValue[CurrentValue.location], { [CurrentValue.name]: CurrentValue.residents
+      .map(resident => resident.name).sort() }]
+    return emptyValue;
+  }, {})
+}
+
+function quartoRequisito() {
+  return data.animals.reduce((emptyValue, CurrentValue) => {
+    if (emptyValue[CurrentValue.location] === undefined) {
+      emptyValue[CurrentValue.location] = [];
+    }
+    emptyValue[CurrentValue.location] =
+    [...emptyValue[CurrentValue.location], { [CurrentValue.name]: CurrentValue.residents
+      .filter(resident => resident.sex === 'female').map(animal => animal.name) }]
     return emptyValue;
   }, {})
 }
 
 function animalMap(options) {
-  if(!options || (options.sex && !options.includeNames)) {
+  if (!options || (options.sex && !options.includeNames)) {
     return primeiroRequisito()
   }
-  if(options.includeNames && !options.sorted && !options.sex) {
+  if (options.includeNames && !options.sorted && !options.sex) {
     return segundoRequisito()
   }
-  if(options.includeNames && options.sorted && !options.sex) {
+  if (options.includeNames && options.sorted && !options.sex) {
     return terceiroRequisito()
   }
-  if(options.includeNames && !options.sorted && options.sex) {
+  if (options.includeNames && !options.sorted && options.sex) {
     return quartoRequisito()
   }
+  return alert('Deu ruim fera, volta 2 passos')
 };
 
 function animalPopularity(rating) {
