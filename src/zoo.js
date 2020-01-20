@@ -29,7 +29,7 @@ function animalCount(species) {
   }
 
   return data.animals.find(animal => animal.name === species).residents.length
-  
+
 };
 
 function animalMap(options) {
@@ -37,11 +37,10 @@ function animalMap(options) {
     if (emptyValue[CurrentValue.location] == undefined) {
       emptyValue[CurrentValue.location] = [];
     }
-    emptyValue[CurrentValue.location] = 
-      [...emptyValue[CurrentValue.location], 
+    emptyValue[CurrentValue.location] =
+      [...emptyValue[CurrentValue.location],
       { [current.name]: CurrentValue.residents.map(animal => animal.name) }
     ];
-​
     return emptyValue;
   }, {})
 };
