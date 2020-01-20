@@ -123,10 +123,9 @@ function managersForEmployee(idOrName) {
 function employeeCoverage(str) {
   if (str === undefined) {
     return (data.employees.reduce((arr, cur) => {
-      let array = arr;
-      array[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(ele =>
+      arr[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(ele =>
         data.animals.find(el => el.id === ele).name)
-      return array;
+      return arr;
     }, {}))
   }
   const arrai = data.employees.find(el =>
@@ -158,7 +157,8 @@ function oldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  const value = ((percentage / 100) + 1) * 100;
+  let value = (percentage / 100) + 1
+  value = value * 100;
   const [adultPrices, seniorPrices, childPrices] = Object.values(data.prices);
   data.prices.Adult = Math.ceil(adultPrices * value) / 100;
   data.prices.Child = Math.ceil(childPrices * value) / 100;
