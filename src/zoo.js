@@ -123,9 +123,10 @@ function managersForEmployee(idOrName) {
 function employeeCoverage(str) {
   if (str === undefined) {
     return (data.employees.reduce((arr, cur) => {
-      arr[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(ele =>
+      let array = arr;
+      array[`${cur.firstName} ${cur.lastName}`] = cur.responsibleFor.map(ele =>
         data.animals.find(el => el.id === ele).name)
-      return arr
+      return array;
     }, {}))
   }
   const arrai = data.employees.find(el =>
