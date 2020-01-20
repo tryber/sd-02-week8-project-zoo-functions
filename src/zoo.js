@@ -130,15 +130,36 @@ function oldestFromFirstSpecies(idEmployee) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  const adulto = data.prices.Adult += (( data.prices.Adult * percentage) / 100);
+  const senior = data.prices.Senior += (( data.prices.Senior * percentage) / 100);
+  const child = data.prices.Child += (( data.prices.Child * percentage) / 100);
+
+  data.prices.Adult = Math.round(adulto*100) / 100;
+  data.prices.Senior = Math.round(senior*100) / 100;
+  data.prices.Child = Math.round(child*100) / 100;
 }
 
 class Animal {
- // Seu código aqui
+  constructor(name = '', age = Number, sex = 'male', species = ''){
+    this.name = name;
+    this.age = age;
+    this.sex = sex;
+    this.species = species;
+  }
+
+  info(){
+    return `${this.name} is a ${this.age} year old ${this.sex} lion`
+  }
+
+  
 }
 
 function createAnimals() {
-  // seu código aqui
+  const arrayAnimais = []
+  data.animals.forEach(animal => animal.residents
+  .forEach(resident => arrayAnimais
+  .push(new Animal(resident.name,resident.age,resident.sex,animal.species))));
+  return arrayAnimais
 }
 
 function createEmployee(personalInfo, associatedWith) {
