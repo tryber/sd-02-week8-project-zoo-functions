@@ -94,8 +94,8 @@ function procuraNome(element) {
 function employeeCoverage(idOrName) {
   if (idOrName === undefined) {
     const reducto = data.employees.reduce((emptyInitial, valueActual) => {
-    emptyInitial[`${valueActual.firstName} ${valueActual.lastName}`] = procuraNome(valueActual)
-    return emptyInitial
+      emptyInitial[`${valueActual.firstName} ${valueActual.lastName}`] = procuraNome(valueActual)
+      return emptyInitial
     }, {})
     return reducto
   }
@@ -106,7 +106,7 @@ function employeeCoverage(idOrName) {
   const finalResult = {}
   finalResult[`${name.firstName} ${name.lastName}`] = animalFiltered
   return finalResult
-  };
+};
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const employer = {}
