@@ -1,10 +1,10 @@
 const data = require('./data')
 
 function entryCalculator(entrants) {
-  if ( entrants === undefined || Object.keys(entrants).length === 0 ) return 0;
+  if (entrants === undefined || Object.keys(entrants).length === 0) return 0;
   const { Adult, Senior, Child } = data.prices;
-  const { Adult: Adulto = 0, Senior: Velhinho = 0, Child: Pirralho = 0} = entrants;
-  return (( Adulto * Adult ) + ( Velhinho * Senior ) + ( Pirralho * Child ));
+  const { Adult: Adulto = 0, Senior: Velhinho = 0, Child: Pirralho = 0 } = entrants;
+  return ((Adulto * Adult) + (Velhinho * Senior) + (Pirralho * Child));
 };
 
 function schedule(dayName) {
@@ -20,7 +20,7 @@ function schedule(dayName) {
 };
 
 function animalCount(species) {
-  if (species === undefined){
+  if (species === undefined) {
     const animaisCount = data.animals.reduce((emptyValue, CurrentValue) => {
       emptyValue[`${CurrentValue.name}`] = CurrentValue.residents.length
       return emptyValue
@@ -29,17 +29,16 @@ function animalCount(species) {
   }
 
   return data.animals.find(animal => animal.name === species).residents.length
-
 };
 
 function animalMap(options) {
   return data.animals.reduce((emptyValue, CurrentValue) => {
-    if (emptyValue[CurrentValue.location] == undefined) {
+    if (emptyValue[CurrentValue.location] === undefined) {
       emptyValue[CurrentValue.location] = [];
     }
     emptyValue[CurrentValue.location] =
-      [...emptyValue[CurrentValue.location],
-      { [current.name]: CurrentValue.residents.map(animal => animal.name) }
+    [...emptyValue[CurrentValue.location],
+    { [CurrentValue.name]: CurrentValue.residents.map(animal => animal.name) }
     ];
     return emptyValue;
   }, {})
@@ -87,7 +86,7 @@ function managersForEmployee(idOrName) {
 };
 
 function employeeCoverage(idOrName) {
-  if (idOrName === undefined){
+  if (idOrName === undefined) {
     const reducto = data.employees.reduce((emptyInitial, valueActual) => {
       emptyInitial[`${valueActual.firstName} ${valueActual.lastName}`] = valueActual.responsibleFor
       .map(responsible => data.animals.find(animal => animal.id === responsible).name)
@@ -96,8 +95,11 @@ function employeeCoverage(idOrName) {
     return reducto
   }
 
-  const name = data.employees.find(employer => employer.id === idOrName || employer.firstName === idOrName || employer.lastName === idOrName)
-  const animalFiltered = name.responsibleFor.map(responsible => data.animals.find(animal => animal.id === responsible).name)
+  const name = data.employees.find(employ => {
+  return employ.id === idOrName || employ.firstName === idOrName || employ.lastName === idOrName
+  })
+  const animalFiltered = name.responsibleFor
+  .map(responsavel => data.animals.find(bicho => bicho.id === responsavel).name)
   const finalResult = {}
   finalResult[`${name.firstName} ${name.lastName}`] = animalFiltered
   return finalResult
@@ -105,7 +107,7 @@ function employeeCoverage(idOrName) {
 
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
-  const employer = new Object;
+  const employer = new Object();
   employer.id = id;
   employer.firstName = firstName;
   employer.lastName = lastName;
@@ -139,29 +141,29 @@ function oldestFromFirstSpecies(idEmployee) {
 }
 
 function increasePrices(percentage) {
-  const adulto = data.prices.Adult += (( data.prices.Adult * percentage) / 100);
-  const senior = data.prices.Senior += (( data.prices.Senior * percentage) / 100);
-  const child = data.prices.Child += (( data.prices.Child * percentage) / 100);
+  const adulto = data.prices.Adult + ((data.prices.Adult * percentage) / 100);
+  const senior = data.prices.Senior + ((data.prices.Senior * percentage) / 100);
+  const child = data.prices.Child + ((data.prices.Child * percentage) / 100);
 
-  data.prices.Adult = Math.round(adulto*100) / 100;
-  data.prices.Senior = Math.round(senior*100) / 100;
-  data.prices.Child = Math.round(child*100) / 100;
+  data.prices.Adult = Math.round(adulto * 100) / 100;
+  data.prices.Senior = Math.round(senior * 100) / 100;
+  data.prices.Child = Math.round(child * 100) / 100;
 }
 
 class Animal {
-  constructor(name = '', age = Number, sex = 'male', species = ''){
+  constructor(name = '', age = Number, sex = 'male', species = '') {
     this.name = name;
     this.age = age;
     this.sex = sex;
-    this.species = species.slice(0,-1);
+    this.species = species.slice(0, -1);
     Animal.contador += 1
   }
 
-  info(){
+  info() {
     return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
 
-  static totalAnimals(){
+  static totalAnimals() {
     return Animal.contador;
   }
 }
@@ -172,7 +174,7 @@ function createAnimals() {
   const arrayAnimais = []
   data.animals.forEach(animal => animal.residents
   .forEach(resident => arrayAnimais
-  .push(new Animal(resident.name,resident.age,resident.sex,animal.name))));
+  .push(new Animal(resident.name, resident.age, resident.sex, animal.name))));
   return arrayAnimais
 }
 
