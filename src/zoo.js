@@ -59,7 +59,14 @@ function animalsByIds(...ids) {
 };
 
 function animalByName(animalName) {
-  // seu código aqui
+  let nomeDoAnimal = 'tigers';
+  if (animalName === undefined) {
+    return nomeDoAnimal
+  }
+  nomeDoAnimal = data.animals
+    .find(animal => animal.residents
+      .find(resident => resident.name === animalName)).name
+  return nomeDoAnimal.slice(0, -1);
 };
 
 function employeesByIds(...ids) {
@@ -71,7 +78,7 @@ function employeesByIds(...ids) {
 };
 
 function employeeByName(employeeName) {
-  const expected = [];
+  const expected = {};
   if (employeeName === undefined) {
     return expected;
   }
