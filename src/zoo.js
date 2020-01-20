@@ -33,7 +33,17 @@ function animalCount(species) {
 };
 
 function animalMap(options) {
-  // Seu código aqui
+  return data.animals.reduce((emptyValue, CurrentValue) => {
+    if (emptyValue[CurrentValue.location] == undefined) {
+      emptyValue[CurrentValue.location] = [];
+    }
+    emptyValue[CurrentValue.location] = 
+      [...emptyValue[CurrentValue.location], 
+      { [current.name]: CurrentValue.residents.map(animal => animal.name) }
+    ];
+​
+    return emptyValue;
+  }, {})
 };
 
 function animalPopularity(rating) {
@@ -144,21 +154,26 @@ class Animal {
     this.name = name;
     this.age = age;
     this.sex = sex;
-    this.species = species;
+    this.species = species.slice(0,-1);
+    Animal.contador += 1
   }
 
   info(){
-    return `${this.name} is a ${this.age} year old ${this.sex} lion`
+    return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
   }
 
-  
+  static totalAnimals(){
+    return Animal.contador;
+  }
 }
+
+Animal.contador = 0
 
 function createAnimals() {
   const arrayAnimais = []
   data.animals.forEach(animal => animal.residents
   .forEach(resident => arrayAnimais
-  .push(new Animal(resident.name,resident.age,resident.sex,animal.species))));
+  .push(new Animal(resident.name,resident.age,resident.sex,animal.name))));
   return arrayAnimais
 }
 
