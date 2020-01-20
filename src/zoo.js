@@ -82,13 +82,13 @@ function animalMap(options) {
   if (!options || (options.sex && !options.includeNames)) {
     return primeiroRequisito()
   }
-  if (options.includeNames && !options.sex) {
-    if (options.sorted) {
-      return terceiroRequisito()
-    }
-    return segundoRequisito()
+  if (options.sorted) {
+    return terceiroRequisito()
   }
-  return quartoRequisito()
+  if (options.sex) {
+    return quartoRequisito()
+  }
+  return segundoRequisito()
 };
 
 function animalPopularity(rating) {
