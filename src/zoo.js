@@ -38,6 +38,25 @@ function animalCount(species) {
   return animals[species];
 };
 
+
+function animalsMap() {
+  return Object.keys(dadosLocations).reduce((acc, location) => {
+    acc[location] = dadosLocations[location].map((animalType) => {
+      const obj = {};
+      obj[animalType.name] = animalType.residents;
+      return obj;
+    });
+    return acc;
+  }, {});
+}
+
+function locationMap(locations, dados) {
+  return locations.reduce((acc, location) => {
+    acc[location] = dados.filter((animal) => animal.location === location);
+    return acc;
+  }, {});
+}
+
 function includeNamesFalse(dadosLocations) {
   return Object.keys(dadosLocations).reduce((acc, location) => {
     acc[location] = dadosLocations[location].map((item) => item.name);
@@ -49,10 +68,7 @@ function animalMap(options) {
   const dados = [...data.animals];
   const locations = ['NE', 'NW', 'SE', 'SW'];
 
-  let dadosLocations = locations.reduce((acc, location) => {
-    acc[location] = dados.filter((animal) => animal.location === location);
-    return acc;
-  }, {});
+  let dadosLocations = locationMap(locations, dados);
 
   if (typeof options === 'undefined') {
     return includeNamesFalse(dadosLocations);
@@ -64,14 +80,7 @@ function animalMap(options) {
     return includeNamesFalse(dadosLocations);
   }
 
-  const animals = Object.keys(dadosLocations).reduce((acc, location) => {
-    acc[location] = dadosLocations[location].map((animalType) => {
-      const obj = {};
-      obj[animalType.name] = animalType.residents;
-      return obj;
-    });
-    return acc;
-  }, {});
+  const animals = animalsMap();
 
   Object.keys(animals).forEach((location) => {
     animals[location].forEach((animalType) => {
@@ -96,6 +105,7 @@ function animalMap(options) {
       });
     });
   }
+
   return { NE, NW, SE, SW };
 };
 
