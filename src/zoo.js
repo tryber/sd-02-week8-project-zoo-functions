@@ -27,7 +27,7 @@ function schedule(dayName) {
 
 
 function animalCount(species) {
-  const [animals, newObj] = {};
+  const animals = {};
   data.animals.forEach((animal) => {
     animals[animal.name] = animal.residents.length
   });
@@ -35,56 +35,71 @@ function animalCount(species) {
   if (typeof species === 'undefined') {
     return animals;
   }
-  newObj[species] = animals[species];
-  return newObj;
+  return animals[species];
 };
 
-const funcao2 = options => (acc, val) => {
-  let array = [...val.residents];
-  if (Object.prototype.hasOwnProperty.call(options, 'sex')) {
-    array = array.filter(item => item.sex === options.sex);
-  }
-  if (Object.prototype.hasOwnProperty.call(options, 'sorted')
-    && options.sorted === true) {
-    array = array.sort((a, b) => (a.name < b.name ? -1 : 1));
-  }
-  array = array.map(item => item.name);
-  acc[val.name] = array;
-  return acc;
-};
-
-const funcao1 = (acc, val) => {
-  acc[val.location] = [...acc[val.location], val.name]
-  return acc;
-};
+function includeNamesFalse(dadosLocations) {
+  return Object.keys(dadosLocations).reduce((acc, location) => {
+    acc[location] = dadosLocations[location].map((item) => item.name);
+    return acc;
+  }, {});
+}
 
 function animalMap(options) {
-  const locations = {};
-  const names = {};
+  const dados = [...data.animals];
+  const locations = ['NE', 'NW', 'SE', 'SW'];
 
-  Object.assign(locations,
-    data.animals.reduce(funcao1, { NE: [], NW: [], SE: [], SW: [] })
-  );
+  let dadosLocations = locations.reduce((acc, location) => {
+    acc[location] = dados.filter((animal) => animal.location === location);
+    return acc;
+  }, {});
 
   if (typeof options === 'undefined') {
-    return locations;
+    return includeNamesFalse(dadosLocations);
   }
 
-  Object.assign(names,
-    data.animals.reduce(funcao2(options), {})
-  );
+  const { includeNames = false, sorted = false, sex } = options;
 
-  if (options.includeNames) {
-    Object.entries(locations).forEach((key) => {
-      locations[key[0]].forEach((animal, index) => {
-        const obj = {};
-        obj[animal] = names[animal];
-        locations[key[0]][index] = obj;
+  if (!includeNames) {
+    return includeNamesFalse(dadosLocations);
+  }
+
+  const animals = Object.keys(dadosLocations).reduce((acc, location) => {
+    acc[location] = dadosLocations[location].map((animalType) => {
+      const obj = {};
+      obj[animalType.name] = animalType.residents;
+      return obj;
+    });
+    return acc;
+  }, {});
+
+  Object.keys(animals).forEach((location) => {
+    animals[location].forEach((animalType) => {
+      Object.keys(animalType).forEach((key) => {
+        if(sex) {
+          animalType[key] = animalType[key].filter(item => item.sex === sex);
+        }
+        animalType[key] = animalType[key].map(item => item.name);
+      });
+    });
+  });
+
+  const [NE, NW, SE, SW] = Object.values(animals);
+  const array = [NE, NW, SE, SW];
+
+  if (sorted) {
+    array.forEach((location) => {
+      location.forEach((animalType) => {
+        Object.keys(animalType).forEach((key) => {
+          animalType[key] = animalType[key].sort((a, b) => (a < b ? -1 : 1));
+        });
       });
     });
   }
-  return locations;
+  return { NE, NW, SE, SW };
 };
+
+
 
 function animalPopularity(rating) {
 };
@@ -141,6 +156,7 @@ const coverageFuncao3 = (responsaveis, idOrName) => {
       responsaveis[key] = array2;
     }
   });
+  return responsaveis;
 }
 
 const coverageFuncao4 = responsaveisId => (employee) => {
@@ -177,13 +193,11 @@ function employeeCoverage(idOrName) {
   });
 
   if (regexName.test(idOrName)) {
-    coverageFuncao3(responsaveis, idOrName);
+    return coverageFuncao3(responsaveis, idOrName);
   }
 
   return responsaveis;
 };
-
-console.log(employeeCoverage())
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   const newObj = { id, firstName, lastName, managers, responsibleFor };
@@ -232,6 +246,7 @@ function increasePrices(percentage) {
 }
 
 class Animal {
+  static qt = 0;
   constructor(name, sex, age, species) {
     this.name = name;
     this.sex = sex;
