@@ -39,7 +39,7 @@ function animalCount(species) {
 };
 
 
-function animalsMap() {
+function animalsMap(dadosLocations) {
   return Object.keys(dadosLocations).reduce((acc, location) => {
     acc[location] = dadosLocations[location].map((animalType) => {
       const obj = {};
@@ -48,6 +48,20 @@ function animalsMap() {
     });
     return acc;
   }, {});
+}
+
+function animalMaps2(animals, sex) {
+  Object.keys(animals).forEach((location) => {
+    animals[location].forEach((animalType) => {
+      Object.keys(animalType).forEach((key) => {
+        if(sex) {
+          animalType[key] = animalType[key].filter(item => item.sex === sex);
+        }
+        animalType[key] = animalType[key].map(item => item.name);
+      });
+    });
+  });
+  return animals;
 }
 
 function locationMap(locations, dados) {
@@ -80,18 +94,9 @@ function animalMap(options) {
     return includeNamesFalse(dadosLocations);
   }
 
-  const animals = animalsMap();
+  const animals = animalsMap(dadosLocations);
 
-  Object.keys(animals).forEach((location) => {
-    animals[location].forEach((animalType) => {
-      Object.keys(animalType).forEach((key) => {
-        if(sex) {
-          animalType[key] = animalType[key].filter(item => item.sex === sex);
-        }
-        animalType[key] = animalType[key].map(item => item.name);
-      });
-    });
-  });
+  Object.assign(animals, animalMaps2(animals, sex));
 
   const [NE, NW, SE, SW] = Object.values(animals);
   const array = [NE, NW, SE, SW];
