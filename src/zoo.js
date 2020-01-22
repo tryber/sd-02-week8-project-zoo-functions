@@ -54,7 +54,7 @@ function animalMaps2(animals, sex) {
   Object.keys(animals).forEach((location) => {
     animals[location].forEach((animalType) => {
       Object.keys(animalType).forEach((key) => {
-        if(sex) {
+        if (sex) {
           animalType[key] = animalType[key].filter(item => item.sex === sex);
         }
         animalType[key] = animalType[key].map(item => item.name);
@@ -73,7 +73,7 @@ function locationMap(locations, dados) {
 
 function includeNamesFalse(dadosLocations) {
   return Object.keys(dadosLocations).reduce((acc, location) => {
-    acc[location] = dadosLocations[location].map((item) => item.name);
+    acc[location] = dadosLocations[location].map(item => item.name);
     return acc;
   }, {});
 }
@@ -82,7 +82,7 @@ function animalMap(options) {
   const dados = [...data.animals];
   const locations = ['NE', 'NW', 'SE', 'SW'];
 
-  let dadosLocations = locationMap(locations, dados);
+  const dadosLocations = locationMap(locations, dados);
 
   if (typeof options === 'undefined') {
     return includeNamesFalse(dadosLocations);
