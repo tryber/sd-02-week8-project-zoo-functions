@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for test in `ls *test.js`
+for test in `ls **/*test.js`
 do
 node $test
 done
