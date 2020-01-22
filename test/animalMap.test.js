@@ -89,7 +89,7 @@ expected = {
     { frogs: ['Cathey', 'Annice'] },
     { snakes: ['Paulette'] }
   ]
-};
+}
 
 assert.deepEqual(actual, expected);
 
