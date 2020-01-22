@@ -115,10 +115,6 @@ function animalMap(options) {
 };
 
 
-
-function animalPopularity(rating) {
-};
-
 function animalsByIds(...ids) {
   let array = [];
   ids.forEach((id) => {
@@ -127,21 +123,12 @@ function animalsByIds(...ids) {
   return array;
 };
 
-function animalByName(animalName) {
-};
-
-function employeesByIds(ids) {
-};
 
 function employeeByName(employeeName) {
   if (typeof employeeName === 'undefined') { return {}; }
   return [...data.employees.filter(item =>
     item.firstName === employeeName || item.lastName === employeeName)][0];
 }
-
-function managersForEmployee(idOrName) {
-  // seu código aqui
-};
 
 const coverageFuncao1 = (responsaveisId, selecionados) => {
   Object.keys(responsaveisId).forEach((key) => {
@@ -261,7 +248,6 @@ function increasePrices(percentage) {
 }
 
 class Animal {
-  static qt = 0;
   constructor(name, sex, age, species) {
     this.name = name;
     this.sex = sex;
@@ -280,6 +266,7 @@ class Animal {
 }
 
 function createAnimals() {
+  Animal.qt = 0;
   const animals = [];
   data.animals.forEach((specie) => {
     const string = specie.name;
@@ -309,12 +296,8 @@ module.exports = {
   schedule: schedule,
   animalCount: animalCount,
   animalMap: animalMap,
-  animalPopularity: animalPopularity,
   animalsByIds: animalsByIds,
-  animalByName: animalByName,
-  employeesByIds: employeesByIds,
   employeeByName: employeeByName,
-  managersForEmployee: managersForEmployee,
   employeeCoverage: employeeCoverage,
   addEmployee: addEmployee,
   isManager: isManager,
