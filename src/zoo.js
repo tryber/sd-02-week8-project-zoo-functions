@@ -1,5 +1,7 @@
 const assert = require('assert');
 const data = require('./data');
+const animalCount = require('./animalCount');
+const schedule = require('./schedule');
 
 function entryCalculator(entrants) {
   if (typeof entrants === 'undefined') { return 0; }
@@ -11,33 +13,6 @@ function entryCalculator(entrants) {
   });
   return total;
 };
-
-function schedule(dayName) {
-  const hours = {};
-  if (typeof dayName === 'undefined') {
-    Object.entries(data.hours).forEach((key) => {
-      hours[key[0]] = `Open from ${key[1].open}am until ${key[1].close - 12}pm`;
-    });
-  } else {
-    hours[dayName] = `Open from ${data.hours[dayName].open}am until ${data.hours[dayName].close - 12}pm`
-  }
-  if (hours.Monday) { hours.Monday = 'CLOSED'; }
-  return hours;
-};
-
-
-function animalCount(species) {
-  const animals = {};
-  data.animals.forEach((animal) => {
-    animals[animal.name] = animal.residents.length
-  });
-
-  if (typeof species === 'undefined') {
-    return animals;
-  }
-  return animals[species];
-};
-
 
 function animalsMap(dadosLocations) {
   return Object.keys(dadosLocations).reduce((acc, location) => {
@@ -66,7 +41,7 @@ function animalMaps2(animals, sex) {
 
 function locationMap(locations, dados) {
   return locations.reduce((acc, location) => {
-    acc[location] = dados.filter((animal) => animal.location === location);
+    acc[location] = dados.filter(animal => animal.location === location);
     return acc;
   }, {});
 }
