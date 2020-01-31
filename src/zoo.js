@@ -177,8 +177,8 @@ class Animal {
 function createAnimals() {
   const animals = [];
   data.animals.forEach((animais) => {
-    animais.residents.forEach((el) => {
-      animals.push(new Animal(el.name, el.sex, el.age, animais.name));
+    animais.residents.forEach((e) => {
+      animals.push(new Animal(e.name, e.sex, e.age, animais.name));
     })
   })
   Animal.Total = animals.length;
