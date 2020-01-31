@@ -5,7 +5,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   let resultado = 0;
-  Object.entries(data.prices).forEach((key) => {
+  Object.entries(data.prices).forEach(key => {
     resultado += entrants[key[0]] * key[1];
   });
   return resultado;
@@ -27,8 +27,8 @@ function schedule(dayName) {
 }
 
 function animalCount(species) {
-  const nomes = data.animals.map((e) => e.name);
-  const quantidade = data.animals.map((e) => e.residents.length);
+  const nomes = data.animals.map(e => e.name);
+  const quantidade = data.animals.map(e => e.residents.length);
   const obj = {};
   nomes.forEach((nome, index) => {
     obj[nome] = quantidade[index];
@@ -79,7 +79,7 @@ function animalsByIds(ids) {
   if (ids === null || ids === undefined) {
     return [];
   }
-  return ids.map((arg) => data.animals.find((item) => item.id === arg));
+  return ids.map(arg => data.animals.find(item => item.id === arg));
 }
 
 function animalByName(animalName) {
@@ -95,7 +95,7 @@ function employeeByName(employeeName) {
     return {};
   }
   return data.employees.find(
-    (e) => e.firstName === employeeName || e.lastName === employeeName,
+    e => e.firstName === employeeName || e.lastName === employeeName,
   );
 }
 
@@ -105,14 +105,14 @@ function managersForEmployee(idOrName) {
 
 function employeeCoverage(idOrName) {
   const obj = {};
-  data.employees.forEach((e) => {
+  data.employees.forEach(e => {
     obj[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map(
-      (id) => data.animals.find((animal) => animal.id === id).name,
+      id => data.animals.find(animal => animal.id === id).name,
     );
   });
-  const inputFuncionario = (input) => {
+  const inputFuncionario = input => {
     const funcionario = data.employees.find(
-      (e) => e.id === input || e.firstName === input || e.lastName === input,
+      e => e.id === input || e.firstName === input || e.lastName === input,
     );
     return `${funcionario.firstName} ${funcionario.lastName}`;
   };
@@ -138,35 +138,33 @@ function addEmployee(
 }
 
 function isManager(id) {
-  return data.employees
-    .map((e) => e.managers)
-    .some((b) => b.some((a) => a === id));
+  return data.employees.map(e => e.managers).some(b => b.some(a => a === id));
 }
 
 function animalsOlderThan(animal, age) {
   return data.animals
-    .find((animalesco) => animalesco.name === animal)
-    .residents.every((elemento) => elemento.age >= age);
+    .find(animalesco => animalesco.name === animal)
+    .residents.every(elemento => elemento.age >= age);
 }
 
 function oldestFromFirstSpecies(id) {
-  const responsible = data.employees.find((employee) => employee.id === id)
+  const responsible = data.employees.find(employee => employee.id === id)
     .responsibleFor[0];
-  const animals = data.animals.find((animal) => animal.id === responsible)
+  const animals = data.animals.find(animal => animal.id === responsible)
     .residents;
   const oldest = animals
-    .map((animal) => animal.age)
+    .map(animal => animal.age)
     .reduce((num, cur) => {
       return cur > num ? cur : num;
     });
-  const { name, sex, age } = animals.find((animal) => animal.age === oldest);
+  const { name, sex, age } = animals.find(animal => animal.age === oldest);
   return [name, sex, age];
 }
 
 function increasePrices(percentage) {
   const obj = {};
   const prices = Object.entries(data.prices);
-  const raise = prices.forEach((e) => {
+  const raise = prices.forEach(e => {
     obj[e[0]] = Math.round((e[1] + (e[1] * percentage) / 100) * 100) / 100;
   });
   data.prices = obj;
@@ -195,8 +193,8 @@ class Animal {
 
 function createAnimals() {
   const animals = [];
-  data.animals.forEach((animais) => {
-    animais.residents.forEach((e) => {
+  data.animals.forEach(animais => {
+    animais.residents.forEach(e => {
       animals.push(new Animal(e.name, e.sex, e.age, animais.name));
     });
   });
