@@ -118,12 +118,12 @@ function employeeCoverage(idOrName) {
   };
   if (idOrName === null || idOrName === undefined) {
     return obj;
-  } else {
+  }
     const obj1 = {};
     obj1[inputFuncionario(idOrName)] = obj[inputFuncionario(idOrName)];
     return obj1;
   }
-}
+
 
 function addEmployee(
   id,
@@ -154,9 +154,7 @@ function oldestFromFirstSpecies(id) {
     .residents;
   const oldest = animals
     .map(animal => animal.age)
-    .reduce((num, cur) => {
-      return cur > num ? cur : num;
-    });
+    .reduce((num, cur) => cur > num ? cur : num);
   const { name, sex, age } = animals.find(animal => animal.age === oldest);
   return [name, sex, age];
 }
@@ -165,7 +163,7 @@ function increasePrices(percentage) {
   const obj = {};
   const prices = Object.entries(data.prices);
   const raise = prices.forEach((e) => {
-    obj[e[0]] = Math.round((e[1] + (e[1] * percentage) / 100) * 100) / 100;
+    obj[e[0]] = Math.round((e[1] + (e[1] * (percentage / 100) * 100) / 100));
   });
   data.prices = obj;
 }
