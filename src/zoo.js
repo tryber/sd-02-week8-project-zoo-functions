@@ -5,7 +5,7 @@ function entryCalculator(entrants) {
     return 0;
   }
   let resultado = 0;
-  Object.entries(data.prices).forEach(key => {
+  Object.entries(data.prices).forEach((key) => {
     resultado += entrants[key[0]] * key[1];
   });
   return resultado;
@@ -105,12 +105,12 @@ function managersForEmployee(idOrName) {
 
 function employeeCoverage(idOrName) {
   const obj = {};
-  data.employees.forEach(e => {
+  data.employees.forEach((e) => {
     obj[`${e.firstName} ${e.lastName}`] = e.responsibleFor.map(
       id => data.animals.find(animal => animal.id === id).name,
     );
   });
-  const inputFuncionario = input => {
+  const inputFuncionario = (input) => {
     const funcionario = data.employees.find(
       e => e.id === input || e.firstName === input || e.lastName === input,
     );
@@ -164,7 +164,7 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const obj = {};
   const prices = Object.entries(data.prices);
-  const raise = prices.forEach(e => {
+  const raise = prices.forEach((e) => {
     obj[e[0]] = Math.round((e[1] + (e[1] * percentage) / 100) * 100) / 100;
   });
   data.prices = obj;
@@ -193,8 +193,8 @@ class Animal {
 
 function createAnimals() {
   const animals = [];
-  data.animals.forEach(animais => {
-    animais.residents.forEach(e => {
+  data.animals.forEach((animais) => {
+    animais.residents.forEach((e) => {
       animals.push(new Animal(e.name, e.sex, e.age, animais.name));
     });
   });
