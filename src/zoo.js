@@ -145,19 +145,48 @@ function oldestFromFirstSpecies(id) {
 
 
 function increasePrices(percentage) {
-  // seu código aqui
-}
+    const obj = {};
+    const prices = Object.entries(data.prices);
+    const raise = prices.forEach(e => {
+      obj[e[0]] = Math.round((e[1] + e[1] * percentage / 100) * 100) / 100
+    });
+    data.prices = obj
+  };
 
 class Animal {
-  // seu código aqui
+      constructor(name = '', sex = 'male', age = 0, species = '') {
+      this.name = name;
+      this.sex = sex;
+      this.age = age;
+      this.species = species.slice(0, -1);
+    }
+    info() {
+      return `${this.name} is a ${this.age} year old ${this.sex} ${this.species}`
+    }
+    static get Total() {
+      return this.total;
+    }
+    static set Total(v) {
+      this.total = v;
+    }
+    static totalAnimals() {
+      return this.total;
+    }
 }
 
 function createAnimals() {
-  // seu código aqui
+  const animals = [];
+  data.animals.forEach((animais) => {
+    animais.residents.forEach((el) => {
+      animals.push(new Animal(el.name, el.sex, el.age, animais.name));
+    })
+  })
+  Animal.Total = animals.length;
+  return animals;
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith };
 }
 
 module.exports = {
