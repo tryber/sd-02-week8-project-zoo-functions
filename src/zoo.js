@@ -168,7 +168,9 @@ function increasePrices(percentage) {
   const obj = {};
   const prices = Object.entries(data.prices);
   prices.forEach((e) => {
-    obj[e[0]] = Math.round((e[1] + (e[1] * percentage) / 100) * 100) / 100;
+    const increase = e[1] * percentage / 100;
+    e[1] += increase
+    obj[e[0]] = Math.round(e[1] * 100) / 100;
   });
   data.prices = obj;
 }
