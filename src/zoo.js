@@ -158,7 +158,8 @@ function oldestFromFirstSpecies(id) {
       if (cur > num) {
         return cur
       }
-      return num;)
+      return num
+    })
   const { name, sex, age } = animals.find(animal => animal.age === oldest);
   return [name, sex, age];
 }
@@ -166,8 +167,8 @@ function oldestFromFirstSpecies(id) {
 function increasePrices(percentage) {
   const obj = {};
   const prices = Object.entries(data.prices);
-  const raise = prices.forEach((e) => {
-    obj[e[0]] = Math.round((e[1] + (e[1] * (percentage / 100) * 100) / 100));
+  prices.forEach((e) => {
+    obj[e[0]] = Math.round((e[1] + (e[1] * percentage) / 100) * 100) / 100;
   });
   data.prices = obj;
 }
