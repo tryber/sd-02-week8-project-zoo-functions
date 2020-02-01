@@ -119,10 +119,10 @@ function employeeCoverage(idOrName) {
   if (idOrName === null || idOrName === undefined) {
     return obj;
   }
-    const obj1 = {};
-    obj1[inputFuncionario(idOrName)] = obj[inputFuncionario(idOrName)];
-    return obj1;
-  }
+  const obj1 = {};
+  obj1[inputFuncionario(idOrName)] = obj[inputFuncionario(idOrName)];
+  return obj1;
+}
 
 
 function addEmployee(
