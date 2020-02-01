@@ -154,7 +154,11 @@ function oldestFromFirstSpecies(id) {
     .residents;
   const oldest = animals
     .map(animal => animal.age)
-    .reduce((num, cur) => cur > num ? cur : num);
+    .reduce((num, cur) => {
+      if (cur > num) {
+        return cur
+      }
+      return num;)
   const { name, sex, age } = animals.find(animal => animal.age === oldest);
   return [name, sex, age];
 }
