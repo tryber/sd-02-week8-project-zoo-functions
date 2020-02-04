@@ -14,7 +14,7 @@ function entryCalculator(entrants) {
 function schedule(dayName) {
   const days = dayName ? [dayName] : Object.keys(data.hours);
   return days.reduce((acc, day) => {
-    const { open, close } = data.hours[day];
+    const { open = 10, close } = data.hours[day];
     let text = '';
     if (day === 'Monday') {
       text = 'CLOSED';
@@ -131,8 +131,9 @@ function addEmployee(
   lastName,
   managers = [],
   responsibleFor = [],
+  ...args
 ) {
-  const newObj = { id, firstName, lastName, managers, responsibleFor };
+  const newObj = { id, firstName, lastName, managers, responsibleFor, args};
 
   data.employees.push(newObj);
 }
@@ -161,7 +162,9 @@ function oldestFromFirstSpecies(id) {
       return num
     })
   const { name, sex, age } = animals.find(animal => animal.age === oldest);
-  return [name, sex, age];
+  const result = [name, sex, age]
+  const [nome, sexo, idade] = result
+  return [nome, sexo, idade]
 }
 
 function increasePrices(percentage) {
