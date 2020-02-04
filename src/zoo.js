@@ -132,7 +132,7 @@ function addEmployee(
   managers = [],
   responsibleFor = [],
 ) {
-  const newObj = { id, firstName, lastName, managers, responsibleFor};
+  const newObj = { id, firstName, lastName, managers, responsibleFor };
 
   data.employees.push(newObj);
 }
